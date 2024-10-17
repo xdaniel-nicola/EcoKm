@@ -328,6 +328,10 @@ footer{
     background-color: #333;
 }
 
+.setaTopo{
+    width: 30px;
+}
+
 /* Tema escuro */
 body.dark-mode {
     background-color: #222020;
