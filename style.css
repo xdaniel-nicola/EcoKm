@@ -1,0 +1,541 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: rgb(237, 143, 143);
+    background-size: cover;
+    background-position: center;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+    color: #fff;
+    font-size: 1rem;
+}
+
+a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #b30000;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+  
+  a:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+
+
+/* HEADER */
+header {
+    position: relative;
+    padding: 0 2rem;
+    /* background-color: #4d4d4d; */
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle-btn {
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+ 
+.action-btn{
+    background-color:#b30000;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+
+.action-btn:hover {
+    scale: 1.05;
+    color: #fff;
+    background-color: #660000;
+}
+
+.action-btn:active {
+    scale: 0.95;
+}
+/* MAIN */
+.container {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 100px auto 80px auto; /* Ajustado para compensar o header fixo */
+}
+
+h1 {
+    color: #b30000;
+    text-align: center;
+    padding-bottom: 15px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #fdfdfd;
+}
+
+.cadastroCalc {
+    width: 100%;
+    padding: 10px;
+    background-color: #b30000;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.cadastroCalc:hover {
+    background-color: #660000;  
+    text-decoration: none;
+    color: #ffffff;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #b30000;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #660000;
+}
+
+#resultado {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #727272;
+}
+
+/* primeira caixa de texto */
+.containerTexto1{
+    margin-top: 100px;
+    width: 60vw;
+    background-color: #333;
+    display: block;
+    justify-content: left;
+    overflow-wrap: break-word;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 10px
+}
+.containerTexto1 h2{
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+}
+
+.containerTexto1 li {
+    margin-left: 20px;
+}
+.containerTexto1 p {
+    font-size: 20px;
+    font-weight: bold;
+    overflow-wrap: break-word;
+}
+/* segunda caixa de texto */
+.containerTexto2{
+    margin-top: 100px;
+    width: 60vw;
+    background-color: #333;
+    display: block;
+    justify-content: left;
+    overflow-wrap: break-word;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 10px;
+    text-align: left;
+}
+.containerTexto2 h2{
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+}
+.containerTexto2 p{
+    font-size: 20px;
+    font-weight: bold;
+    overflow-wrap: break-word;
+}
+/* terceira caixa de texto */
+.containerTexto3{
+    margin-top: 100px;
+    width: 60vw;
+    background-color: #333;
+    display: block;
+    justify-content: left;
+    overflow-wrap: break-word;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 10px
+}
+.containerTexto3 h2{
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+}
+
+.containerTexto3 li {
+    margin-left: 20px;
+}
+/* quarta caixa de texto */
+.containerTexto4{
+    margin-top: 100px;
+    width: 60vw;
+    background-color: #333;
+    display: block;
+    justify-content: left;
+    overflow-wrap: break-word;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 10px
+}
+.containerTexto4 h2{
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+}
+
+.containerTexto4 li {
+    margin-left: 20px;
+}
+
+/* FOOTER */
+footer{
+    background-color: #333;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding-top: 15px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+}
+
+.footerContato{
+    margin-top: 40px;
+    width: 30vw;
+    background-color: #202020;
+    display: grid;
+    grid-template-columns: auto auto ;
+    overflow-wrap: break-word;
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding-left: 15px; 
+}
+.footerSobreNos{
+    margin-top: 40px;
+    width: 50vw;
+    background-color: #202020;
+    display: block;
+    overflow-wrap: break-word;
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding-left: 15px;
+}
+.textoFooter{
+    margin-right: -50px;
+    color: #b30000;
+}
+.nomeContato{
+    font-weight: bold;
+}
+
+#btnTopo {
+    align-items: center;
+    width: 60px;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    z-index: 99;
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#btnTopo:hover{
+    background-color: #333;
+}
+
+/* Tema escuro */
+body.dark-mode {
+    background-color: #222020;
+    color: rgb(255, 255, 255);
+}
+
+body.dark-mode .container .card {
+    background-color: #333;
+    color: #ffb84d;
+    border: none;
+}
+body.dark-mode h2 {
+    color: #b30000;
+}
+
+
+/* Tema claro */
+body.light-mode .container h1 {
+    color: #b30000;
+}
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+body.light-mode .links a {
+    background-color: none;
+    color: #000000;
+}
+
+body.light-mode h2 {
+    background-color: none;
+    color:#b30000
+}
+body.light-mode #containerTexto p {
+    background-color: none;
+    color:#727272
+}
+
+body.light-mode h4 {
+    background-color: none;
+    color:#727272
+}
+body.light-mode .textoFooter{
+    margin-right: -50px;
+    color: #b30000;
+}
+body.light-mode .container {
+    background-color: #dbdbdb; 
+    border: none;
+}
+
+body.light-mode .card{
+    background-color: #dbdbdb; 
+    border: none;
+}
+
+body.light-mode h1 {
+    color: #ffb84d;
+}
+
+body.light-mode #containerTexto {
+    background-color: #dbdbdb; 
+    border: none;
+}
+
+body.light-mode footer{
+    background-color: #dbdbdb; 
+    border: none;
+}
+
+body.light-mode .footerContato{
+    background-color: #727272;
+    color: #dbdbdb;
+}
+
+body.light-mode .footerSobreNos{
+    background-color: #727272;
+    color: #dbdbdb;
+}
+
+/* Estilo do botão de alternância de tema */
+.theme-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-switch {
+    display: none;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.icon-sun, .icon-moon {
+    position: absolute;
+    font-size: 20px;
+}
+
+.icon-sun {
+    left: 5px;
+}
+
+.icon-moon {
+    right: 5px;
+    display: none;
+}
+
+.toggle-switch:checked + .toggle-label {
+    background-color: #4d4d4d;
+}
+
+.toggle-switch:checked + .toggle-label .toggle-slider {
+    transform: translateX(30px);
+}
+
+.toggle-switch:checked + .toggle-label .icon-sun {
+    display: none;
+}
+
+.toggle-switch:checked + .toggle-label .icon-moon {
+    display: block;
+}
+
+@media screen and (max-width: 610px) {
+    body{
+        font-family: Arial, sans-serif;
+        background-image: none;
+        background-attachment: fixed;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1{
+        font-size: 30px;
+    }
+    .container{
+        display: block;
+        width: 300px;
+    }
+    #form-carro .selecao {
+        display: block;
+        font-size: 15px;
+        margin-left: 40px;
+    }
+    label {
+        margin-left: 30px;
+    }
+    .selecao{
+        width: 180px;
+    }
+    button {
+        margin-left: 7vw;
+        width: 210px;
+    }
+    .theme-toggle{
+        position: relative;
+    }
+    a{
+        position: relative;
+    }
+    a .botaoLogin{
+        margin-left: 1000px;        
+    }
+    .textoFooter{
+        display: block;
+    }
+    #containerTexto{
+        width: 300px;
+    }
+    .footerContato{
+        display: block;
+        margin-top: 30px;
+        height: 550px;
+        font-size: 15px;
+    }
+    .footerSobreNos{
+        display: block;
+        margin-top: 30px;
+        width: 130px;
+    }
+    footer .textoFooter{
+        display: flex;
+        font-size: 15px;
+    }
+}
