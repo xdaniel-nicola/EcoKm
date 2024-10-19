@@ -13,7 +13,7 @@
         <p class="txtTopo"></p>
     </div>
     <div class="telaCadastro">
-        <form name="form" id="form" class="card" action="cadastro.php" method="post">
+        <form name="form" id="form" class="card" action="../php/cadastro.php" method="post">
             <div class="homePage">
                 <a href="..\index.html" class="voltarHome"> Voltar</a>
                 <button id="toggleTheme" class="toggle-button">
@@ -45,10 +45,10 @@
                     <input class="inputs" maxlength="18" type="text" name="celular1" id="celular1" placeholder="+55 (00)00000-0000" oninput="celular1Validate()">
                     <span class="span-required">Digite um celular válido.</span>
                 </div>
-                <div class="data_de_nascimento">
-                    <label for="data_de_nascimento">Data de nascimento:</label>
-                    <input class="inputs" maxlength="10" type="text" name="data_de_nascimento" id="data_de_nascimento" placeholder="dd/mm/aaaa" oninput="dateValidate()">
-                    <span class="span-required" name="data_de_nascimento_erro" id="data_de_nascimento_erro">Digite uma data válida.</span>
+                <div class="dt_nasc">
+                    <label for="dt_nasc">Data de nascimento:</label>
+                    <input class="inputs" maxlength="10" type="text" name="dt_nasc" id="dt_nasc" placeholder="dd/mm/aaaa" oninput="dateValidate()">
+                    <span class="span-required" name="dt_nasc_erro" id="dt_nasc_erro">Digite uma data válida.</span>
                 </div>
                 <div class="celular2">
                     <label for="celular2">Celular 2:</label>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="endereco">
                     <label for="endereco">Endereço:</label>
-                    <input class="inputs" type="text" name="endereco" id="endereco" placeholder="Rua, Estrada, Avenida.." oninput="enderecoValidate()" onchange="enderecoValidate()">
+                    <input class="inputs" type="text" name="endereco" id="endereco" placeholder="Rua, Estrada, Avenida e Nº" oninput="enderecoValidate()" onchange="enderecoValidate()">
                     <span class="span-required">O endereço deve ter no mínimo 3 caracteres.</span>
                 </div>
                 <div class="login">
