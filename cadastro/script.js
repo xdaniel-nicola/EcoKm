@@ -310,6 +310,7 @@ cep.addEventListener('focusout', async () => {
      endereco.value = responseCep.logradouro;
      bairro.value = responseCep.bairro;
      cidade.value = responseCep.localidade;
+    addCommaToEndereco(endereco);
     }) 
 // VALIDAÇÃO /\ //
 // MASCARAS \/ //
@@ -357,11 +358,11 @@ celular2.addEventListener('keypress', () => {
 })
 
 
-data_de_nascimento.addEventListener('keypress', () => {
-    let data_de_nascimentolength = data_de_nascimento.value.length
+dt_nasc.addEventListener('keypress', () => {
+    let dt_nasclength = dt_nasc.value.length
 
-    if (data_de_nascimentolength === 2 || data_de_nascimentolength === 5)
-        data_de_nascimento.value += '/'
+    if (dt_nasclength === 2 || dt_nasclength === 5)
+        dt_nasc.value += '/'
 })
 
 cep.addEventListener('keypress', () => {
@@ -370,3 +371,14 @@ cep.addEventListener('keypress', () => {
     if (ceplength === 5)
         cep.value += '-'
 })
+
+function addCommaToEndereco() {
+    let inputValue = endereco.value.trim(); 
+    if (inputValue && !inputValue.includes(',')) {
+        endereco.value = inputValue + ',';  
+    }
+}
+
+endereco.addEventListener('focusout', function() {
+    addCommaToEndereco();
+});
