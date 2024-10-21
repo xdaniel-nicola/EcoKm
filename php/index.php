@@ -32,7 +32,6 @@
         echo "<td><strong>Cidade</strong></td>";
         echo "<td><strong>Senha</strong></td>";
         echo "<td><strong>Bairro</strong></td>";
-        echo "<td><strong>ConfirmaSenha</strong></td>";
         echo "<td><strong>Sexo</strong></td>";
         echo "</tr>";
 
@@ -51,7 +50,6 @@
                 "<td>".$registro["cidade"] . "</td>" .
                 "<td>".$registro["senha"] . "</td>" .
                 "<td>".$registro["bairro"] . "</td>" .
-                "<td>".$registro["confirmaSenha"] . "</td>" .
                 "<td>".$registro["sexo"] . "</td>" ;
             echo "</tr>";
         }
