@@ -23,14 +23,14 @@
             return strtoupper(trim(str_replace(' ', '', $valor)));
         }
 
-        $nome = prepararTexto($_POST['nome']);
+        $nome = trim($_POST['nome']);
         $email = prepararTexto($_POST['email']);
         $cpf = limparMascara($_POST['cpf']);
         $celular1 = limparMascara($_POST['celular1']);
         $celular2 = limparMascara($_POST['celular2']);
         $dt_nasc = limparMascara($_POST['dt_nasc']);
         $cep = limparMascara($_POST['cep']);
-        $nomeMae = prepararTexto($_POST['nomeMae']);
+        $nomeMae = trim($_POST['nomeMae']);
         $endereco = prepararTexto($_POST['endereco']);
         $login = prepararTexto($_POST['login']);
         $cidade = prepararTexto($_POST['cidade']);
