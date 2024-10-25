@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('JavaScript carregado');
     const form = document.getElementById("form");
     const campos = document.querySelectorAll('.conteudo input, .conteudo select');
     const spans = document.querySelectorAll('.span-required');
@@ -92,8 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
     campos[0].addEventListener('input', nameValidate);
     campos[1].addEventListener('input', emailValidate);
     campos[2].addEventListener('input', cpfValidate);
-    campos[3].addEventListener('input', () => celularValidate(3));
-    campos[5].addEventListener('input', () => celularValidate(5));
+    campos[3].addEventListener('input', () => celular1Validate(3));
+    campos[5].addEventListener('input', () => celular2Validate(5));
     campos[4].addEventListener('input', dateValidate);
     campos[6].addEventListener('input', cepValidate);
     campos[7].addEventListener('input', nomeMaeValidate);
@@ -314,63 +315,73 @@ cep.addEventListener('focusout', async () => {
     }) 
 // VALIDAÇÃO /\ //
 // MASCARAS \/ //
+$(document).ready(function() {
+    console.log('Document ready e máscaras aplicadas'); // Verifique se esta mensagem aparece no console
 
-cpf.addEventListener('keypress', () => {
-    let cpflength = cpf.value.length
+    $("#cpf").inputmask("999.999.999-99");
+    $("#celular1").inputmask("+55 (99)99999-9999");
+    $("#celular2").inputmask("+55 (99)99999-9999");
+    $("#dt_nasc").inputmask("99/99/9999");
+    $("#cep").inputmask("99999-999");
+    console.log('Máscaras aplicadas');
 
-    if (cpflength === 3 || cpflength === 7) {
-        cpf.value += '.'
-    }else if (cpflength === 11) {
-        cpf.value += '-'
-    }
-})
+});
+// cpf.addEventListener('keypress', () => {
+//     let cpflength = cpf.value.length
 
-celular1.addEventListener('keypress', () => {
-    let celular1length = celular1.value.length
-    if (celular1length === 0){
-        celular1.value += '+'
-    }
-    else if (celular1length === 3){
-        celular1.value += ' ('
-    }
-    else if (celular1length === 7) {
-        celular1.value += ')'
-    }
-    else if (celular1length === 13) {
-        celular1.value += '-'
-    }
-})
+//     if (cpflength === 3 || cpflength === 7) {
+//         cpf.value += '.'
+//     }else if (cpflength === 11) {
+//         cpf.value += '-'
+//     }
+// })
 
-celular2.addEventListener('keypress', () => {
-    let celular2length = celular2.value.length
-    if (celular2length === 0){
-        celular2.value += '+'
-    }
-    else if (celular2length === 3){
-        celular2.value += ' ('
-    }
-    else if (celular2length === 7) {
-        celular2.value += ')'
-    }
-    else if (celular2length === 13) {
-        celular2.value += '-'
-    }
-})
+// celular1.addEventListener('keypress', () => {
+//     let celular1length = celular1.value.length
+//     if (celular1length === 0){
+//         celular1.value += '+'
+//     }
+//     else if (celular1length === 3){
+//         celular1.value += ' ('
+//     }
+//     else if (celular1length === 7) {
+//         celular1.value += ')'
+//     }
+//     else if (celular1length === 13) {
+//         celular1.value += '-'
+//     }
+// })
+
+// celular2.addEventListener('keypress', () => {
+//     let celular2length = celular2.value.length
+//     if (celular2length === 0){
+//         celular2.value += '+'
+//     }
+//     else if (celular2length === 3){
+//         celular2.value += ' ('
+//     }
+//     else if (celular2length === 7) {
+//         celular2.value += ')'
+//     }
+//     else if (celular2length === 13) {
+//         celular2.value += '-'
+//     }
+// })
 
 
-dt_nasc.addEventListener('keypress', () => {
-    let dt_nasclength = dt_nasc.value.length
+// dt_nasc.addEventListener('keypress', () => {
+//     let dt_nasclength = dt_nasc.value.length
 
-    if (dt_nasclength === 2 || dt_nasclength === 5)
-        dt_nasc.value += '/'
-})
+//     if (dt_nasclength === 2 || dt_nasclength === 5)
+//         dt_nasc.value += '/'
+// })
 
-cep.addEventListener('keypress', () => {
-    let ceplength = cep.value.length
+// cep.addEventListener('keypress', () => {
+//     let ceplength = cep.value.length
 
-    if (ceplength === 5)
-        cep.value += '-'
-})
+//     if (ceplength === 5)
+//         cep.value += '-'
+// })
 
 function addCommaToEndereco() {
     let inputValue = endereco.value.trim(); 
