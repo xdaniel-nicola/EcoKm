@@ -22,16 +22,21 @@
             // funçao que tira os espaços antes, depois e dentro da string e converte para maiúsculas
             return strtoupper(trim(str_replace(' ', '', $valor)));
         }
+        
+        function formatarDataParaMySQL($dataNascimentoUsuario) {
+            // funçao que arruma a data para o formato do SQL
+            return date("Y-m-d", strtotime($dataNascimentoUsuario));
+        }
 
         $nome = trim($_POST['nome']);
-        $email = prepararTexto($_POST['email']);
+        $email = trim($_POST['email']);
         $cpf = limparMascara($_POST['cpf']);
         $celular1 = limparMascara($_POST['celular1']);
         $celular2 = limparMascara($_POST['celular2']);
-        $dt_nasc = limparMascara($_POST['dt_nasc']);
+        $dt_nasc = formatarDataParaMySQL(trim($_POST['dt_nasc']));
         $cep = limparMascara($_POST['cep']);
         $nomeMae = trim($_POST['nomeMae']);
-        $endereco = prepararTexto($_POST['endereco']);
+        $endereco = strtoupper(trim($_POST['endereco']));
         $login = prepararTexto($_POST['login']);
         $cidade = prepararTexto($_POST['cidade']);
         $senha = prepararTexto($_POST['senha']);
