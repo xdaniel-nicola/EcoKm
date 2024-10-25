@@ -36,7 +36,6 @@ if ($pdo) {
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
                     <th scope="col">Celular1</th>
                     <th scope="col">Celular2</th>
                     <th scope="col">Data de Nascimento</th>
@@ -54,7 +53,6 @@ if ($pdo) {
         foreach ($dados as $row) {
             echo '<tr>
                 <td>' . htmlspecialchars($row['nome']) . '</td>
-                <td>' . htmlspecialchars($row['email']) . '</td>
                 <td>' . htmlspecialchars($row['celular1']) . '</td>
                 <td>' . htmlspecialchars($row['celular2']) . '</td>
                 <td>' . htmlspecialchars($row['dt_nasc']) . '</td>
