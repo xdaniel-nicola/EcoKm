@@ -24,8 +24,16 @@
         }
         
         function formatarDataParaMySQL($dataNascimentoUsuario) {
-            // funçao que arruma a data para o formato do SQL
-            return date("Y-m-d", strtotime($dataNascimentoUsuario));
+            // Primeiro, separamos o dia, mês e ano
+            $partes = explode('/', $dataNascimentoUsuario);
+            if (count($partes) === 3) {
+                $dia = $partes[0];
+                $mes = $partes[1];
+                $ano = $partes[2];
+                // Em seguida, retornamos a data no formato YYYY-MM-DD
+                return "$ano-$mes-$dia";
+            }
+            return null; // Retorna null se a data estiver vazia ou inválida
         }
 
         $nome = trim($_POST['nome']);
