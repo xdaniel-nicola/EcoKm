@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="padding: 0px; margin: 0px;">
         <h1>Pesquisar usuários</h1>
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
@@ -37,7 +37,6 @@ if ($pdo) {
                 <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">Email</th>
-                    <th scope="col">CPF</th>
                     <th scope="col">Celular1</th>
                     <th scope="col">Celular2</th>
                     <th scope="col">Data de Nascimento</th>
@@ -48,7 +47,6 @@ if ($pdo) {
                     <th scope="col">Cidade</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">Login</th>
-                    <th scope="col">Senha</th>
                 </tr>
             </thead>
             <tbody>';
@@ -57,7 +55,6 @@ if ($pdo) {
             echo '<tr>
                 <td>' . htmlspecialchars($row['nome']) . '</td>
                 <td>' . htmlspecialchars($row['email']) . '</td>
-                <td>' . htmlspecialchars($row['cpf']) . '</td>
                 <td>' . htmlspecialchars($row['celular1']) . '</td>
                 <td>' . htmlspecialchars($row['celular2']) . '</td>
                 <td>' . htmlspecialchars($row['dt_nasc']) . '</td>
@@ -68,7 +65,6 @@ if ($pdo) {
                 <td>' . htmlspecialchars($row['cidade']) . '</td>
                 <td>' . htmlspecialchars($row['sexo']) . '</td>
                 <td>' . htmlspecialchars($row['login']) . '</td>
-                <td>' . htmlspecialchars($row['senha']) . '</td>
             </tr>';
         }
 
