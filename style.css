@@ -51,6 +51,24 @@ header {
     /* background-color: #4d4d4d; */
 }
 
+.username-container {
+    display: none;
+}
+
+.action-btn {
+    display: block;
+}
+
+/* Quando a sessão está ativa */
+body.logged-in .username-container {
+    display: block;
+}
+
+body.logged-in .action-btn {
+    display: none;
+}
+
+
 .navbar {
     width: 100%;
     height: 80px;
