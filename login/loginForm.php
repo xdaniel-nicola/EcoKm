@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="telaLogin">
-        <form class="card" method="post">
+        <form class="card" method="post" action="loginHandler.php">
             <div class="homePage">
                 <a href="..\index.html" class="voltarHome">Início</a>
             </div>
