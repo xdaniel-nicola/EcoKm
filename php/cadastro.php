@@ -87,7 +87,7 @@
         
         ?>
 
-        <a href="../login/login.html">Voltar para login</a>
+        <a href="../login/loginForm.php">Voltar para login</a>
     </main>
 </body>
 </html>
