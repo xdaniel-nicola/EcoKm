@@ -43,6 +43,22 @@ a:before {
     transform: scaleX(1);
   }
 
+  .username-container {
+    display: none;
+}
+
+.action-btn {
+    display: block;
+}
+
+/* Quando a sessão está ativa */
+body.logged-in .username-container {
+    display: block;
+}
+
+body.logged-in .action-btn {
+    display: none;
+}
 
 /* HEADER */
 header {
