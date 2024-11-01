@@ -1,10 +1,8 @@
-<?php 
-session_start(); 
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
-if (!isset($_SESSION['username'])) { 
-    echo "Sessão não iniciada. Verifique se session_start() está sendo chamado corretamente."; 
-exit(); 
-};
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -17,13 +15,13 @@ exit();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="<?php echo $loggedInClass; ?>">
     <header>
         <div class="navbar">
             <div class="logo"><img src="img/ecokmlogo3.png" width="135"></div>
             <ul class="links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="planos/planos.html">Planos</a></li>
+                <li><a href="indexLogin.php">Home</a></li>
+                <li><a href="planos/planos.php">Planos</a></li>
             </ul>
             <!-- Botão de alternância de tema -->
             <div class="theme-toggle">
@@ -33,11 +31,13 @@ exit();
             </label>
             </div>
             <!-- Removi a duplicação do botão de login e deixei apenas uma vez --> 
-            <?php 
-            if (isset($_SESSION['username'])): ?>
-             <div class="username-container">Bem-vindo, <?php echo htmlspecialchars($_SESSION['username']); ?>!</div>
-            <?php else: ?> 
-                <a href="login/loginForm.php" class="action-btn">Login</a> 
+            <?php if (isset($_SESSION['username'])): ?>
+                <div class="username-container">
+                    <a href="php/perfil.php"><?php echo htmlspecialchars($_SESSION['username']); ?></a>
+                    <a href="logout.php" class="action-btn">Logout</a>
+                </div>
+            <?php else: ?>
+                <a href="login/loginForm.php" class="action-btn">Login</a>
             <?php endif; ?>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
@@ -96,7 +96,7 @@ exit();
                 <label for="preco-combustivel">Preço do Combustível (R$):</label>
                 <input class="selecao" type="number" id="preco-combustivel" step="0.01" required>
 
-                <a class="cadastroCalc" href="/cadastro/cadastro.html">Calcular</a>
+                <a class="cadastroCalc" href="cadastro/cadastro.html">Calcular</a>
                 <!-- <button type="button" onclick="calcularCombustivel()">Calcular</button> botao para clicar e fazer o cálculo -->
             </form>
             <div id="resultado"></div>
