@@ -3,7 +3,7 @@ session_start();
 require_once "../php/conexao.php"; // Caminho ajustado para conexoes.php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $login = $_POST['email'];  // Mudança no nome do campo
+    $login = $_POST['login'];
     $senha = $_POST['senha'];
 
     $conn = conectaPDO();
