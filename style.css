@@ -6,11 +6,38 @@
 
 body {
     height: 100vh;
-    background-color: rgb(237, 143, 143);
+    background-color: #ed8f8f;
     background-size: cover;
     background-position: center;
 }
+.carousel-container {
+    width: 100%;
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: center;
+}
 
+.carousel {
+    width: 100%;
+    max-width: 2000px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    display: none;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+.slide.active {
+    display: block;
+}
 li {
     list-style: none;
 }
@@ -94,7 +121,7 @@ body.logged-in .action-btn {
 .action-btn{
     background-color:#b30000;
     color: #fff;
-    padding: 0.8rem 1.5rem;
+    padding: 0.5rem 1rem;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -128,13 +155,14 @@ h1 {
     text-align: center;
     padding-bottom: 15px;
     font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: rgb(255, 255, 255);
+    color: #4d4d4d;
 }
 
 input, select {
@@ -192,7 +220,7 @@ button:hover {
 .containerTexto1{
     margin-top: 100px;
     width: 60vw;
-    background-color: #333;
+    background-color: #202020;
     display: block;
     justify-content: left;
     overflow-wrap: break-word;
@@ -219,7 +247,7 @@ button:hover {
 .containerTexto2{
     margin-top: 100px;
     width: 60vw;
-    background-color: #333;
+    background-color: #202020;
     display: block;
     justify-content: left;
     overflow-wrap: break-word;
@@ -243,7 +271,7 @@ button:hover {
 .containerTexto3{
     margin-top: 100px;
     width: 60vw;
-    background-color: #333;
+    background-color: #202020;
     display: block;
     justify-content: left;
     overflow-wrap: break-word;
@@ -265,7 +293,7 @@ button:hover {
 .containerTexto4{
     margin-top: 100px;
     width: 60vw;
-    background-color: #333;
+    background-color: #202020;
     display: block;
     justify-content: left;
     overflow-wrap: break-word;
@@ -297,7 +325,7 @@ footer{
 .footerContato{
     margin-top: 40px;
     width: 30vw;
-    background-color: #202020;
+    background-color: #333;
     display: grid;
     grid-template-columns: auto auto ;
     overflow-wrap: break-word;
@@ -309,7 +337,7 @@ footer{
 .footerSobreNos{
     margin-top: 40px;
     width: 50vw;
-    background-color: #202020;
+    background-color: #333;
     display: block;
     overflow-wrap: break-word;
     padding: 15px;
@@ -346,13 +374,13 @@ footer{
     background-color: #333;
 }
 
-.setaTopo{
+.setaTopo {
     width: 30px;
 }
 
 /* Tema escuro */
 body.dark-mode {
-    background-color: #222020;
+    background-color: #202020;
     color: rgb(255, 255, 255);
 }
 
@@ -373,6 +401,10 @@ body.light-mode .container h1 {
 body.light-mode {
     background-color: #f4f4f4;
     color: #333;
+}
+
+body.light-mode label {
+   color:#d14545;
 }
 
 body.light-mode .links a {
@@ -412,7 +444,7 @@ body.light-mode h1 {
 }
 
 body.light-mode #containerTexto {
-    background-color: #dbdbdb; 
+    background-color: #f4f4f4; 
     border: none;
 }
 
@@ -422,13 +454,13 @@ body.light-mode footer{
 }
 
 body.light-mode .footerContato{
-    background-color: #727272;
-    color: #dbdbdb;
+    background-color: #dbdbdb;
+    color: #333;
 }
 
 body.light-mode .footerSobreNos{
-    background-color: #727272;
-    color: #dbdbdb;
+    background-color: #dbdbdb;
+    color: #333;
 }
 
 /* Estilo do botão de alternância de tema */
