@@ -21,8 +21,8 @@
             </div>
             <div class="conteudo">
                 <div class="usuario">
-                    <label for="usuario">Email</label>
-                    <input class="inputs" type="text" name="email" id="email" placeholder="Digite seu email">
+                    <label for="usuario">Login</label>
+                    <input class="inputs" type="text" name="login" id="login" placeholder="Digite seu login">
                 </div>
                 <div class="senha">
                     <label for="senha">Senha</label>
