@@ -1,20 +1,25 @@
+<?php
+    session_start();
+    $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo de Planos Profissionais</title>
+    <title>Planos EcoKm</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="plano.css">
     <script src="script.js" defer></script>
 </head>
-<body>
+<body class="<?php echo $loggedInClass; ?>">
     <header>
         <div class="navbar">
             <div class="logo"><img src="../img/ecokmlogo3.png" width="135"></div>
             <ul class="links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="/planos/planos.html">Planos</a></li>
+                <li><a href="../indexLogin.php">Home</a></li>
+                <li><a href="/planos/planos.php">Planos</a></li>
             </ul>
             <!-- Botão de alternância de tema -->
             <div class="theme-toggle">
@@ -23,7 +28,14 @@
             <span class="toggle-slider"></span>
             </label>
             </div>
-            <div class="action-btn" ><a href="../login/loginForm.php" class="action-btn">Login</a></div>
+            <?php if (isset($_SESSION['username'])): ?> 
+                <div class="username-container">
+                    <a href="../php/perfil.php"><?php echo htmlspecialchars($_SESSION['username']); ?></a> <!-- Link para o perfil -->
+                    <a href="../logout.php" class="action-btn">Logout</a>
+                </div> 
+            <?php else: ?> 
+                <a href="../login/loginForm.php" class="action-btn">Login</a> 
+            <?php endif; ?>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
