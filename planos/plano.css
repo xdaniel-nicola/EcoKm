@@ -35,15 +35,30 @@ a:before {
     transform: scaleX(0);
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
-  }
+}
   
-  a:hover:before {
+a:hover:before {
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
-  }
+}
 
-  .username-container {
+.username-container{
+    border-color: #b30000;
+    border-style:solid;
+    display: flex;
+    flex-wrap: wrap;
+}
+.username-container a{
+    margin: 10px;
+    display: flex;
+    text-decoration: none;
+    position: relative;
+    color: #dbdbdb;
+    font-size: 1rem;
+}
+
+.username-container {
     display: none;
 }
 
@@ -233,6 +248,15 @@ body.dark-mode .menu {
 body.dark-mode .cabecalho {
     background-color: #222020;
 }
+
+body.dark-mode .username-container a{
+    margin: 10px;
+    display: flex;
+    text-decoration: none;
+    position: relative;
+    color: #dbdbdb;
+    font-size: 1rem;
+}
 /* MODO CLARO */
 body.light-mode {
     background-color: #f7f7f7;
@@ -269,6 +293,15 @@ body.light-mode .cabecalho {
 body.light-mode .links a {
     background-color: none;
     color: #000000;
+}
+
+body.light-mode .username-container a{
+    margin: 10px;
+    display: flex;
+    text-decoration: none;
+    position: relative;
+    color: #4d4d4d;
+    font-size: 1rem;
 }
 
 .theme-toggle {
