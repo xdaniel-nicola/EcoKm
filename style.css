@@ -191,7 +191,7 @@ body.logged-in .action-btn {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 100%;
     margin: 100px auto 80px auto; /* Ajustado para compensar o header fixo */
 }
 
@@ -219,7 +219,7 @@ input, select {
 }
 
 .cadastroCalc {
-    width: 100%;
+    width: 100px;
     padding: 10px;
     background-color: #b30000;
     color: #ffffff;
@@ -355,6 +355,15 @@ button:hover {
 
 .containerTexto4 li {
     margin-left: 20px;
+}
+
+
+.containerFormCarro{
+    display: flex;
+}
+
+.containerFormCarro div{
+    width: 100%;
 }
 
 /* FOOTER */
@@ -628,17 +637,21 @@ body.light-mode .username-container a{
         display: block;
         width: 300px;
     }
-    #form-carro .selecao {
+
+    .containerFormCarro{
+        display: block;
+    }
+    /* #form-carro .selecao {
         display: block;
         font-size: 15px;
         margin-left: 40px;
-    }
+    } */
     label {
         margin-left: 30px;
     }
-    .selecao{
+    /* .selecao{
         width: 180px;
-    }
+    } */
     button {
         margin-left: 7vw;
         width: 210px;
@@ -654,9 +667,19 @@ body.light-mode .username-container a{
     }
     .textoFooter {
         display: block;
+        margin-left: 10px;
     }
     .containerFooter {
         display: block;
-        width: 100vh;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .containerFormCarro{
+        display: block;
+    }
+    .cadastroCalc {
+        width: 100%;
     }
 }

@@ -73,24 +73,29 @@
         <div class="container">
             <h1>Calculadora de Gasto de Combustível</h1>
             <form class="card" id="form-carro">
-                <label for="modelo-carro">Modelo do Motor:</label>
-                <select class="selecao" id="modelo-carro"></select>
-
-                <label for="tipo-combustivel">Tipo de Combustível:</label>
-                <select class="selecao" id="tipo-combustivel">
-                    <option value="10">Gasolina</option>
-                    <option value="8">Etanol</option>
-                    <option value="15">GNV</option>
-                </select>
-
-                <label for="distancia">Distância (em km):</label>
-                <input class="selecao" type="number" id="distancia" required>
-
-                <label for="preco-combustivel">Preço do Combustível (R$):</label>
-                <input class="selecao" type="number" id="preco-combustivel" step="0.01" required>
-
-                <a class="cadastroCalc" href="cadastro/cadastro.html">Calcular</a>
-                <!-- <button type="button" onclick="calcularCombustivel()">Calcular</button> botao para clicar e fazer o cálculo -->
+                <div class="containerFormCarro">
+                    <div>
+                        <label for="modelo-carro">Modelo do Motor:</label>
+                        <select class="selecao" id="modelo-carro"></select>
+                    </div>
+                    <div>
+                        <label for="tipo-combustivel">Tipo de Combustível:</label>
+                        <select class="selecao" id="tipo-combustivel">
+                            <option value="10">Gasolina</option>
+                            <option value="8">Etanol</option>
+                            <option value="15">GNV</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="distancia">Distância (em km):</label>
+                        <input class="selecao" type="number" id="distancia" required>
+                    </div>
+                    <div>
+                        <label for="preco-combustivel">Preço do Combustível (R$):</label>
+                        <input class="selecao" type="number" id="preco-combustivel" step="0.01" required>
+                    </div>    
+                        <button type="button" class="cadastroCalc" onclick="calcularCombustivel()">Calcular</button>
+                </div>
             </form>
             <div id="resultado"></div>
         </div>
@@ -109,34 +114,34 @@
         </section>
         <button onclick="voltarAoTopo()" id="btnTopo"><img class="setaTopo" src="img/seta-topo-removebg-preview.png" alt="setaTopo"></button>
     </main>
-    <footer>
-        <div class="containerFooter">
-            <h4 class="textoFooter">Contato</h4>
-            <section class="footerContato"> 
-                <ul>
-                    <li class="nomeContato">Vitoria Rocha</li>
-                    <li>+21 98035-3819</li>
-                </ul>
-                <ul>
-                    <li class="nomeContato">Daniel Nicola</li>
-                    <li>+21 99479-1703</li>
-                </ul>
-                <ul>
-                    <li class="nomeContato">Joao Victor</li>
-                    <li>+21 97457-8229</li>
-                </ul>
-            </section>
-            <h4 class="textoFooter">Sobre Nós</h4>
-            <section class="footerSobreNos">
-                <p>Bem-vindo ao EcoKm! Nossa plataforma foi criada para facilitar o cálculo do consumo de combustível do seu veículo, 
-                    seja para uma viagem, para o dia a dia ou deslocamentos de trabalho. Entendemos que o gasto com combustível é uma 
-                    preocupação importante, e queremos ajudar você a tomar decisões mais conscientes e informadas.</p>
-                <p>Com o EcoKm, você pode calcular o consumo para qualquer distância, promovendo economia e eficiência em cada 
-                    quilômetro percorrido. Nosso objetivo é contribuir para escolhas mais sustentáveis e econômicas no seu dia a 
-                    dia, utilizando a tecnologia para otimizar o uso de seu veículo.</p>
-            </section>
-        </div>    
-    </footer>
+        <footer>
+            <div class="containerFooter">
+                <section class="footerContato"> 
+                    <h4 class="textoFooter">Contato</h4>
+                    <ul>
+                        <li class="nomeContato">Vitoria Rocha</li>
+                        <li>+21 98035-3819</li>
+                    </ul>
+                    <ul>
+                        <li class="nomeContato">Daniel Nicola</li>
+                        <li>+21 99479-1703</li>
+                    </ul>
+                    <ul>
+                        <li class="nomeContato">Joao Victor</li>
+                        <li>+21 97457-8229</li>
+                    </ul>
+                </section>
+                <section class="footerSobreNos">
+                    <h4 class="textoFooter">Sobre Nós</h4>
+                    <p>Bem-vindo ao EcoKm! Nossa plataforma foi criada para facilitar o cálculo do consumo de combustível do seu veículo, 
+                        seja para uma viagem, para o dia a dia ou deslocamentos de trabalho. Entendemos que o gasto com combustível é uma 
+                        preocupação importante, e queremos ajudar você a tomar decisões mais conscientes e informadas.</p>
+                    <p>Com o EcoKm, você pode calcular o consumo para qualquer distância, promovendo economia e eficiência em cada 
+                        quilômetro percorrido. Nosso objetivo é contribuir para escolhas mais sustentáveis e econômicas no seu dia a 
+                        dia, utilizando a tecnologia para otimizar o uso de seu veículo.</p>
+                </section>
+            </div>    
+        </footer>
     </main>
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
