@@ -30,11 +30,13 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
             <span class="toggle-slider"></span>
             </label>
             </div>
-            <!-- Removi a duplicação do botão de login e deixei apenas uma vez --> 
+            <!-- Removi a duplicação do botão de login --> 
             <?php if (isset($_SESSION['username'])): ?>
                 <div class="username-container">
-                    <a href="php/perfil.php"><?php echo htmlspecialchars($_SESSION['username']); ?></a>
-                    <a href="logout.php" class="action-btn">Logout</a>
+                <ul class="links">
+                    <li><a class="usuario" href="usuario/perfil.php">Bem vindo, <?php echo htmlspecialchars($_SESSION['username']);?></a></li>
+                    <li><a href="login/logout.php" class="action-btn">Logout</a></li>
+                </ul>
                 </div>
             <?php else: ?>
                 <a href="login/loginForm.php" class="action-btn">Login</a>
@@ -102,10 +104,11 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
 
                 <label for="preco-combustivel">Preço do Combustível (R$):</label>
                 <input class="selecao" type="number" id="preco-combustivel" step="0.01" required>
+                </form>
+                <button class="cadastroCalc" onclick="calcularCombustivel()">Calcular</button>
 
-                <a class="cadastroCalc" href="cadastro/cadastro.html">Calcular</a>
                 <!-- <button type="button" onclick="calcularCombustivel()">Calcular</button> botao para clicar e fazer o cálculo -->
-            </form>
+            
             <div id="resultado"></div>
         </div>
         <section class="containerTexto4" id="containerTexto">
@@ -124,34 +127,32 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
         <button onclick="voltarAoTopo()" id="btnTopo"><img class="setaTopo" src="img/seta-topo-removebg-preview.png" alt="setaTopo"></button>
     </main>
     <footer>
-        <h4 class="textoFooter">Contato</h4>
-        <section class="footerContato"> 
-            <ul>
-                <li class="nomeContato">Vitoria Rocha</li>
-                <li>+21 98035-3819</li>
-            </ul>
-            <ul>
-                <li class="nomeContato">Daniel Nicola</li>
-                <li>+21 99479-1703</li>
-            </ul>
-            <ul>
-                <li class="nomeContato">Joao Victor</li>
-                <li>+21 97457-8229</li>
-            </ul>
-            <ul>
-                <li class="nomeContato">Marco Benassi</li>
-                <li>+21 98315-1201</li>
-            </ul>
-        </section>
-        <h4 class="textoFooter">Sobre Nós</h4>
-        <section class="footerSobreNos">
-            <p>Bem-vindo ao EcoKm! Nossa plataforma foi criada para facilitar o cálculo do consumo de combustível do seu veículo, 
-                seja para uma viagem, para o dia a dia ou deslocamentos de trabalho. Entendemos que o gasto com combustível é uma 
-                preocupação importante, e queremos ajudar você a tomar decisões mais conscientes e informadas.</p>
-            <p>Com o EcoKm, você pode calcular o consumo para qualquer distância, promovendo economia e eficiência em cada 
-                quilômetro percorrido. Nosso objetivo é contribuir para escolhas mais sustentáveis e econômicas no seu dia a 
-                dia, utilizando a tecnologia para otimizar o uso de seu veículo.</p>
-        </section>
+        <div class="containerFooter">
+            <h4 class="textoFooter">Contato</h4>
+            <section class="footerContato"> 
+                <ul>
+                    <li class="nomeContato">Vitoria Rocha</li>
+                    <li>+21 98035-3819</li>
+                </ul>
+                <ul>
+                    <li class="nomeContato">Daniel Nicola</li>
+                    <li>+21 99479-1703</li>
+                </ul>
+                <ul>
+                    <li class="nomeContato">Joao Victor</li>
+                    <li>+21 97457-8229</li>
+                </ul>
+            </section>
+            <h4 class="textoFooter">Sobre Nós</h4>
+            <section class="footerSobreNos">
+                <p>Bem-vindo ao EcoKm! Nossa plataforma foi criada para facilitar o cálculo do consumo de combustível do seu veículo, 
+                    seja para uma viagem, para o dia a dia ou deslocamentos de trabalho. Entendemos que o gasto com combustível é uma 
+                    preocupação importante, e queremos ajudar você a tomar decisões mais conscientes e informadas.</p>
+                <p>Com o EcoKm, você pode calcular o consumo para qualquer distância, promovendo economia e eficiência em cada 
+                    quilômetro percorrido. Nosso objetivo é contribuir para escolhas mais sustentáveis e econômicas no seu dia a 
+                    dia, utilizando a tecnologia para otimizar o uso de seu veículo.</p>
+            </section>
+        </div>    
     </footer>
     </main>
     <script src="script.js"></script>
