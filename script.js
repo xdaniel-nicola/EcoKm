@@ -95,3 +95,22 @@ function mostrarBotao() {
         botao.style.display = "none";
     }
 }
+let currentIndex = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+}
+
+setInterval(nextSlide, 3000); // Muda de imagem a cada 3 segundos
+
+document.addEventListener('DOMContentLoaded', () => {
+    showSlide(currentIndex);
+});
