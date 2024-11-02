@@ -5,12 +5,13 @@
 }
 
 body {
+    font-family: Arial, sans-serif;
     height: 100vh;
     background-color: #ed8f8f;
     background-size: cover;
     background-position: center;
 }
-.carousel-container {
+body.logged-in .carousel-container {
     width: 100%;
     position: relative;
     top: 0;
@@ -18,7 +19,23 @@ body {
     justify-content: center;
 }
 
+.carousel-container {
+    width: 100%;
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
 .carousel {
+    width: 100%;
+    max-width: 2000px;
+    overflow: hidden;
+    position: relative;
+}
+
+body.logged-in .carousel {
     width: 100%;
     max-width: 2000px;
     overflow: hidden;
@@ -30,7 +47,17 @@ body {
     display: none;
 }
 
+body.logged-in.slide {
+    width: 100%;
+    display: none;
+}
+
 .slide img {
+    width: 100%;
+    display: block;
+}
+
+body.logged-in .slide img {
     width: 100%;
     display: block;
 }
@@ -41,7 +68,25 @@ body {
 li {
     list-style: none;
 }
+.username-container{
+    border-color: #b30000;
+    border-style:solid;
+    display: flex;
+    border-radius: 5px;
+}
+.username-container a{
+    margin: 10px;
+    display: flex;
+    text-decoration: none;
+    position: relative;
+    color: #dbdbdb;
+    font-size: 1rem;
+}
 
+.usuario{
+    display: flex;
+    flex-direction: column;
+}
 a {
     text-decoration: none;
     position: relative;
@@ -49,7 +94,7 @@ a {
     font-size: 1rem;
 }
 
-a:before {
+.links a:before {
     content: "";
     position: absolute;
     width: 100%;
@@ -162,7 +207,7 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #4d4d4d;
+    color: #ffffff;
 }
 
 input, select {
@@ -213,7 +258,7 @@ button:hover {
     margin-top: 20px;
     text-align: center;
     font-size: 18px;
-    color: #727272;
+    color: #ffffff;
 }
 
 /* primeira caixa de texto */
@@ -315,20 +360,19 @@ button:hover {
 /* FOOTER */
 footer{
     background-color: #333;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
     padding-top: 15px;
     margin-top: 15px;
     padding-bottom: 15px;
 }
 
+.containerFooter {
+    display: flex;
+    flex-wrap: wrap;
+}
 .footerContato{
     margin-top: 40px;
     width: 30vw;
     background-color: #333;
-    display: grid;
-    grid-template-columns: auto auto ;
-    overflow-wrap: break-word;
     padding: 15px;
     border-radius: 10px;
     margin-left: 10px;
@@ -338,8 +382,6 @@ footer{
     margin-top: 40px;
     width: 50vw;
     background-color: #333;
-    display: block;
-    overflow-wrap: break-word;
     padding: 15px;
     border-radius: 10px;
     margin-left: 10px;
@@ -371,7 +413,7 @@ footer{
 }
 
 #btnTopo:hover{
-    background-color: #333;
+    background-color: #202020;
 }
 
 .setaTopo {
@@ -386,11 +428,18 @@ body.dark-mode {
 
 body.dark-mode .container .card {
     background-color: #333;
-    color: #ffb84d;
     border: none;
 }
 body.dark-mode h2 {
     color: #b30000;
+}
+body.dark-mode .username-container a{
+    margin: 10px;
+    display: flex;
+    text-decoration: none;
+    position: relative;
+    color: #dbdbdb;
+    font-size: 1rem;
 }
 
 
@@ -407,8 +456,11 @@ body.light-mode label {
    color:#d14545;
 }
 
+body.light-mode #resultado {
+    color: #727272;
+}
+
 body.light-mode .links a {
-    background-color: none;
     color: #000000;
 }
 
@@ -461,6 +513,35 @@ body.light-mode .footerContato{
 body.light-mode .footerSobreNos{
     background-color: #dbdbdb;
     color: #333;
+}
+
+body.light-mode #btnTopo {
+    align-items: center;
+    width: 60px;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    z-index: 99;
+    background-color: #bdbdbd;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+body.light-mode #btnTopo:hover{
+    background-color: #f4f4f4;
+}
+
+body.light-mode .username-container a{
+    margin: 10px;
+    display: flex;
+    text-decoration: none;
+    position: relative;
+    color: #000000;
+    font-size: 1rem;
 }
 
 /* Estilo do botão de alternância de tema */
@@ -571,25 +652,11 @@ body.light-mode .footerSobreNos{
     a .botaoLogin{
         margin-left: 1000px;        
     }
-    .textoFooter{
+    .textoFooter {
         display: block;
     }
-    #containerTexto{
-        width: 300px;
-    }
-    .footerContato{
+    .containerFooter {
         display: block;
-        margin-top: 30px;
-        height: 550px;
-        font-size: 15px;
-    }
-    .footerSobreNos{
-        display: block;
-        margin-top: 30px;
-        width: 130px;
-    }
-    footer .textoFooter{
-        display: flex;
-        font-size: 15px;
+        width: 100vh;
     }
 }
