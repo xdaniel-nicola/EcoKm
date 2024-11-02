@@ -18,9 +18,9 @@ if (!isset($_SESSION['username'])) {
 <body>
     <header>
         <div class="navbar">
-            <div class="logo"><img src="img/ecokmlogo3.png" width="135"></div>
+            <div class="logo"><img src="../img/ecokmlogo3.png" width="135"></div>
             <ul class="links">
-                <li><a href="../index.php">Home</a></li>
+                <li><a href="../indexLogin.php">Home</a></li>
                 <li><a href="../planos/planos.php">Planos</a></li>
             </ul>
             <div class="theme-toggle">
