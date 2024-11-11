@@ -7,7 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     height: 100vh;
-    background-color: #ed8f8f;
+    background-color: #202020;
     background-size: cover;
     background-position: center;
 }
@@ -195,6 +195,18 @@ body.logged-in .action-btn {
     margin: 100px auto 80px auto; /* Ajustado para compensar o header fixo */
 }
 
+.btn {
+    display: flex;
+}
+.btn #route-button{
+    margin-right: 5px;
+    width: 50%
+}
+
+.btn .cadastroCalc{
+    width: 50%;
+}
+
 h1 {
     color: #b30000;
     text-align: center;
@@ -238,8 +250,8 @@ input, select {
     color: #ffffff;
 }
 
-button {
-    width: 100%;
+/* button {
+    width: 100;
     padding: 10px;
     background-color: #b30000;
     color: #ffffff;
@@ -252,7 +264,7 @@ button {
 
 button:hover {
     background-color: #660000;
-}
+} */
 
 #resultado {
     margin-top: 20px;
@@ -357,9 +369,9 @@ button:hover {
     margin-left: 20px;
 }
 
-
 .containerFormCarro{
-    display: flex;
+    display:grid;
+    grid-template-columns: auto auto auto;
 }
 
 .containerFormCarro div{
@@ -656,6 +668,7 @@ body.light-mode .username-container a{
         margin-left: 7vw;
         width: 210px;
     }
+    
     .theme-toggle{
         position: relative;
     }
@@ -679,7 +692,21 @@ body.light-mode .username-container a{
     .containerFormCarro{
         display: block;
     }
+
+    .container input, select{
+        width: 100%;
+    }
+    
+    .btn { 
+        display: flex;
+        flex-wrap: wrap;
+    }
     .cadastroCalc {
         width: 100%;
+        margin-top: 10px;
+    }
+    .btn #route-button{
+        width: 100%;
+        margin-bottom: 10px;
     }
 }
