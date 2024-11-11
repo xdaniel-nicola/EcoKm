@@ -301,18 +301,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 })
 cep.addEventListener('focusout', async () => {
-
+    try {
+        
     const response = await fetch (`https://viacep.com.br/ws/${cep.value}/json/`);
-    
-    if(!response.ok) {
-        throw await response.json();
-    }
+        
+        if(!response.ok) {
+            throw new Error ("Erro ao buscar o CEP");
+        }
      const responseCep = await response.json();
-     endereco.value = responseCep.logradouro;
-     bairro.value = responseCep.bairro;
-     cidade.value = responseCep.localidade;
-    addCommaToEndereco(endereco);
-    }) 
+    if(endereco.value.trim() === ""){ // funções que só preenchem o campo caso ele esteja vazio
+        endereco.value = responseCep.logradouro || "";
+    }
+    if(bairro.value.trim() === ""){
+        bairro.value = responseCep.bairro || "";
+    }
+    if(cidade.value.trim() === ""){
+        cidade.value = responseCep.localidade || "";
+    }
+    addCommaToEndereco(endereco); 
+    }    catch (error) {
+        console.error("Erro ao buscar o CEP:", error)
+    }})
+
 // VALIDAÇÃO /\ //
 // MASCARAS \/ //
 $(document).ready(function() {
