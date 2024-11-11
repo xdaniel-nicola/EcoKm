@@ -10,6 +10,15 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Calculadora de Gasto de Combustível</title>
+    <!-- Importando o CSS do Mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
+    <!-- Importando o arquivo CSS local -->
+    <link rel="stylesheet" href="mapaLog/mapa.css">
+    <!-- Importando o JS do Mapbox -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+    <!-- Importando o arquivo JavaScript local -->
+    <script src="mapaLog/mapa.js" defer></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -88,34 +97,48 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
         </section>
         <div class="container">
             <h1>Calculadora de Gasto de Combustível</h1>
+                <div id="map"></div>
             <form class="card" id="form-carro">
                 <div class="containerFormCarro">
                     <div>
                         <label for="modelo-carro">Modelo do Motor:</label>
                         <select class="selecao" id="modelo-carro"></select>
                     </div>
-                    <div>
-                        <label for="tipo-combustivel">Tipo de Combustível:</label>
-                        <select class="selecao" id="tipo-combustivel">
-                            <option value="10">Gasolina</option>
-                            <option value="8">Etanol</option>
-                            <option value="15">GNV</option>
-                        </select>
-                    </div>
+                        <div>
+                            <label for="tipo-combustivel">Tipo de Combustível:</label>
+                            <select class="selecao" id="tipo-combustivel">
+                                <option value="10">Gasolina</option>
+                                <option value="8">Etanol</option>
+                                <option value="15">GNV</option>
+                            </select>
+                        </div>
                     <div>
                         <label for="distancia">Distância (em km):</label>
-                        <input class="selecao" type="number" id="distancia" required>
+                        <input class="selecao" type="number" step="0.01"id="distancia" required>
                     </div>
-                    <div>
-                        <label for="preco-combustivel">Preço do Combustível (R$):</label>
-                        <input class="selecao" type="number" id="preco-combustivel" step="0.01" required>
-                    </div>    
-                        <button type="button" class="cadastroCalc" onclick="calcularCombustivel()">Calcular</button>
+                        <div>
+                            <label for="preco-combustivel">Preço do Combustível (R$):</label>
+                            <input class="selecao" type="number" id="preco-combustivel" step="0.01" required>
+                        </div>
+                        <div>
+                            <label for="partida">Partida:</label>
+                            <input type="text" id="start-input"/>
+                            <div id="start-suggestions" class="suggestions"></div>
+                        </div>
+                        <div> 
+                            <label for="chegada">Chegada:</label>
+                            <input type="text" id="end-input" />
+                            <div id="end-suggestions" class="suggestions"></div>
+                        </div>
+                    <div class="btn">
+                    <button type="button" id="route-button">Traçar Rota</button>    
+                    <button type="button" class="cadastroCalc" onclick="calcularCombustivel()">Calcular</button>
+                    </div>
                 </div>
-            </form>
 
-                <!-- <button type="button" onclick="calcularCombustivel()">Calcular</button> botao para clicar e fazer o cálculo -->
-            
+            <!-- <button type="button" onclick="calcularCombustivel()">Calcular</button> botao para clicar e fazer o cálculo -->
+            <div id="erro" style="display:none; color:red;">Ocorreu um erro ao traçar a rota. Verifique os endereços e tente novamente.</div>
+            <div id="result"></div>
             <div id="resultado"></div>
         </div>
         <section class="containerTexto4" id="containerTexto">
