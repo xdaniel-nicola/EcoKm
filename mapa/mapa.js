@@ -12,8 +12,8 @@ const routeButton = document.getElementById('route-button');
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-46.6333, -23.5505], // Coordenadas de São Paulo como exemplo
-    zoom: 12 // Nível de zoom inicial
+    center: [-43.556856,-22.905194],
+    zoom: 12 
 });
 
 // Adiciona eventos de input para os campos de entrada
