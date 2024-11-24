@@ -172,7 +172,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                         <li>+21 99479-1703</li>
                     </ul>
                     <ul>
-                        <li class="nomeContato">Joao Victor</li>
+                        <li class="nomeContato">João Victor</li>
                         <li>+21 97457-8229</li>
                     </ul>
                 </section>
