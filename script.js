@@ -1,4 +1,3 @@
-// Simulação de banco de dados de carros (pode ser substituído por uma chamada de API)
 const carDatabase = [
     { modelo: '1.0', eficiencia: 15.3 },
     { modelo: '1.3', eficiencia: 14.2 },
@@ -30,7 +29,7 @@ function calcularCombustivel() {
         const consumo = (distancia / eficienciaCombinada).toFixed(2);
         const custo = (consumo * precoCombustivel).toFixed(2);
         
-        document.getElementById('resultado').innerText = `O consumo aproximado será de: ${consumo} litros e o custo será algo em torno de: R$${custo}.`;
+        document.getElementById('resultado').innerText = `O consumo aproximado será de: ${consumo} litros e o custo será em torno de: R$${custo}.`;
     } else {
         document.getElementById('resultado').innerText = "Por favor, preencha todos os campos.";
     }
@@ -47,9 +46,7 @@ function logar() {
     }
 }
 
-// Carrega os modelos de carro quando a página é carregada
 window.onload = carregarModelosDeCarros;
-// Função para alternar o tema
 const toggleSwitch = document.getElementById('toggle-switch');
 const body = document.body;
 
@@ -63,7 +60,6 @@ toggleSwitch.addEventListener('change', () => {
     }
 });
 
-// Carregar o tema correto ao carregar a página
 window.addEventListener('load', () => {
     const isLightMode = localStorage.getItem('theme') === 'light';
     if (isLightMode) {
@@ -109,7 +105,7 @@ function nextSlide() {
     showSlide(currentIndex);
 }
 
-setInterval(nextSlide, 3000); // Muda de imagem a cada 3 segundos
+setInterval(nextSlide, 3000); 
 
 document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentIndex);
