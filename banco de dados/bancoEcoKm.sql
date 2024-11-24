@@ -34,3 +34,6 @@ preco FLOAT,
 cpf VARCHAR(15),
 CONSTRAINT fk_cpf_plano FOREIGN KEY (cpf) REFERENCES usuario(cpf) ON DELETE CASCADE
 );
+
+-- código para inserir a conta admin
+INSERT INTO usuario VALUES('admin','admin@gmail.com','12345678900','12345678900','12345678900','2024-07-15','00000000','admin','-----','admin','-----','admin1234','-----','-----');

@@ -164,7 +164,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                 <section class="footerContato"> 
                     <h4 class="textoFooter">Contato</h4>
                     <ul>
-                        <li class="nomeContato">Vitoria Rocha</li>
+                        <li class="nomeContato">Vitória Rocha</li>
                         <li>+21 98035-3819</li>
                     </ul>
                     <ul>
