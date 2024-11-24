@@ -1,3 +1,7 @@
+<?php
+require_once "../php/conexao.php";
+    $pdo = conectaPDO();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">   
 <head>
@@ -15,10 +19,11 @@
         <p class="txtTopo"></p>
     </div>
     <div class="telaCadastro">
-        <form name="form" id="form" class="card" action="../php/cadastro.php" method="post">
+        <form name="form" id="form" class="card" action="../php/insert.php" method="post">
+            
             <div class="homePage">
-                <a href="..\index.html" class="voltarHome"> Voltar</a>
-                <button id="toggleTheme" class="toggle-button">
+                <a href="..\index.php" class="voltarHome"> Voltar</a>
+                <button type="button" id="toggleTheme" class="toggle-button">
                     <span id="themeIcon">🌙</span>
                 </button>
             </div>
@@ -113,6 +118,7 @@
                 <input type="submit" name="enviar" id="enviar" class="enviar" value="Enviar">
             </div>
         </form>
+        <footer><div class="footer"><p>.</p></div></footer>
     </div>
 </body>
 </html>
