@@ -9,7 +9,7 @@
     <div class="telaLogin">
         <form class="card" method="post" action="loginHandler.php">
             <div class="homePage">
-                <a href="..\index.html" class="voltarHome">Início</a>
+                <a href="..\index.php" class="voltarHome">Início</a>
             </div>
             <div class="card-header">
                 <h2 name="titulo" id="titulo">Vamos começar</h2>
@@ -22,16 +22,16 @@
             <div class="conteudo">
                 <div class="usuario">
                     <label for="usuario">Login</label>
-                    <input class="inputs" type="text" name="login" id="login" placeholder="Digite seu login">
+                    <input class="inputs" type="text" name="login" id="login" autocomplete="off" placeholder="Digite seu login">
                 </div>
                 <div class="senha">
                     <label for="senha">Senha</label>
-                    <input class="inputs" type="password" name="senha" id="senha" placeholder="Digite sua senha">
+                    <input class="inputs" type="password" name="senha" id="senha" autocomplete="off" placeholder="Digite sua senha">
                 </div>
                 <div class="rodape">
                     <input type="submit" name="enviar" id="enviar" value="Entrar">
-                    <a href="#" class="recuperarSenha">Esqueceu a sua senha?</a>
-                    <h5>Não tem conta? <a href="../cadastro/cadastro.html" class="loginEmpresa">Cadastre-se gratuitamente.</a></h5>
+                    <!-- <a href="#" class="recuperarSenha">Esqueceu a sua senha?</a> -->
+                    <h5>Não tem conta? <a href="../cadastro/cadastro.php" class="loginEmpresa">Cadastre-se gratuitamente.</a></h5>
                 </div>
             </div>
         </form>
