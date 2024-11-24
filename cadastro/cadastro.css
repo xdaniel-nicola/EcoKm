@@ -3,15 +3,17 @@
 }
 
 body {   
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size:contain;
+    background-repeat:repeat;
     padding: 0;
     margin: 0;
+    background-image: url(../img/11.png);
     background-color: #141414; /* Cor de fundo escura padrão */
     transition: background-color 0.5s; /* Transição suave ao mudar o fundo */
 }
 body.light {
     background-color: #f0f0f0; /* Cor de fundo para tema claro */
+    background-image: url(../img/12.png);
 }
 
 body.light p #text{
@@ -31,6 +33,13 @@ body.light .inputs{
 body.light .sexos{
     background-color: #ffffff;
     color:#000000
+}
+body.light label{
+    color: #141414;
+}
+
+body.light .card-header {
+    color: #141414;
 }
 
 .topoPag {
@@ -126,14 +135,6 @@ button {
 
 .inputs::placeholder {
     text-transform: none;
-}
-
-.inputs#nome {
-    text-transform: capitalize;
-}
-
-.inputs#nomeMae {
-    text-transform: capitalize;
 }
 
 .rodape {
@@ -248,8 +249,21 @@ form {
     cursor: pointer;
     z-index: 1000; /* Para garantir que o botão fique acima de outros elementos */
 }
+.footer{
+    color: #0e0d0d;
+}
+body.light .footer{
+    color: white;
+}
 
 @media screen and (max-width: 768px) {
+    body{
+        display: block;
+    }
+    .footer{
+        margin-top: 1550px;
+        display: block;
+    }
     .conteudo {
         display: block;
         margin-left: 40px;
