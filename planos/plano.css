@@ -22,6 +22,11 @@ a {
     font-size: 1rem;
 }
 
+a:hover{
+    text-decoration: none;
+    color: #fff;
+}
+
 a:before {
     content: "";
     position: absolute;
@@ -131,6 +136,7 @@ header {
     text-align: center;
     padding: 40px 20px;
     margin-top: 100px;
+    transition: background-color 0.5s;
 }
 
 .cabecalho h1 {
@@ -258,9 +264,21 @@ body.dark-mode .username-container a{
     font-size: 1rem;
 }
 /* MODO CLARO */
+
+body.light-mode .action-btn{
+    color: white !important;
+}
+
+body.dark-mode .action-btn{
+    color: white !important;
+}
+
 body.light-mode {
     background-color: #f7f7f7;
     color: #333;
+}
+body.light-mode .action-btn{
+    color: #fff;
 }
 
 body.light-mode .menu {
@@ -295,12 +313,22 @@ body.light-mode .links a {
     color: #000000;
 }
 
-body.light-mode .username-container a{
+body.light-mode .username-container .usuario{
     margin: 10px;
     display: flex;
+    flex-wrap: wrap;
     text-decoration: none;
     position: relative;
     color: #4d4d4d;
+    font-size: 1rem;
+}
+body.light-mode .username-container .action-btn{
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none;
+    position: relative;
+    color: #ffffff;
     font-size: 1rem;
 }
 
@@ -390,6 +418,7 @@ body.light-mode .username-container a{
 }
 
 @media (max-width: 500px) {
+    
     .cabecalho h1 {
         font-size: 1.8em;
     }
@@ -399,5 +428,11 @@ body.light-mode .username-container a{
     }
     .plano_destaque p, .plano_destaque h2 {
         font-size: 1.2em;
+    }
+}
+
+@media (max-width: 414px) {
+    .cabecalho{
+        margin-top: 230px;
     }
 }
