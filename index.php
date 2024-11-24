@@ -1,39 +1,49 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Calculadora de Gasto de Combustível</title>
-    <!-- Importando o CSS do Mapbox -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
-    <!-- Importando o arquivo CSS local -->
-    <link rel="stylesheet" href="mapa/mapa.css">
-    <!-- Importando o JS do Mapbox -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
-    <!-- Importando o arquivo JavaScript local -->
-    <script src="mapa/mapa.js" defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3NZISEAjOEfUocgQXVpigSVriLgwKpCI&libraries=places&callback=initMap" async defer></script> -->
+    <link rel="stylesheet" href="mapagoogle/mapa.css">
+    <script src="mapagoogle/mapa.js" defer></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="<?php echo $loggedInClass; ?>">
     <header>
         <div class="navbar">
             <div class="logo"><img src="img/ecokmlogo3.png" width="135"></div>
             <ul class="links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="planos/planos.php">Planos</a></li>
             </ul>
-            <!-- Botão de alternância de tema -->
             <div class="theme-toggle">
             <input type="checkbox" id="toggle-switch" class="toggle-switch">
             <label for="toggle-switch" class="toggle-label">
             <span class="toggle-slider"></span>
             </label>
             </div>
-            <div><a href="login/loginForm.php"  class="action-btn">Login</a></div>
+            <?php if (isset($_SESSION['username'])): ?>
+                <div class="username-container">
+                <ul class="links">
+                    <li><a class="usuario" href="usuario/perfil.php">Bem vindo, <?php echo htmlspecialchars($_SESSION['username']);?></a></li>
+                    <li><a href="login/logout.php" class="action-btn">Logout</a></li>
+                </ul>
+                </div>
+            <?php else: ?>
+                <a href="login/loginForm.php" class="action-btn">Login</a>
+            <?php endif; ?>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -43,9 +53,9 @@
     <main>
         <div class="carousel-container">
             <div class="carousel">
-                <div class="slide"><img src="img/ft1.jpg" alt="Imagem 1"></div>
-                <div class="slide"><img src="img/ft2.jpg" alt="Imagem 2"></div>
-                <div class="slide"><img src="img/ft3.jpg" alt="Imagem 3"></div>
+                <div class="slide"><img src="img/7.webp" alt="Imagem 1"></div>
+                <div class="slide"><img src="img/8.webp" alt="Imagem 2"></div>
+                <div class="slide"><img src="img/9.webp" alt="Imagem 3"></div>
             </div>
         </div>
         <section class="containerTexto1" id="containerTexto">
@@ -81,8 +91,7 @@
         </section>
         <div class="container">
             <h1>Calculadora de Gasto de Combustível</h1>
-            <span class="avisoMapa">Para utilizar o mapa é necessário estar logado.</span>
-                <div id="map"></div>
+                <div id="map" class="map <?php echo $loggedInClass; ?>"></div>
             <form class="card" id="form-carro">
                 <div class="containerFormCarro">
                     <div>
@@ -99,7 +108,7 @@
                         </div>
                     <div>
                         <label for="distancia">Distância (em km):</label>
-                        <input class="selecao" type="number" id="distancia" required>
+                        <input class="selecao" type="number" step="0.01" id="distancia" required>
                     </div>
                         <div>
                             <label for="preco-combustivel">Preço do Combustível (R$):</label>
@@ -107,21 +116,35 @@
                         </div>
                         <div>
                             <label for="partida">Partida:</label>
-                            <input type="text" id="start-input"/>
-                            <div id="start-suggestions" class="suggestions"></div>
+                            <input type="text" name="partida" id="start" />
                         </div>
                         <div> 
                             <label for="chegada">Chegada:</label>
-                            <input type="text" id="end-input" />
-                            <div id="end-suggestions" class="suggestions"></div>
+                            <input type="text" name="chegada" id="end"/>
                         </div>
-                    <div class="btn">
-                    <a id="route-button" href="cadastro/cadastro.html">Traçar Rota</a>    
-                    <a type="button" class="cadastroCalc" href="cadastro/cadastro.html">Calcular</a>
+                        <div class="places-container">
+                            <label for="pontos">Pontos de Interesse:</label>
+                            <select disabled name="pontos" id="placeType">
+                                <option value="gas_station">Postos de Gasolina</option>
+                            </select>
+                        </div>
+                        <div class="btn">
+                        <?php if ($loggedInClass === 'logged-in'): ?>
+                            <!-- Quando estiver logado, exibe botões para traçar rota e calcular sem redirecionamento -->
+                            <button type="button" class="calculateBtn" onclick="calculateRoute()">Traçar Rota</button>
+                            <button type="button" class="cadastroCalc" onclick="calcularCombustivel()">Calcular</button>
+                        <?php else: ?>
+                            <!-- Quando não estiver logado, exibe links para a página de cadastro -->
+                            <a href="cadastro/cadastro.php" class="calculateBtn">Traçar Rota</a>
+                            <a href="cadastro/cadastro.php" class="cadastroCalc">Calcular</a>
+                        <?php endif; ?>
                     </div>
                 </div>
-            </form>
-            <!-- <button type="button" onclick="calcularCombustivel()">Calcular</button> botao para clicar e fazer o cálculo -->
+
+            <div id="erro" style="display:none; color:red;">Ocorreu um erro ao traçar a rota. Verifique os endereços e tente novamente.</div>
+            <div id="result"></div>
+            <div id="resultado"></div>
+
         </div>
         <section class="containerTexto4" id="containerTexto">
             <h2>Como economizar o combustível?</h2>
@@ -166,10 +189,10 @@
                 </section>
             </div>    
         </footer>
-    </main>
-    <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Fazendo requisição da API do Google -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3NZISEAjOEfUocgQXVpigSVriLgwKpCI&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
