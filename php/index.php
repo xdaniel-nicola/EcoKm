@@ -14,8 +14,6 @@
         $stmt = $conn->prepare('SELECT * FROM usuario');
         $stmt-> execute();
 
-//        $stmt = $conn->prepare('SELECT * FROM usuarios WHERE nome = :nome');
-//        $stmt->execute(['nome' => "Isis"]);
 
         echo "<table border='1'>";
         echo "<tr>";
