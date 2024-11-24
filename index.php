@@ -130,11 +130,9 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                         </div>
                         <div class="btn">
                         <?php if ($loggedInClass === 'logged-in'): ?>
-                            <!-- Quando estiver logado, exibe botões para traçar rota e calcular sem redirecionamento -->
                             <button type="button" class="calculateBtn" onclick="calculateRoute()">Traçar Rota</button>
                             <button type="button" class="cadastroCalc" onclick="calcularCombustivel()">Calcular</button>
                         <?php else: ?>
-                            <!-- Quando não estiver logado, exibe links para a página de cadastro -->
                             <a href="cadastro/cadastro.php" class="calculateBtn">Traçar Rota</a>
                             <a href="cadastro/cadastro.php" class="cadastroCalc">Calcular</a>
                         <?php endif; ?>
@@ -192,7 +190,6 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- Fazendo requisição da API do Google -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3NZISEAjOEfUocgQXVpigSVriLgwKpCI&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
