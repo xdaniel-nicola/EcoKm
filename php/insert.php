@@ -6,9 +6,6 @@
     <title>Conta criada com sucesso!</title>
 </head>
 <body>
-    <header>
-        <h1>Sua conta foi criada!</h2>
-    </header>
     <main>
         <?php
         include "conexao.php";
