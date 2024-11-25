@@ -13,7 +13,7 @@ CREATE TABLE usuario(
     endereco VARCHAR(40) NOT NULL,
     login VARCHAR(6) NOT NULL,
     cidade VARCHAR(30) NOT NULL,
-    senha VARCHAR(20) NOT NULL,
+    senha VARCHAR(60) NOT NULL,
     bairro VARCHAR(30) NOT NULL,
     sexo VARCHAR(10) NOT NULL
 );
