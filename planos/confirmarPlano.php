@@ -3,7 +3,7 @@ session_start();
 require_once "../php/conexao.php";
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login/loginForm.php"); 
+    header("Location: ../login/loginForm.php"); 
     exit();
 }
 

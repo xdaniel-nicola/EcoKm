@@ -75,18 +75,18 @@ $cpf = $stmt->fetchColumn();
         <form action="confirmarPlano.php" id="form" method="POST">
             <div class="form-group">
                 <label for="numeroCartao">Número do Cartão</label>
-                <input type="text" class="form-control" id="numeroCartao" name="numeroCartao" oninput="numCartaoValidate()">
-                <span class="span-required">Número inválido.</span>
+                <input type="text" class="form-control" id="numeroCartao" name="numeroCartao" >
+                <!-- <span class="span-required">Número inválido.</span> -->
             </div>
             <div class="form-group">
                 <label for="vencimento">Data de Vencimento</label>
-                <input type="text" class="form-control" id="vencimento" name="vencimento" oninput="validadeValidate()">
-                <span class="span-required">Digite uma data válida.</span>
+                <input type="text" class="form-control" id="vencimento" name="vencimento" >
+                <!-- <span class="span-required">Digite uma data válida.</span> -->
             </div>
             <div class="form-group">
                 <label for="cvv">CVV</label>
-                <input type="text" class="form-control" id="cvv" name="cvv" oninput="CVVValidate()">
-                <span class="span-required">CVV deve ter 3 dígitos.</span>
+                <input type="text" class="form-control" id="cvv" name="cvv" >
+                <!-- <span class="span-required">CVV deve ter 3 dígitos.</span> -->
             </div>
             <input type="hidden" name="plano" value="<?php echo htmlspecialchars($planoEscolhido); ?>">
             <input type="hidden" name="cpf" value="<?php echo htmlspecialchars($cpf); ?>">
