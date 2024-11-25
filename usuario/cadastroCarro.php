@@ -47,9 +47,12 @@ if ($pdo) {
             
             <div class="homePage">
                 <a href="perfil.php" class="voltarHome"> Voltar</a>
-                <button type="button" id="toggleTheme" class="toggle-button">
-                    <span id="themeIcon">🌙</span>
-                </button>
+                <div class="theme-toggle">
+                    <input type="checkbox" id="toggle-switch" class="toggle-switch">
+                    <label for="toggle-switch" class="toggle-label">
+                    <span class="toggle-slider"></span>
+                    </label>
+                </div>
             </div>
             <div class="card-header">
                 <h2 name="titulo" id="titulo">Cadastre seu carro</h2>
