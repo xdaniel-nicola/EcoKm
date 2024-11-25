@@ -13,10 +13,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->rowCount() > 0) {
         $user = $stmt->fetch();
+        if ($login === 'admin') {
+            $_SESSION['username'] = $user['nome'];
+            header("Location: ../index.php"); 
+            exit();
+        }
 
         if (password_verify($senha, $user['senha'])) {
             $_SESSION['username'] = $user['nome'];
-            header("Location: ../index.php");
+
+            $perguntas = [
+                'Nome Materno' => $user['nomeMae'],
+                'CEP' => $user['cep'],
+                'Endereço' => $user['endereco'],
+                'Bairro' => $user['bairro'],
+                'Cidade' => $user['cidade']
+            ];
+
+            $pergunta_aleatoria = array_rand($perguntas);
+
+            $_SESSION['pergunta'] = $pergunta_aleatoria;
+            $_SESSION['resposta'] = $perguntas[$pergunta_aleatoria];
+
+            // Redirecionando para a página de 2FA
+            header("Location: verificar_2fa.php");
             exit();
         } else {
             echo "Usuário ou senha inválidos.";
@@ -26,14 +46,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erro ao logar</title>
-</head>
-<body>
-    <a href="loginForm.php">Voltar para a página de login.</a>
-</body>
-</html>
