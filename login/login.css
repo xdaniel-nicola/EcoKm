@@ -81,7 +81,7 @@ body {
     color: #e1e1e1;
     border-radius: 10px;
     margin: 15px 0;
-    box-shadow: 0px 8px 10px rgb(0, 0, 0);
+    box-shadow: 0px 8px 10px rgb(0, 0, 0, 0.2);
 }
 
 #enviar:hover {
