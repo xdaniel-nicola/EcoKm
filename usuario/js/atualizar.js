@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginRegex = /^[a-zA-Z]{6}$/;
     const nomeRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{15,}$/;
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const cpfRegex = /^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/;
+    // const cpfRegex = /^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/;
     const celular1Regex = /^\+55 \(\d{2}\)\d{5}-\d{4}$/;
     const celular2Regex = /^\+55 \(\d{2}\)\d{5}-\d{4}$/;
     const dataRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function validador() {
         const isNameValid = nameValidate();
         const isEmailValid = emailValidate();
-        const isCpfValid = cpfValidate();
+        // const isCpfValid = cpfValidate();
         const isCelular1Valid = celular1Validate();
         const isCelular2Valid = celular2Validate();
         const isDateValid = dateValidate();
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log("Nome válido: ", isNameValid)
         console.log("Email válido: ", isEmailValid);
-        console.log("CPF válido: ", isCpfValid);
+        // console.log("CPF válido: ", isCpfValid);
         console.log("Celular1 válido: ", isCelular1Valid);
         console.log("Celular2 válido: ", isCelular2Valid);
         console.log("Data válida: ", isDateValid);
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("CompPass válida: ", isComparePasswordValid);
         console.log("Sexo válido: ", isSexoValid);
 
-        if (isNameValid && isEmailValid && isCpfValid && isCelular1Valid && isCelular2Valid && isDateValid && isNomeMaeValid
+        if (isNameValid && isEmailValid && isCelular1Valid && isCelular2Valid && isDateValid && isNomeMaeValid
             && isCepValid && isEnderecoValid && isBairroValid && isCidadeValid && isLoginValid && isMainPasswordValid && 
             isComparePasswordValid && isSexoValid) {
             form.submit(); // Envio do formulário se todos os campos forem válidos
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     campos[0].addEventListener('input', nameValidate);
     campos[1].addEventListener('input', emailValidate);
-    campos[2].addEventListener('input', cpfValidate);
+    // campos[2].addEventListener('input', cpfValidate);
     campos[3].addEventListener('input', () => celular1Validate(3));
     campos[5].addEventListener('input', () => celular2Validate(5));
     campos[4].addEventListener('input', dateValidate);
@@ -149,44 +149,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function cpfValidate() {
-        const cpf = campos[2].value.trim();
+    // function cpfValidate() {
+    //     const cpf = campos[2].value.trim();
         
-        if (!cpfRegex.test(cpf)) {
-            // setError(2);
-            return false;
-        } else {
-            const cpfNumbers = cpf.replace(/[^\d]+/g, '');
+    //     if (!cpfRegex.test(cpf)) {
+    //         // setError(2);
+    //         return false;
+    //     } else {
+    //         const cpfNumbers = cpf.replace(/[^\d]+/g, '');
             
-            if (!validateCpfDigits(cpfNumbers)) {
-                // setError(2);
-                return false;
-            }
+    //         if (!validateCpfDigits(cpfNumbers)) {
+    //             // setError(2);
+    //             return false;
+    //         }
     
-            // removeError(2);
-            return true;
-        }
-    }
+    //         // removeError(2);
+    //         return true;
+    //     }
+    // }
     
-    function validateCpfDigits(cpf) {
-        let sum = 0;
-        for (let i = 0; i < 9; i++) {
-            sum += parseInt(cpf.charAt(i)) * (10 - i);
-        }
+    // function validateCpfDigits(cpf) {
+    //     let sum = 0;
+    //     for (let i = 0; i < 9; i++) {
+    //         sum += parseInt(cpf.charAt(i)) * (10 - i);
+    //     }
     
-        let firstDigit = 11 - (sum % 11);
-        if (firstDigit >= 10) firstDigit = 0;
+    //     let firstDigit = 11 - (sum % 11);
+    //     if (firstDigit >= 10) firstDigit = 0;
     
-        sum = 0;
-        for (let i = 0; i < 10; i++) {
-            sum += parseInt(cpf.charAt(i)) * (11 - i);
-        }
+    //     sum = 0;
+    //     for (let i = 0; i < 10; i++) {
+    //         sum += parseInt(cpf.charAt(i)) * (11 - i);
+    //     }
     
-        let secondDigit = 11 - (sum % 11);
-        if (secondDigit >= 10) secondDigit = 0;
+    //     let secondDigit = 11 - (sum % 11);
+    //     if (secondDigit >= 10) secondDigit = 0;
     
-        return cpf.charAt(9) == firstDigit && cpf.charAt(10) == secondDigit;
-    }
+    //     return cpf.charAt(9) == firstDigit && cpf.charAt(10) == secondDigit;
+    // }
 
     function celular1Validate() {
         if (!celular1Regex.test(campos[3].value.trim())) {

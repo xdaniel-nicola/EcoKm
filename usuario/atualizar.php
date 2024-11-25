@@ -77,7 +77,7 @@ if ($usuario) {
                 </div>
                 <div class="cpf">
                     <label for="cpf">CPF:</label>
-                    <input readonly class="inputs" maxlength="14" type="text" name="cpf" id="cpf" placeholder="000.000.000-00" oninput="cpfValidate()" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
+                    <input readonly class="inputs" maxlength="14" type="text" name="cpf" id="cpf" placeholder="000.000.000-00" value="<?php echo isset($usuario['cpf']) ? htmlspecialchars($usuario['cpf']) : ''; ?>">
                     <span class="span-required">Digite um CPF válido.</span>
                 </div>
                 <div class="celular1">
