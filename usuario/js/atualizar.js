@@ -35,6 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita o envio padrão do formulário
+        validador(); // Função para validar os campos antes de enviar
+    });
+
     function validador() {
         const isNameValid = nameValidate();
         const isEmailValid = emailValidate();
@@ -77,6 +82,26 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
     }
+    
+    document.getElementById('form').addEventListener('submit', function (event) {
+        const inputs = document.querySelectorAll('.conteudo .inputs');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (input.hasAttribute('disabled')) return;
+            if (input.value.trim() === '') {
+                valid = false;
+                input.classList.add('error'); 
+            } else {
+                input.classList.remove('error');
+            }
+        });
+
+        if (!valid) {
+            event.preventDefault(); // Impede o envio do formulário
+            // alert('Por favor, preencha todos os campos obrigatórios.');
+        }
+    });
 
     function setError(index) {
         campos[index].style.border = '2px solid #e63636';
@@ -128,17 +153,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const cpf = campos[2].value.trim();
         
         if (!cpfRegex.test(cpf)) {
-            setError(2);
+            // setError(2);
             return false;
         } else {
             const cpfNumbers = cpf.replace(/[^\d]+/g, '');
             
             if (!validateCpfDigits(cpfNumbers)) {
-                setError(2);
+                // setError(2);
                 return false;
             }
     
-            removeError(2);
+            // removeError(2);
             return true;
         }
     }
@@ -266,22 +291,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
    
     function comparePassword() {
-        const firstPassword = campos[11].value
-        const secondPassword = campos[13].value
-        console.log({
-            firstPassword,
-            secondPassword,
-            equal: firstPassword === secondPassword
-        })
-        if (firstPassword == secondPassword && campos[13].value.length >= 8) {
-            removeError(13);
-            return true;
-        }
-        else {
-            setError(13);
-            return false;
-        }
+    const firstPassword = campos[11].value.trim();
+    const secondPassword = campos[13].value.trim();
+
+    if (firstPassword !== secondPassword) {
+        setError(13); 
+        return false;
+    } else {
+        removeError(13); 
+        return true;
     }
+}
     
     function sexoValidate() {
         const selectElement = document.getElementById('sexo');

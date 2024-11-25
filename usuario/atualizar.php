@@ -150,6 +150,7 @@ if ($usuario) {
                 <input type="submit" name="enviar" id="enviar" class="enviar" value="Enviar">
             </div>
         </form>
+        <footer><div class="footer"><p>.</p></div></footer>
     </div>
 </body>
 </html>
