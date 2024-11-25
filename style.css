@@ -752,8 +752,13 @@ body.light-mode .username-container a{
         margin-bottom: 10px;
     }
 }
+/* @media screen and (max-width: 1037px){
+    .carousel-container{
+        margin-top: 15vh;
+    }
+} */
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 910px){
     .carousel-container{
         margin-top: 15vh;
     }
