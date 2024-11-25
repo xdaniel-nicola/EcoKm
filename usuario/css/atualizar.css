@@ -3,15 +3,17 @@
 }
 
 body {   
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size:contain;
+    background-repeat:repeat;
     padding: 0;
     margin: 0;
+    background-image: url(../../img/11.png);
     background-color: #141414; /* Cor de fundo escura padrão */
     transition: background-color 0.5s; /* Transição suave ao mudar o fundo */
 }
 body.light {
     background-color: #f0f0f0; /* Cor de fundo para tema claro */
+    background-image: url(../../img/12.png);
 }
 
 body.light p #text{
@@ -249,7 +251,7 @@ form {
     .card {
         display: block;
         width: 300px;
-        height: 1500px;
+        height: 1360px;
     }
     .rodape {
         display: block;
