@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: #202020;
+    background-size: cover;
+    background-position: center;
+    transition: background-color 0.5s;
+}
+
+.theme-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-switch {
+    display: none;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.icon-sun, .icon-moon {
+    position: absolute;
+    font-size: 20px;
+}
+
+.icon-sun {
+    left: 5px;
+}
+
+.icon-moon {
+    right: 5px;
+    display: none;
+}
+
+.toggle-switch:checked + .toggle-label {
+    background-color: #4d4d4d;
+}
+
+.toggle-switch:checked + .toggle-label .toggle-slider {
+    transform: translateX(30px);
+}
+
+.toggle-switch:checked + .toggle-label .icon-sun {
+    display: none;
+}
+
+.toggle-switch:checked + .toggle-label .icon-moon {
+    display: block;
+}
+
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+.username-container {
+    display: none;
+}
+
+li {
+    list-style: none;
+}
+
+.action-btn{
+    background-color:#b30000;
+    color: #ffffff !important;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+
+.action-btn:hover {
+    scale: 1.05;
+    color: #fff;
+    background-color: #660000;
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle-btn {
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.links a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #b30000;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.username-container{
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+    color: #fff;
+    font-size: 1rem;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+.alterBtn{
+    background-color:#b30000;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    width: 100px;
+    height: 65px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.alterBtn:hover {
+    scale: 1.05;
+    color: #fff;
+    transition: scale 0.2 ease;
+    background-color: #660000;
+}
+
+.username-container{
+    border-color: #b30000;
+    border-style:solid;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.username-container a{
+    margin: 10px;
+    display: flex;
+    text-decoration: none;
+    position: relative;
+    color: #dbdbdb;
+    font-size: 1rem;
+}
+
+.container {
+    margin-top: 100px;
+    color: white;
+}
+
+.span-required {
+    font-size: 12px;
+    margin: 5px 0 0 1px;
+    color: #b30000;
+    display: none;
+    margin-left: 10px;
+    margin-top: -1px;
+    text-align: justify;
+    justify-content: right;
+    position: absolute;
+}
+
+/* MODO CLARO */
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #333;
+}
+body.light-mode .container{
+    color: black;
+}
+body.light-mode .links a{
+    color: black;
+}
+body.light-mode .action-btn{
+    color: #fff !important;
+}
+/* MODO ESCURO */
+
+@media screen and (max-width: 414px) {
+    .container {
+        margin-top:125px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .container {
+        margin-top:170px;
+    }
+}
+

@@ -58,7 +58,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
                 </ul>
                 </div>
             <?php else: ?>
-                <a href="login/loginForm.php" class="action-btn">Login</a>
+                <a href="../login/loginForm.php" class="action-btn">Login</a>
             <?php endif; ?>
             <div class="toggle-btn">
                 <i class="fa-solid fa-bars"></i>
@@ -83,9 +83,9 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
             </ul>
             <p><strong>R$ 49,90/mês</strong></p>
             <button class="botao" 
-            <?php echo ($planoAtual === 'Basico') ? 'disabled' : ''; ?>>
+            <?php echo (isset($planoAtual) && $planoAtual === 'Basico') ? 'disabled' : ''; ?>>
                 <a href="assinarPlano.php?plano=Basico&preco=49.90"> 
-                    <?php echo ($planoAtual === 'Basico') ? 'Ativo' : 'Escolher Plano'; ?>
+                    <?php echo (isset($planoAtual) && $planoAtual === 'Basico') ? 'Ativo' : 'Escolher Plano'; ?>
                 </a>
             </button>
         </div>
@@ -99,12 +99,12 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
                 <li>Suporte premium</li>
             </ul>
             <p><strong>R$ 79,90/mês</strong></p>
-            <button class="botao destaque-botao" 
-            <?php echo ($planoAtual === 'Intermediario') ? 'disabled' : ''; ?>>
-                <a href="assinarPlano.php?plano=Intermediario&preco=79.90"> 
-                    <?php echo ($planoAtual === 'Intermediario') ? 'Ativo' : 'Escolher Plano'; ?>
-                </a>
-            </button>
+                <button class="botao destaque-botao" 
+                    <?php echo (isset($planoAtual) && $planoAtual === 'Intermediario') ? 'disabled' : ''; ?>>
+                        <a href="assinarPlano.php?plano=Intermediario&preco=79.90"> 
+                            <?php echo (isset($planoAtual) && $planoAtual === 'Intermediario') ? 'Ativo' : 'Escolher Plano'; ?>
+                        </a>
+</button>
         </div>
 
         <div class="plano_destaque">
@@ -116,12 +116,12 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
                 <li>Suporte completo 24/7</li>
             </ul>
             <p><strong>R$ 119,90/mês</strong></p>
-            <button class="botao" 
-            <?php echo ($planoAtual === 'Premium') ? 'disabled' : ''; ?>>
-                <a href="assinarPlano.php?plano=Premium&preco=119.90"> 
-                    <?php echo ($planoAtual === 'Premium') ? 'Ativo' : 'Escolher Plano'; ?>
-                </a>
-            </button>
+                <button class="botao" 
+                    <?php echo (isset($planoAtual) && $planoAtual === 'Premium') ? 'disabled' : ''; ?>>
+                        <a href="assinarPlano.php?plano=Premium&preco=119.90"> 
+                            <?php echo (isset($planoAtual) && $planoAtual === 'Premium') ? 'Ativo' : 'Escolher Plano'; ?>
+                        </a>
+</button>
         </div>
     </div>
 </div>
