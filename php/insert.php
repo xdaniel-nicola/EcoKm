@@ -69,7 +69,9 @@
             if ($erro_cpf) echo "CPF já cadastrado. <a href='../cadastro/cadastro.php'>Clique aqui para voltar ao cadastro.</a>";
             if ($erro_login) echo "Login já cadastrado. <a href='../cadastro/cadastro.php'>Clique aqui para voltar ao cadastro.</a>";
         } else {
-    
+
+            $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
             $query_insert = $pdo->prepare("INSERT INTO usuario (nome, email, cpf, celular1, celular2,
                  dt_nasc, cep, nomeMae, endereco, login, cidade, senha, bairro, sexo) 
                  VALUES (:nome, :email, :cpf, :celular1, :celular2, :dt_nasc, :cep, :nomeMae, :endereco, :login, 
@@ -86,7 +88,7 @@
             $query_insert->bindParam(':endereco', $endereco);
             $query_insert->bindParam(':login', $login);
             $query_insert->bindParam(':cidade', $cidade);
-            $query_insert->bindParam(':senha', $senha);
+            $query_insert->bindParam(':senha', $senha_hash);
             $query_insert->bindParam(':bairro', $bairro);
             $query_insert->bindParam(':sexo', $sexo);
     

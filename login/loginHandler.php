@@ -7,16 +7,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senha = $_POST['senha'];
 
     $conn = conectaPDO();
-    $stmt = $conn->prepare("SELECT * FROM usuario WHERE login = :login AND senha = :senha");
+    $stmt = $conn->prepare("SELECT * FROM usuario WHERE login = :login");
     $stmt->bindParam(':login', $login);
-    $stmt->bindParam(':senha', $senha);
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
         $user = $stmt->fetch();
-        $_SESSION['username'] = $user['nome'];
-        header("Location: ../index.php"); 
-        exit();
+
+        if (password_verify($senha, $user['senha'])) {
+            $_SESSION['username'] = $user['nome'];
+            header("Location: ../index.php");
+            exit();
+        } else {
+            echo "Usuário ou senha inválidos.";
+        }
     } else {
         echo "Usuário ou senha inválidos.";
     }
