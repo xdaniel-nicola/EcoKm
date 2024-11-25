@@ -92,6 +92,9 @@ if ($pdo) {
                     <input class="inputs" type="text" name="cpf_display" id="cpf_display" value="<?php echo $cpf; ?>" disabled>
                     <input type="hidden" name="cpf" value="<?php echo $cpf; ?>">
                 </div>
+                <div class="idCarro">
+                    <input type="hidden" name="id_carro" value="<?php echo $id_carro; ?>">    
+                </div>
 
             </div>
             <div class="rodape">
