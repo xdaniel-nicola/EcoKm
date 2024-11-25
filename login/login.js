@@ -1,15 +1,29 @@
-document.getElementById('toggleTheme').addEventListener('click', function (e) {
-    e.preventDefault();
-    
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleSwitch = document.getElementById('toggle-switch');
     const body = document.body;
-    const themeIcon = document.getElementById('themeIcon');
-    
-    // Alterna entre modo claro e escuro
-    if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode'); // Remove a classe de modo claro
-        themeIcon.textContent = '🌙'; 
-    } else {
-        body.classList.add('light-mode'); // Adiciona a classe de modo claro
-        themeIcon.textContent = '☀️'; 
-    }
+
+    toggleSwitch.addEventListener('change', () => {
+        if (toggleSwitch.checked) {
+            body.classList.add('light-mode');
+            body.classList.remove('dark-mode');
+        } else {
+            body.classList.add('dark-mode');
+            body.classList.remove('light-mode');
+        }
+    });
+
+    window.addEventListener('load', () => {
+        const isLightMode = localStorage.getItem('theme') === 'light';
+        if (isLightMode) {
+            toggleSwitch.checked = true;
+            body.classList.add('light-mode');
+        } else {
+            body.classList.add('dark-mode');
+        }
+    });
+
+    toggleSwitch.addEventListener('change', () => {
+        const theme = toggleSwitch.checked ? 'light' : 'dark';
+        localStorage.setItem('theme', theme);
+    });
 });

@@ -3,32 +3,34 @@
 }
 
 body {   
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size:contain;
+    background-repeat:repeat;
     padding: 0;
     margin: 0;
+    background-image: url(../../img/11.png);
     background-color: #141414; /* Cor de fundo escura padrão */
     transition: background-color 0.5s; /* Transição suave ao mudar o fundo */
 }
-body.light {
+body.light-mode {
     background-color: #f0f0f0; /* Cor de fundo para tema claro */
+    background-image: url(../../img/12.png);
 }
 
-body.light p #text{
+body.light-mode p #text{
     color: black;
 }
 
-body.light .card {
+body.light-mode .card {
     background-color: #dbdbdb; 
     color: #ff0000; 
 }
 
-body.light .inputs{
+body.light-mode .inputs{
     background-color: #ffffff;
     color: #000000;
 }
 
-body.light .motores{
+body.light-mode .motores{
     background-color: #ffffff;
     color:#000000
 }
@@ -222,14 +224,46 @@ form {
     position: absolute;
 }
 
-#toggleTheme {
-    margin-left: 200px;
-    top: 20px; /* Posição vertical do botão dentro da card */
-    right: 20px; /* Posição horizontal do botão dentro da card */
-    background: transparent;
-    border: none;
+.theme-toggle {
+    display: flex;
+    width: 60px;
+    margin-left: 240px;
+    margin-top: -20px;
+}
+
+.toggle-switch {
+    display: none;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    z-index: 1000; /* Para garantir que o botão fique acima de outros elementos */
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-switch:checked + .toggle-label {
+    background-color: #4d4d4d;
+}
+
+.toggle-switch:checked + .toggle-label .toggle-slider {
+    transform: translateX(30px);
 }
 
 @media screen and (max-width: 768px) {

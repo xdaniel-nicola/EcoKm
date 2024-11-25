@@ -11,14 +11,16 @@
             <div class="homePage">
                 <a href="..\index.php" class="voltarHome">Início</a>
             </div>
+            <div class="theme-toggle">
+                <input type="checkbox" id="toggle-switch" class="toggle-switch">
+                <label for="toggle-switch" class="toggle-label">
+                <span class="toggle-slider"></span>
+                </label>
+            </div>
             <div class="card-header">
                 <h2 name="titulo" id="titulo">Vamos começar</h2>
             </div>
-            <div class="modoTema">
-                <button id="toggleTheme" class="themeBtn" type="button">
-                    <span id="themeIcon" class="moon">🌙</span>
-                </button>
-            </div>
+            
             <div class="conteudo">
                 <div class="usuario">
                     <label for="usuario">Login</label>

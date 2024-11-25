@@ -5,20 +5,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const spans = document.querySelectorAll('.span-required');
     const selectElement = document.getElementById('sexo');
     const toggleThemeButton = document.getElementById('toggleTheme');
-    const themeIcon = document.getElementById('themeIcon');
 
     const marcaRegex = /^[a-zA-Z]{2,}$/;
     const modeloRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{2,}$/;
 
-    toggleThemeButton.addEventListener('click', function(event) {
-        event.preventDefault(); 
-        document.body.classList.toggle('light'); 
+    const toggleSwitch = document.getElementById('toggle-switch');
+    const body = document.body;
 
-        if (document.body.classList.contains('light')) {
-            themeIcon.textContent = '🌞'; 
+    toggleSwitch.addEventListener('change', () => {
+        if (toggleSwitch.checked) {
+            body.classList.add('light-mode');
+            body.classList.remove('dark-mode');
         } else {
-            themeIcon.textContent = '🌙'; 
+            body.classList.add('dark-mode');
+            body.classList.remove('light-mode');
         }
+    });
+
+    window.addEventListener('load', () => {
+        const isLightMode = localStorage.getItem('theme') === 'light';
+        if (isLightMode) {
+            toggleSwitch.checked = true;
+            body.classList.add('light-mode');
+        } else {
+            body.classList.add('dark-mode');
+        }
+    });
+
+    toggleSwitch.addEventListener('change', () => {
+        const theme = toggleSwitch.checked ? 'light' : 'dark';
+        localStorage.setItem('theme', theme);
     });
 
     form.addEventListener('submit', function(event) {
