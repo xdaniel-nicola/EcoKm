@@ -115,7 +115,7 @@ if (!isset($_SESSION['username'])) {
                         echo '<td>' . htmlspecialchars($carro['marca']) . '</td>';
                         echo '<td>' . htmlspecialchars($carro['motor']) . '</td>';
                         echo '<td><a class="alterBtn" href="atualizarCarro.php?id= '.$carro["id_carro"].'">Atualizar carro</a>
-                        <a class="alterBtn" href="../php/apagarCarro.php?id= '.$carro["id_carro"].'">Apagar carro</a></td>';
+                        <a class="alterBtn" href="apagarCarro.php?id= '.$carro["id_carro"].'">Apagar carro</a></td>';
                         echo '</tr>';
                     }
 
