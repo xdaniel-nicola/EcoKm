@@ -23,7 +23,7 @@ id_plano INT PRIMARY KEY AUTO_INCREMENT,
 tipo VARCHAR(15),
 preco INT,
 cpf VARCHAR(15),
-CONSTRAINT fk_cpf_plano FOREIGN KEY (cpf) REFERENCES usuario(cpf)
+CONSTRAINT fk_cpf_plano FOREIGN KEY (cpf) REFERENCES usuario(cpf) ON DELETE CASCADE
 );
 
 CREATE TABLE viagem(
@@ -38,7 +38,7 @@ CREATE TABLE viagem(
     consumo FLOAT,
     custo FLOAT,
     cpf VARCHAR (15),
-    CONSTRAINT fk_cpf_viagens FOREIGN KEY (cpf) REFERENCES usuario(cpf)
+    CONSTRAINT fk_cpf_viagens FOREIGN KEY (cpf) REFERENCES usuario(cpf) ON DELETE CASCADE
 );
 
 -- código para inserir o admin
