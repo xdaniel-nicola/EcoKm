@@ -23,6 +23,7 @@ body {
     width: 300px;
     height: 520px;
     position: relative; 
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);  
 }
 
 .card-header {
@@ -45,7 +46,6 @@ body.dark-mode .card-header {
 
 
 .conteudo label {
-    
     font-size: 12px;
     opacity: 0.8;
     margin-left: 40px;
@@ -88,20 +88,9 @@ body.dark-mode .card-header {
     color: #e1e1e1;
     border-radius: 10px;
     margin: 15px 0;
+    border: none;
     box-shadow: 0px 8px 10px rgb(0, 0, 0, 0.2);
 }
-body.dark-mode #enviar {
-    font-size: 14px;
-    width: 40%;
-    height: 30px;
-    background-color: #f80000;
-    cursor: pointer;
-    color: #e1e1e1;
-    border-radius: 10px;
-    margin: 15px 0;
-    box-shadow: 0px 8px 10px rgb(0, 0, 0, 0.2);
-}
-
 
 #enviar:hover {
     background-color: #660000;
