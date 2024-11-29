@@ -10,10 +10,6 @@
         <?php
         include "conexao.php";
 
-        function limparMascara($valor) {
-            return trim(preg_replace('/[^0-9]/', '', $valor));
-        }
-
         function prepararTexto($valor) {
             return strtoupper(trim(str_replace(' ', '', $valor)));
         }
@@ -31,17 +27,17 @@
 
         $nome = trim($_POST['nome']);
         $email = trim($_POST['email']);
-        $cpf = limparMascara($_POST['cpf']);
-        $celular1 = limparMascara($_POST['celular1']);
-        $celular2 = limparMascara($_POST['celular2']);
+        $cpf = trim($_POST['cpf']);
+        $celular1 = trim($_POST['celular1']);
+        $celular2 = trim($_POST['celular2']);
         $dt_nasc = formatarDataParaMySQL(trim($_POST['dt_nasc']));
-        $cep = limparMascara($_POST['cep']);
+        $cep = trim($_POST['cep']);
         $nomeMae = trim($_POST['nomeMae']);
-        $endereco = strtoupper(trim($_POST['endereco']));
-        $login = prepararTexto($_POST['login']);
-        $cidade = strtoupper(trim($_POST['cidade']));
-        $senha = prepararTexto($_POST['senha']);
-        $bairro = strtoupper(trim($_POST['bairro']));
+        $endereco = trim($_POST['endereco']);
+        $login = trim($_POST['login']);
+        $cidade = trim($_POST['cidade']);
+        $senha = $_POST['senha'];
+        $bairro = trim($_POST['bairro']);
         $sexo = trim($_POST['sexo']);
         
         $pdo = conectaPDO();
@@ -93,7 +89,8 @@
             $query_insert->bindParam(':sexo', $sexo);
     
             if ($query_insert->execute()) {
-                echo "Conta criada com sucesso! <a href='../login/loginForm.php'>Clique aqui para fazer login.</a>";
+                echo "<h1>Conta criada com sucesso! <a href='../login/loginForm.php'>Clique aqui para fazer login.</a></h1>";
+                header("Location: ../login/loginForm.php");
             } else {
                 echo "Erro ao inserir dados.";
             }
