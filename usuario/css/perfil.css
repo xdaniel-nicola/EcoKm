@@ -77,6 +77,21 @@ body {
     display: block;
 }
 
+.dadosUser{
+    padding: 30px;
+    margin: 30px;
+}
+
+.planosAtivos{
+    padding: 30px;
+    margin: 30px;
+}
+
+.viagemSalva{
+    padding: 30px;
+    margin: 30px;
+}
+
 header {
     position: relative;
     padding: 0 2rem;
@@ -190,6 +205,31 @@ a:hover:before {
     background-color: #660000;
 }
 
+.modalBtn{
+    background-color:#b30000;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    width: 100%;
+    height: 65px;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.modalBtn:hover {
+    scale: 1.05;
+    color: #fff;
+    transition: scale 0.2 ease;
+    background-color: #660000;
+}
+
 .userList{
     background-color:#b30000;
     color: #fff;
@@ -275,7 +315,7 @@ h1{
     margin-top: 100px;
 }
 
-.carroCadastro{
+.viagemSalva{
     color: white;
 }
 .planosAtivos{
@@ -305,7 +345,7 @@ body.light-mode .dadosUser{
     color: black;
 }
 
-body.light-mode .carroCadastro{
+body.light-mode .viagemSalva{
     color: black;
 }
 
