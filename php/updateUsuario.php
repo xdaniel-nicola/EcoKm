@@ -51,6 +51,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     WHERE cpf = :cpf";
             $stmt = $pdo->prepare($sql);
 
+            function limparMascara($valor) {
+                return trim(preg_replace('/[^0-9]/', '', $valor));
+            }
+    
+            function prepararTexto($valor) {
+                return strtoupper(trim($valor));
+            }
+
+            $email = trim($_POST['email']);
+            $cpf = trim($_POST['cpf']);
+            $celular1 = trim($_POST['celular1']);
+            $celular2 = trim($_POST['celular2']);
+            $cep = trim($_POST['cep']);
+            $nomeMae = trim($_POST['nomeMae']);
+            $endereco = prepararTexto($_POST['endereco']);
+            $login = prepararTexto($_POST['login']);
+            $cidade = prepararTexto($_POST['cidade']);
+            $senha = $_POST['senha'];
+            $bairro = prepararTexto($_POST['bairro']);
+            $sexo = trim($_POST['sexo']);
+
             $stmt->bindValue(':cpf', $cpf, PDO::PARAM_STR);
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
             $stmt->bindValue(':celular1', $celular1, PDO::PARAM_STR);
@@ -67,8 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindValue(':sexo', $sexo, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
-                echo "Dados atualizados com sucesso!";
-                header("Location: ../usuario/perfil.php");
+                echo "<h1>Dados atualizados com sucesso!</h1>";
+                header("Refresh: 2; url=../usuario/perfil.php"); 
                 exit();
             } else {
                 echo "Erro ao atualizar os dados: ";
