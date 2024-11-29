@@ -83,43 +83,44 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
             <ul>
                 <li>Informe a motorização do veículo (caso não tenha veículo salvo),</li>
                 <li>Informe o tipo de combustível que será utilizado,</li>
-                <li>Digite a distância percorrida pelo veículo, em km,</li>
+                <li>Digite o endereço de partida e o de chegada e clique em "Traçar Rota",</li>
                 <li>Digite o valor atual do combustível selecionado,</li>
                 <li>Clique em "Calcular" e o resultado aparecerá logo abaixo,</li>
                 <li>Você receberá o cálculo com valores aproximados de quanto será gasto de combustível (em litros) e quanto você gastará (em reais).</li>
+                <li>Caso queira (e caso esteja logado também), você também pode salvar essa viagem no seu perfil.</li>
             </ul>
         </section>
         <div class="container">
             <h1>Calculadora de Gasto de Combustível</h1>
                 <div id="map" class="map <?php echo $loggedInClass; ?>"></div>
-            <form class="card" id="form-carro">
+            <form class="card" id="form-carro" action="php/salvarRota.php" method="POST">
                 <div class="containerFormCarro">
-                    <div>
-                        <label for="modelo-carro">Modelo do Motor:</label>
-                        <select class="selecao" id="modelo-carro"></select>
-                    </div>
+                        <div>
+                            <label for="modelo-carro">Modelo do Motor:</label>
+                            <select class="selecao" name="tipoMotor" id="modelo-carro"></select>
+                        </div>
                         <div>
                             <label for="tipo-combustivel">Tipo de Combustível:</label>
-                            <select class="selecao" id="tipo-combustivel">
+                            <select class="selecao" name="tipoCombustivel" id="tipo-combustivel">
                                 <option value="10">Gasolina</option>
                                 <option value="8">Etanol</option>
                                 <option value="15">GNV</option>
                             </select>
                         </div>
-                    <div>
-                        <label for="distancia">Distância (em km):</label>
-                        <input class="selecao" type="number" step="0.01" id="distancia" required>
-                    </div>
                         <div>
-                            <label for="preco-combustivel">Preço do Combustível (R$):</label>
-                            <input class="selecao" type="number" id="preco-combustivel" step="0.01" required>
+                            <label for="distancia">Distância (em km):</label>
+                            <input class="selecao" type="float" name="distancia" id="distancia" required>
                         </div>
                         <div>
-                            <label for="partida">Partida:</label>
+                            <label for="preco-combustivel">Preço do Combustível (R$):</label>
+                            <input class="selecao" type="number" name="precoCombustivel" id="preco-combustivel" step="0.01" required>
+                        </div>
+                        <div>
+                            <label for="start">Partida:</label>
                             <input type="text" name="partida" id="start" />
                         </div>
                         <div> 
-                            <label for="chegada">Chegada:</label>
+                            <label for="end">Chegada:</label>
                             <input type="text" name="chegada" id="end"/>
                         </div>
                         <div class="places-container">
@@ -128,20 +129,32 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                                 <option value="gas_station">Postos de Gasolina</option>
                             </select>
                         </div>
+                        
                         <div class="btn">
                         <?php if ($loggedInClass === 'logged-in'): ?>
                             <button type="button" class="calculateBtn" onclick="calculateRoute()">Traçar Rota</button>
                             <button type="button" class="cadastroCalc" onclick="calcularCombustivel()">Calcular</button>
+                            <button type="submit" class="saveRoute" >Salvar rota</button>
                         <?php else: ?>
                             <a href="cadastro/cadastro.php" class="calculateBtn">Traçar Rota</a>
                             <a href="cadastro/cadastro.php" class="cadastroCalc">Calcular</a>
                         <?php endif; ?>
-                    </div>
+                        </div>  
                 </div>
-
+                        <div>
+                            <?php if ($loggedInClass === 'logged-in'): ?>
+                                <input hidden type="text" name="cpf" id="cpf" value="<?php echo isset($_SESSION['cpf']) ? htmlspecialchars($_SESSION['cpf']) : ''; ?>"/>
+                                <input hidden type="text" name="consumo" id="consumo">
+                                <input hidden type="text" name="custo" id="gasto">
+                                <input hidden type="text" name="tempoEstimado" id="tempo">
+                            <?php else: ?>
+                                <input type="text" name="cpf" value="Sem CPF logado.">
+                            <?php endif; ?>
+                        </div>
+            </form>
             <div id="erro" style="display:none; color:red;">Ocorreu um erro ao traçar a rota. Verifique os endereços e tente novamente.</div>
-            <div id="result"></div>
-            <div id="resultado"></div>
+            <div name="pipipipopopo" id="result"></div>
+            <div name="popopopipipi" id="resultado"></div>
 
         </div>
         <section class="containerTexto4" id="containerTexto">

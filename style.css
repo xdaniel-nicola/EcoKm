@@ -214,6 +214,11 @@ body:not(.logged-in) #map {
 }
 
 .btn .cadastroCalc{
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.btn .saveRoute{
     width: 100%;
 }
 
@@ -279,6 +284,26 @@ input, select {
     text-decoration: none;
     color: #ffffff;
   }
+
+.saveRoute{
+  width: 100px;
+  padding: 10px;
+  background-color: #b30000;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.saveRoute:hover{
+  background-color: #660000;  
+  text-decoration: none;
+  color: #ffffff;
+}
 
 /* button {
     width: 100;
@@ -746,6 +771,9 @@ body.light-mode .username-container a{
     .cadastroCalc {
         width: 100%;
         margin-top: 10px;
+    }
+    .saveRoute{
+        margin-top:10px;
     }
     .btn #route-button{
         width: 100%;

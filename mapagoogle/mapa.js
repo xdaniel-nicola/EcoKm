@@ -55,7 +55,7 @@ function calculateRoute() {
       let distance = route.distance.text; 
       let duration = route.duration.text; 
 
-      let distanceValue = parseFloat(distance); 
+      let distanceValue = parseFloat(distance.replace(/,/, '.')); 
       if (isNaN(distanceValue)) {
         distanceValue = 0; 
       }
@@ -66,6 +66,9 @@ function calculateRoute() {
       document.getElementById("result").innerHTML = `
         <p>Tempo estimado: <strong>${duration}</strong></p>
       `;
+      document.getElementById('tempo').value = duration;
+      // document.getElementById('distance').value = distance;
+
 
       searchNearbyPlaces(route);
     } else {
