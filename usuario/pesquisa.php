@@ -81,6 +81,8 @@ if ($pdo) {
                         <th>Nome Materno</th>
                         <th>CEP</th>
                         <th>Endereço</th>
+                        <th>Cidade</th>
+                        <th>Bairro</th>
                         <th>Sexo</th>
                         <th>Login</th>
                         <th>Ações</th>
@@ -99,6 +101,8 @@ if ($pdo) {
                 <td>' . htmlspecialchars($row['nomeMae']) . '</td>
                 <td>' . htmlspecialchars($row['cep']) . '</td>
                 <td>' . htmlspecialchars($row['endereco']) . '</td>
+                <td>' . htmlspecialchars($row['cidade']) . '</td>
+                <td>' . htmlspecialchars($row['bairro']) . '</td>
                 <td>' . htmlspecialchars($row['sexo']) . '</td>
                 <td>' . htmlspecialchars($row['login']) . '</td>
                 <td><a class="alterBtn" href="../php/apagarUsuario.php?id=' . htmlspecialchars($row["cpf"]) . '">Excluir</a></td>
