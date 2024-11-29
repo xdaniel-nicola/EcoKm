@@ -18,22 +18,28 @@ CREATE TABLE usuario(
     sexo VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE carro(
-	id_carro INT PRIMARY KEY AUTO_INCREMENT,
-    modelo VARCHAR(30),
-    marca VARCHAR(20),
-    motor VARCHAR(3),
-    cpf VARCHAR(15),
-    CONSTRAINT fk_cpf_carro FOREIGN KEY (cpf) REFERENCES usuario(cpf) ON DELETE CASCADE
-);
-
 CREATE TABLE plano(
 id_plano INT PRIMARY KEY AUTO_INCREMENT,
 tipo VARCHAR(15),
-preco FLOAT,
+preco INT,
 cpf VARCHAR(15),
-CONSTRAINT fk_cpf_plano FOREIGN KEY (cpf) REFERENCES usuario(cpf) ON DELETE CASCADE
+CONSTRAINT fk_cpf_plano FOREIGN KEY (cpf) REFERENCES usuario(cpf)
 );
 
--- código para inserir a conta admin
-INSERT INTO usuario VALUES('admin','admin@gmail.com','12345678900','12345678900','12345678900','2024-07-15','00000000','admin','-----','admin','-----','admin1234','-----','-----');
+CREATE TABLE viagem(
+	id_viagem INT PRIMARY KEY AUTO_INCREMENT,
+    tipoMotor VARCHAR(5),
+    tipoCombustivel VARCHAR(8),
+    distancia FLOAT,
+    precoCombustivel FLOAT,
+    partida VARCHAR(255),
+    chegada VARCHAR(255),
+    tempoEstimado VARCHAR(50),
+    consumo FLOAT,
+    custo FLOAT,
+    cpf VARCHAR (15),
+    CONSTRAINT fk_cpf_viagens FOREIGN KEY (cpf) REFERENCES usuario(cpf)
+);
+
+-- código para inserir o admin
+INSERT INTO usuario VALUES ('admin', 'admin@admin.com', '12345678909', '5521999999999','5521999999999', '2024-10-22', '-----', 'admin', '-----', 'admin', '-----', 'admin1234', '-----', 'Outro' );
