@@ -34,9 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $_SESSION['pergunta'] = $pergunta_aleatoria;
             $_SESSION['resposta'] = $perguntas[$pergunta_aleatoria];
+            $_SESSION['login'] = $login;
+            $_SESSION['cpf'] = $user['cpf'];
 
             // Redirecionando para a página de 2FA
-            header("Location: verificar_2fa.php");
+            header("Location: verificar_2fa.php?login=$login");
             exit();
         } else {
             echo "Usuário ou senha inválidos.";

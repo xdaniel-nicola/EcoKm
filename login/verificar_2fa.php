@@ -1,9 +1,11 @@
 <?php
 session_start();
+require_once "../php/conexao.php";
 
-// Verifica se há uma pergunta de 2FA na sessão
+$pdo = conectaPDO();
+
 if (!isset($_SESSION['pergunta']) || !isset($_SESSION['resposta'])) {
-    header("Location: loginForm.php"); // Caso a pergunta de 2FA não esteja definida, redireciona para o login
+    header("Location: loginForm.php"); 
     exit();
 }
 
@@ -13,27 +15,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Inicia o contador de tentativas caso não exista
     if(!isset($_SESSION['tentativas'])) {
-        $_SESSION['tentativas'] = 0; // Inicia a contagem de tentativas
+        $_SESSION['tentativas'] = 0;
     }
 
-    // Verifica se a resposta está correta
     if ($_POST['resposta'] == $_SESSION['resposta']) {
-        // Resposta correta, o usuário pode acessar a página principal
         $_SESSION['logado'] = true;
         header("Location: ../index.php");
         exit();
     } else {
-        // Resposta incorreta, incrementa o contador de tentativas
         $_SESSION['tentativas']++;
     }
 
-    // Se o número de tentativas for 3 ou mais, destrói a sessão e redireciona para o login
     if ($_SESSION['tentativas'] >= 3) {
         echo "3 tentativas sem sucesso! Favor realizar login novamente.";
-        session_destroy(); // Destroi a sessão
-        header("Refresh: 2; url=loginForm.php"); // Redireciona para o login após 3 tentativas falhas
+        session_destroy(); 
+        header("Refresh: 2; url=loginForm.php"); 
         exit();
     } else {
         echo "Resposta incorreta. Tentativa " . $_SESSION['tentativas'] . " de 3.<style> body.light-mode {color:black;}</style>";
@@ -51,12 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="login.js" defer></script>
 </head>
 <body>
-    
-
     <div class="telaLogin">
         <div class="card" method="post">
             <div class="homePage">
-                <a href="..\index.php" class="voltarHome">Início</a>
+                
             </div>
             <div class="theme-toggle">
                 <input type="checkbox" id="toggle-switch" class="toggle-switch">
@@ -70,10 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <div class="conteudo">
                 <div class="usuario">
-                    <label for="usuario">Login</label>
-                    <input class="inputs" type="text" name="login" id="login" autocomplete="off" value="<?php $_SESSION['username'];?>">
+                    <label for="login">Login</label>
+                    <input disabled class="inputs" type="text" name="login" id="login"  value="<?php echo isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : ''; ?>">
                 </div>
-                <p>Pergunta de segurança: Qual é o seu <?= ucfirst(str_replace('_', ' ', $_SESSION['pergunta'])) ?>?</p>
+                <p>Pergunta de segurança: Qual o seu(ua):  <?= ucfirst(str_replace('_', ' ', $_SESSION['pergunta'])) ?>?</p>
                 <form class="aut2f" action="verificar_2fa.php" method="POST">
                     <div class="resposta">
                     <label for="resposta">Resposta:</label>
