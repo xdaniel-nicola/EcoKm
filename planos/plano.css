@@ -81,6 +81,8 @@ body.logged-in .action-btn {
 header {
     position: relative;
     padding: 0 2rem;
+    height: 100px;
+    border-bottom: 1px solid #4d4d4d;
     /* background-color: #4d4d4d; */
 }
 
@@ -270,6 +272,10 @@ body.dark-mode .action-btn{
     color: white !important;
 }
 
+body.light-mode header {
+    border-bottom: 1px solid #ccc;
+}
+
 body.light-mode {
     background-color: #f7f7f7;
     color: #333;
@@ -394,8 +400,21 @@ body.light-mode .username-container .action-btn{
 }
 
 /*responsividade */
+@media screen and (max-width: 910px) {
+    header {
+        height: 180px;
+    }
+}
 
-@media (max-width: 840px) {
+@media screen and (max-width: 438px) {
+    header {
+        height: 210px;
+    }
+}
+
+
+
+@media screen and (max-width: 840px) {
     .container-planos {
         flex-direction: column;
         align-items: center;
@@ -414,7 +433,7 @@ body.light-mode .username-container .action-btn{
     }
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
     
     .cabecalho h1 {
         font-size: 1.8em;
@@ -428,8 +447,35 @@ body.light-mode .username-container .action-btn{
     }
 }
 
-@media (max-width: 414px) {
+@media screen and (max-width: 414px) {
     .cabecalho{
         margin-top: 230px;
+    }
+    header {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    header {
+        height: 270px;
+    }
+}
+
+@media screen and (max-width: 354px) {
+    header {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 343px) {
+    header {
+        height: 320px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    header {
+        height: 350px;
     }
 }

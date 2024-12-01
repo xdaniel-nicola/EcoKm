@@ -95,6 +95,10 @@ body {
 header {
     position: relative;
     padding: 0 2rem;
+    height: 100px;
+    border-bottom: 1px solid #4d4d4d;
+    transition: transform 0.5s ease;
+    /* background-color: #4d4d4d; */
 }
 
 .username-container {
@@ -245,6 +249,7 @@ a:hover:before {
     height: 65px;
     text-align: center;
     margin-top: 100px;
+    margin: 30px;
 }
 
 
@@ -309,10 +314,14 @@ h1{
 .dadosUser{
     color: white;
     margin-top: 30px ;
+    /* width: 100%; */
 }
 
 .dados {
+    /* width: 100%; */
     margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .viagemSalva{
@@ -321,13 +330,20 @@ h1{
 .planosAtivos{
     color: white;
 }
-
+.cabecalhoUser {
+    margin-top: 100px;
+}
 /* MUDANÇA DE TEMA PARA ESCURO */
 body.dark-mode .cabecalhoUser h1{
     background-color: #4d4d4d;
     color: white;
 }
 /* MUDANÇA DE TEMA PARA CLARO */
+
+body.light-mode header {
+    border-bottom: 1px solid #ccc;
+    transition: transform 0.5s ease;
+}
 
 body.light-mode .links a{
     color: black;
