@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* scroll-behavior: smooth; */
 }
 
 body {
@@ -203,7 +204,17 @@ body:not(.logged-in) #map {
     width: 100%;
     margin: 100px auto 80px auto; /* Ajustado para compensar o header fixo */
 }
+#avisoMapa {
+    text-align: center;
+    font-size: 13px;
+}
 
+#logarMapa {
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    color: #f70a0a;
+}
 .btn {
     display: grid;
     grid-template-columns: auto;
