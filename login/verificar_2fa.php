@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['resposta'] == $_SESSION['resposta']) {
         $_SESSION['logado'] = true;
+        session_start();
         header("Location: ../index.php");
         exit();
     } else {
@@ -68,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="login">Login</label>
                     <input disabled class="inputs" type="text" name="login" id="login"  value="<?php echo isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : ''; ?>">
                 </div>
-                <p>Pergunta de segurança: Qual o seu(ua):  <?= ucfirst(str_replace('_', ' ', $_SESSION['pergunta'])) ?>?</p>
+                <p>Pergunta de segurança: Qual o seu(ua):  <?php echo ucfirst(str_replace('_', ' ', $_SESSION['pergunta'])) ?>?</p>
                 <form class="aut2f" action="verificar_2fa.php" method="POST">
                     <div class="resposta">
                     <label for="resposta">Resposta:</label>

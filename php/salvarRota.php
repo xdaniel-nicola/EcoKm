@@ -3,7 +3,6 @@ require_once "conexao.php";
 session_start();
 $conn = conectaPDO();
 
-// Verifique se os dados de tipoMotor e tipoCombustivel foram enviados
 $tipoMotor = isset($_POST['tipoMotor']) ? $_POST['tipoMotor'] : null;
 $tipoCombustivel = isset($_POST['tipoCombustivel']) ? $_POST['tipoCombustivel'] : null;
 $distancia = isset($_POST['distancia']) ? $_POST['distancia'] : null; 
@@ -83,8 +82,7 @@ try {
     $stmt->bindParam(':cpf', $cpf);
 
     if ($stmt->execute()) {
-        echo "<h1>Rota salva com sucesso!</h1>";
-        header("Refresh: 2; url=../index.php"); 
+        header('Location: ../index.php#calculadora'); 
     } else {
         echo "Erro ao salvar a rota.";
     }
