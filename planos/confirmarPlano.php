@@ -31,7 +31,8 @@ if ($planoExistente) {
     $stmtUpdate->bindValue(':preco', $precoPlano, PDO::PARAM_STR);
     $stmtUpdate->bindValue(':cpf', $cpf, PDO::PARAM_STR);
     $stmtUpdate->execute();
-    echo "<p>Plano $planoEscolhido atualizado com sucesso!</p>";
+    // echo "<p>Plano $planoEscolhido atualizado com sucesso!</p>";
+    header ("Location: planos.php");
 } else {
     $sqlInsert = "INSERT INTO plano (tipo, preco, cpf) VALUES (:plano, :preco, :cpf)";
     $stmtInsert = $pdo->prepare($sqlInsert);
@@ -39,7 +40,8 @@ if ($planoExistente) {
     $stmtInsert->bindValue(':preco', $precoPlano, PDO::PARAM_STR);
     $stmtInsert->bindValue(':cpf', $cpf, PDO::PARAM_STR);
     $stmtInsert->execute();
-    echo "<p>Plano $planoEscolhido assinado com sucesso!</p>";
+    header ("Location: ../planos.php");
+    // echo "<p>Plano $planoEscolhido assinado com sucesso!</p>";
 }
 
 echo "<a href='planos.php'>Voltar para os planos</a>";

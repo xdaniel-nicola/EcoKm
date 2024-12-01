@@ -13,7 +13,7 @@ if (!empty($_GET['id'])) {
         $stmtDelete->bindValue(':id_viagem', $id_viagem, PDO::PARAM_INT);
 
         if ($stmtDelete->execute()) {
-            header('Location: perfil.php?msg=Carro excluído com sucesso');
+            header('Location: perfil.php#viagens');
             exit();
         } else {
             echo '<p>Erro ao excluir o carro.</p>';

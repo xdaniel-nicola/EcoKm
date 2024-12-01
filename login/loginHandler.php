@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['cpf'] = $user['cpf'];
 
             // Redirecionando para a página de 2FA
-            header("Location: verificar_2fa.php?login=$login");
+            header("Location: verificar_2fa.php");
             exit();
         } else {
             echo "Usuário ou senha inválidos.";
