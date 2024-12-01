@@ -90,8 +90,14 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                 <li>Caso queira (e caso esteja logado também), você também pode salvar essa viagem no seu perfil.</li>
             </ul>
         </section>
-        <div class="container">
+        <div class="container" id="calculadora">
             <h1>Calculadora de Gasto de Combustível</h1>
+            <?php if($loggedInClass === 'logged-in'): ?>
+                <p id="avisoMapa">Caso o mapa não esteja aparecendo basta recarregar a página.</p>
+            <?php else: ?>
+                <p id="avisoMapa">Caso o mapa não esteja aparecendo basta recarregar a página</p>
+                <p id="logarMapa">Para utilizar o mapa é necessário estar logado.</p>
+            <?php endif; ?>
                 <div id="map" class="map <?php echo $loggedInClass; ?>"></div>
             <form class="card" id="form-carro" action="php/salvarRota.php" method="POST">
                 <div class="containerFormCarro">
@@ -117,11 +123,11 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                         </div>
                         <div>
                             <label for="start">Partida:</label>
-                            <input type="text" name="partida" id="start" />
+                            <input type="text" name="partida" id="start" placeholder=""/>
                         </div>
                         <div> 
                             <label for="end">Chegada:</label>
-                            <input type="text" name="chegada" id="end"/>
+                            <input type="text" name="chegada" id="end" placeholder=""/>
                         </div>
                         <div class="places-container">
                             <label for="pontos">Pontos de Interesse:</label>
@@ -134,7 +140,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                         <?php if ($loggedInClass === 'logged-in'): ?>
                             <button type="button" class="calculateBtn" onclick="calculateRoute()">Traçar Rota</button>
                             <button type="button" class="cadastroCalc" onclick="calcularCombustivel()">Calcular</button>
-                            <button type="submit" class="saveRoute" >Salvar rota</button>
+                            <button type="submit" class="saveRoute" id="salvaRota" onclick="salvaRota()">Salvar rota</button>
                         <?php else: ?>
                             <a href="cadastro/cadastro.php" class="calculateBtn">Traçar Rota</a>
                             <a href="cadastro/cadastro.php" class="cadastroCalc">Calcular</a>
@@ -148,13 +154,14 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                                 <input hidden type="text" name="custo" id="gasto">
                                 <input hidden type="text" name="tempoEstimado" id="tempo">
                             <?php else: ?>
-                                <input type="text" name="cpf" value="Sem CPF logado.">
+                                <input hidden type="text" name="cpf" value="Sem CPF logado.">
                             <?php endif; ?>
                         </div>
             </form>
             <div id="erro" style="display:none; color:red;">Ocorreu um erro ao traçar a rota. Verifique os endereços e tente novamente.</div>
-            <div name="pipipipopopo" id="result"></div>
-            <div name="popopopipipi" id="resultado"></div>
+            <div id="result"></div>
+            <div id="resultado"></div>
+            <div id="sucesso"></div>
 
         </div>
         <section class="containerTexto4" id="containerTexto">
