@@ -61,7 +61,7 @@ if (!isset($_SESSION['username'])) {
 
 </div>
 
-    <div class="dados">
+    <div class="dados table-responsive">
         
         <?php
             // include "../php/conexao.php";
@@ -76,7 +76,7 @@ if (!isset($_SESSION['username'])) {
                 
 
                 if ($usuario) {
-                echo '<div class="dadosUser">';
+                echo '<div class="dadosUser table-responsive">';
                         $camposPersonalizados = [
                             'dt_nasc' => 'Data de Nascimento',
                             'nomeMae' => 'Nome Materno',
@@ -86,7 +86,7 @@ if (!isset($_SESSION['username'])) {
                         ];
                     
                         echo '<h2>Dados do Usuário</h2>';
-                        echo '<table class="table table-responsive table-striped ">';
+                        echo '<table class="table table-striped ">';
                         foreach ($usuario as $key => $value) {
                             $nomeExibicao = isset($camposPersonalizados[$key]) ? $camposPersonalizados[$key] : ucfirst(str_replace("_", " ", $key));
                             echo '<tr>';
@@ -170,12 +170,12 @@ if (!isset($_SESSION['username'])) {
                     $stmtViagem->execute();
                     $viagens = $stmtViagem->fetchAll(PDO::FETCH_ASSOC);
 
-                    echo '<div id="viagens" class="viagemSalva">';
+                    echo '<div id="viagens" class="viagemSalva table-responsive">';
                     echo '<h2>Viagens Salvas</h2>';
 
                     if ($viagens) {
-                        echo '<div>';
-                        echo '<table class="table table-responsive table-striped">';
+                        echo '<div class="table-responsive">';
+                        echo '<table class="table table-striped">';
                         echo '<thead>';
                         echo '<tr>';
                         // echo '<th>Id</th>';
@@ -231,9 +231,7 @@ if (!isset($_SESSION['username'])) {
 
     
 </main>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
    
 </body>
 </html>

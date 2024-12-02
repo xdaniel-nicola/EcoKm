@@ -426,3 +426,21 @@ body.light-mode .planosAtivos{
         margin: 4px 0 4px 0;
     }
 }
+
+@media screen and (max-width:489px){
+    header {
+        height: 120px;
+    }
+}
+
+@media screen and (max-width:414px){
+    header {
+        height: 130px;
+    }
+}
+
+@media screen and (max-width:354px){
+    header {
+        height: 160px;
+    }
+}
