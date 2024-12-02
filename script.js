@@ -38,16 +38,31 @@ function calcularCombustivel() {
     }
 }
 
-function logar() {
-    const usuario = document.getElementById('usuario').value;
+document.getElementById("form-carro").addEventListener("submit", function (event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
 
-    if (usuario) {
-        document.getElementById('usuario-logado').innerText = `Bem-vindo, ${usuario}!`;
-        document.getElementById('login-form').style.display = 'none';
-    } else {
-        alert("Por favor, insira um nome de usuário.");
-    }
-}
+    fetch(form.action , {
+        method: "POST",
+        body: formData,
+    })
+        .then(response => response.text())
+        .then(data => {
+            if (data === "sucesso") {
+                document.getElementById("mensagem").textContent = "Rota salva com sucesso!";
+                document.getElementById("mensagem").style.display = "block";
+                form.reset();
+            } else {
+                document.getElementById("mensagem").textContent = "Ocorreu um erro. Tente novamente.";
+            }
+        })
+        .catch(error => {
+            console.error("Erro", error);
+            document.getElementById("mensagem").textContent = "Erro ao enviar o formulário."
+        });
+    });   
 
 window.onload = carregarModelosDeCarros;
 const toggleSwitch = document.getElementById('toggle-switch');

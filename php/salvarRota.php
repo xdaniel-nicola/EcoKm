@@ -82,9 +82,12 @@ try {
     $stmt->bindParam(':cpf', $cpf);
 
     if ($stmt->execute()) {
-        header('Location: ../index.php#calculadora'); 
+        echo "sucesso";
+        // header('Location: ../index.php#calculadora'); 
+        
     } else {
         echo "Erro ao salvar a rota.";
+        echo "erro";
     }
 } catch (PDOException $e) {
     echo "Erro no banco de dados: " . $e->getMessage();

@@ -448,6 +448,11 @@ button:hover {
     width: 100%;
 }
 
+div#mensagem{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
 /* FOOTER */
 footer{
     background-color: #333;

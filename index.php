@@ -161,7 +161,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
             <div id="erro" style="display:none; color:red;">Ocorreu um erro ao traçar a rota. Verifique os endereços e tente novamente.</div>
             <div id="result"></div>
             <div id="resultado"></div>
-            <div id="sucesso"></div>
+            <div id="mensagem"></div>
 
         </div>
         <section class="containerTexto4" id="containerTexto">
