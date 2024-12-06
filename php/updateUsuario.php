@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "conexao.php";
+require_once "../usuario/utils.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf = $_POST['cpf'];
@@ -65,11 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $celular2 = trim($_POST['celular2']);
             $cep = trim($_POST['cep']);
             $nomeMae = trim($_POST['nomeMae']);
-            $endereco = prepararTexto($_POST['endereco']);
-            $login = prepararTexto($_POST['login']);
-            $cidade = prepararTexto($_POST['cidade']);
+            $endereco = trim($_POST['endereco']);
+            $login = trim($_POST['login']);
+            $cidade = trim($_POST['cidade']);
             $senha = $_POST['senha'];
-            $bairro = prepararTexto($_POST['bairro']);
+            $bairro = trim($_POST['bairro']);
             $sexo = trim($_POST['sexo']);
 
             $stmt->bindValue(':cpf', $cpf, PDO::PARAM_STR);
@@ -89,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($stmt->execute()) {
                 echo "<h1>Dados atualizados com sucesso!</h1>";
+                registraLog($pdo, $login, "Alterou dados do perfil.");
                 header("Refresh: 2; url=../usuario/perfil.php"); 
                 exit();
             } else {

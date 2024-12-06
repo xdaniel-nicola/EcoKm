@@ -56,10 +56,13 @@ if ($usuario) {
         <form name="form" id="form" class="card" action="../php/updateUsuario.php" method="post">
             
             <div class="homePage">
-                <a href="perfil.php" class="voltarHome"> Voltar</a>
-                <button type="button" id="toggleTheme" class="toggle-button">
-                    <span id="themeIcon">🌙</span>
-                </button>
+                <a href="..\index.php" class="voltarHome"> Voltar</a>
+                <div class="theme-toggle">
+                    <input type="checkbox" id="toggle-switch" class="toggle-switch">
+                    <label for="toggle-switch" class="toggle-label">
+                    <span class="toggle-slider"></span>
+                    </label>
+                </div>
             </div>
             <div class="card-header">
                 <h2 name="titulo" id="titulo">Atualizar dados</h2>

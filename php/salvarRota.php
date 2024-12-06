@@ -1,7 +1,8 @@
 <?php
 require_once "conexao.php";
+require_once "../usuario/utils.php";
 session_start();
-$conn = conectaPDO();
+$pdo = conectaPDO();
 
 $tipoMotor = isset($_POST['tipoMotor']) ? $_POST['tipoMotor'] : null;
 $tipoCombustivel = isset($_POST['tipoCombustivel']) ? $_POST['tipoCombustivel'] : null;
@@ -65,10 +66,11 @@ try {
     $custo = $_POST['custo'];
     
     $cpf = $_SESSION['cpf'];
+    $login = $_SESSION['login'];
 
     $sql = "INSERT INTO viagem (tipoMotor, tipoCombustivel, distancia, precoCombustivel, partida, chegada, tempoEstimado, consumo, custo, cpf) 
             VALUES (:tipoMotor, :tipoCombustivel, :distancia, :precoCombustivel, :enderecoPartida, :enderecoChegada, :tempoEstimado, :consumo, :custo,  :cpf)";
-    $stmt = $conn->prepare($sql);
+    $stmt = $pdo->prepare($sql);
 
     $stmt->bindParam(':tipoMotor', $tipoMotor);
     $stmt->bindParam(':tipoCombustivel', $tipoCombustivel);
@@ -83,6 +85,7 @@ try {
 
     if ($stmt->execute()) {
         echo "sucesso";
+        registraLog($pdo, $_SESSION['login'], "Salvou rota no perfil.");
         // header('Location: ../index.php#calculadora'); 
         
     } else {

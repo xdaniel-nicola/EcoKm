@@ -1,13 +1,14 @@
 <?php
 session_start();
 require_once "../php/conexao.php";
+require_once "../usuario/utils.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['login'];
     $senha = $_POST['senha'];
 
-    $conn = conectaPDO();
-    $stmt = $conn->prepare("SELECT * FROM usuario WHERE login = :login");
+    $pdo = conectaPDO();
+    $stmt = $pdo->prepare("SELECT * FROM usuario WHERE login = :login");
     $stmt->bindParam(':login', $login);
     $stmt->execute();
 
@@ -15,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $stmt->fetch();
         if ($login === 'admin') {
             $_SESSION['username'] = $user['nome'];
+            registraLog($pdo, $user['nome'], "Logou no sistema");
             header("Location: ../index.php"); 
             exit();
         }
@@ -38,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['cpf'] = $user['cpf'];
 
             // Redirecionando para a página de 2FA
+            registraLog($pdo, $login, "Logou e foi para o 2FA");
             header("Location: verificar_2fa.php");
             exit();
         } else {

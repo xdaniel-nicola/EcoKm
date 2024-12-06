@@ -1,6 +1,6 @@
 <?php
 include "conexao.php";
-
+include "../usuario/utils.php";
 if(isset($_GET['id'])) {
     $cpf = $_GET['id'];
 }
@@ -15,6 +15,7 @@ if($pdo) {
         $stmt->bindValue(':cpf', $cpf);
 
         if($stmt->execute()) {
+            registraLog($pdo, 'admin', "Apagou um registro");
             header("Location: ../usuario/pesquisa.php");
             exit;
         } else {

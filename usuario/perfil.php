@@ -56,6 +56,7 @@ if (!isset($_SESSION['username'])) {
 
     if ($usuario['nome'] === 'admin') {
             echo '<a href="pesquisa.php" class="userList">Lista de usuários</a>';
+            echo '<a href="logs.php" class="userList">Log de Usuários</a>';
     }
     ?>
 

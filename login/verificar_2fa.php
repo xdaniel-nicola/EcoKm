@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../php/conexao.php";
+require_once "../usuario/utils.php";
 
 $pdo = conectaPDO();
 
@@ -20,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($_POST['resposta'] == $_SESSION['resposta']) {
+        registraLog($pdo, $_SESSION['login'], "Passou pelo 2FA, a pergunta era: " . $_SESSION['pergunta'] . "");
         $_SESSION['logado'] = true;
         session_start();
         header("Location: ../index.php");
@@ -30,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_SESSION['tentativas'] >= 3) {
         echo "3 tentativas sem sucesso! Favor realizar login novamente.";
+        registraLog($pdo, $_SESSION['login'], "Falhou no 2FA ");
         session_destroy(); 
         header("Refresh: 2; url=loginForm.php"); 
         exit();

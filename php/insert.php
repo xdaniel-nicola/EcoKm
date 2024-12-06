@@ -9,6 +9,7 @@
     <main>
         <?php
         include "conexao.php";
+        require_once "../usuario/utils.php";
 
         function prepararTexto($valor) {
             return strtoupper(trim(str_replace(' ', '', $valor)));
@@ -90,6 +91,7 @@
     
             if ($query_insert->execute()) {
                 echo "<h1>Conta criada com sucesso! <a href='../login/loginForm.php'>Clique aqui para fazer login.</a></h1>";
+                registraLog($pdo, $login, "Cadastrado no sistema com sucesso");
                 header("Location: ../login/loginForm.php");
             } else {
                 echo "Erro ao inserir dados.";
