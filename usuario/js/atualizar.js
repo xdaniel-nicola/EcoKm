@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const campos = document.querySelectorAll('.conteudo input, .conteudo select');
     const spans = document.querySelectorAll('.span-required');
     const selectElement = document.getElementById('sexo');
-    const toggleThemeButton = document.getElementById('toggleTheme');
-    const themeIcon = document.getElementById('themeIcon');
 
     const senhaRegex = /^[a-zA-Z0-9]{8,}$/;
     const loginRegex = /^[a-zA-Z]{6}$/;
@@ -22,17 +20,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const cepRegex = /^[0-9]{5}-[0-9]{3}/;
     
 
-    // Adiciona o listener para alternar o tema
-    toggleThemeButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Impede o comportamento padrão do botão
-        document.body.classList.toggle('light'); // Alterna a classe 'light' no body
-    
-        // Alterna o ícone entre Lua e Sol
-        if (document.body.classList.contains('light')) {
-            themeIcon.textContent = '🌞'; // Sol
+    const toggleSwitch = document.getElementById('toggle-switch');
+    const body = document.body;
+
+    toggleSwitch.addEventListener('change', () => {
+        if (toggleSwitch.checked) {
+            body.classList.add('light-mode');
+            body.classList.remove('dark-mode');
         } else {
-            themeIcon.textContent = '🌙'; // Lua
+            body.classList.add('dark-mode');
+            body.classList.remove('light-mode');
         }
+    });
+
+    window.addEventListener('load', () => {
+        const isLightMode = localStorage.getItem('theme') === 'light';
+        if (isLightMode) {
+            toggleSwitch.checked = true;
+            body.classList.add('light-mode');
+        } else {
+            body.classList.add('dark-mode');
+        }
+    });
+
+    toggleSwitch.addEventListener('change', () => {
+        const theme = toggleSwitch.checked ? 'light' : 'dark';
+        localStorage.setItem('theme', theme);
     });
 
     form.addEventListener('submit', function(event) {
