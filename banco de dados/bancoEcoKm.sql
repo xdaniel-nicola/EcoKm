@@ -41,5 +41,12 @@ CREATE TABLE viagem(
     CONSTRAINT fk_cpf_viagens FOREIGN KEY (cpf) REFERENCES usuario(cpf) ON DELETE CASCADE
 );
 
+CREATE TABLE logUsers(
+	idLog INT PRIMARY KEY AUTO_INCREMENT,
+    usuario VARCHAR(50) NOT NULL,
+    acao TEXT NOT NULL,
+    dataLog DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- código para inserir o admin
 INSERT INTO usuario VALUES ('admin', 'admin@admin.com', '12345678909', '5521999999999','5521999999999', '2024-10-22', '-----', 'admin', '-----', 'admin', '-----', 'admin1234', '-----', 'Outro' );
