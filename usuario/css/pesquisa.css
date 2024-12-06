@@ -202,8 +202,8 @@ a:hover:before {
 }
 
 .container {
-    padding-left: 0;
-    margin-left: 0px;
+    padding-left: 20px;
+    margin-left: 20px;
     margin-top: 90px;
     display: flex;
     flex-direction: column;
