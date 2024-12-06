@@ -107,21 +107,21 @@ document.addEventListener('DOMContentLoaded', function() {
         spans[index].style.display = 'none';
     }
 
-    campos[0].addEventListener('input', nameValidate);
-    campos[1].addEventListener('input', emailValidate);
-    campos[2].addEventListener('input', cpfValidate);
-    campos[3].addEventListener('input', () => celular1Validate(3));
-    campos[5].addEventListener('input', () => celular2Validate(5));
-    campos[4].addEventListener('input', dateValidate);
-    campos[6].addEventListener('input', cepValidate);
-    campos[7].addEventListener('input', nomeMaeValidate);
-    campos[8].addEventListener('input', enderecoValidate);
-    campos[9].addEventListener('input', loginValidate);
-    campos[10].addEventListener('input', cidadeValidate);
-    campos[11].addEventListener('input', mainPasswordValidate);
-    campos[12].addEventListener('input', bairroValidate);
-    campos[13].addEventListener('input', comparePassword);
-    campos[14].addEventListener('input', sexoValidate);
+    // campos[0].addEventListener('input', nameValidate);
+    // campos[1].addEventListener('input', emailValidate);
+    // campos[2].addEventListener('input', cpfValidate);
+    // campos[3].addEventListener('input', () => celular1Validate(3));
+    // campos[5].addEventListener('input', () => celular2Validate(5));
+    // campos[4].addEventListener('input', dateValidate);
+    // campos[6].addEventListener('input', cepValidate);
+    // campos[7].addEventListener('input', nomeMaeValidate);
+    // campos[8].addEventListener('input', enderecoValidate);
+    // campos[9].addEventListener('input', loginValidate);
+    // campos[10].addEventListener('input', cidadeValidate);
+    // campos[11].addEventListener('input', mainPasswordValidate);
+    // campos[12].addEventListener('input', bairroValidate);
+    // campos[13].addEventListener('input', comparePassword);
+    // campos[14].addEventListener('input', sexoValidate);
     
     function nameValidate() {
         if (!nomeRegex.test(campos[0].value.trim())) {
