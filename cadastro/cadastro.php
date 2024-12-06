@@ -9,9 +9,6 @@ require_once "../php/conexao.php";
     <meta http-equiv="X-Ua-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="cadastro.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6-beta.24/jquery.inputmask.min.js"></script>
-    <script src="script.js" defer></script>
     <title>Cadastre sua conta</title>
 </head>
 <body>
@@ -42,7 +39,7 @@ require_once "../php/conexao.php";
                 </div>
                 <div class="email">
                     <label for="email">E-mail:</label>
-                    <input class="inputs" autocomplete="on" type="text" name="email" id="email" placeholder="Digite seu e-mail" oninput="emailValidate()">
+                    <input class="inputs" type="text" name="email" id="email" placeholder="Digite seu e-mail" oninput="emailValidate()">
                     <span class="span-required">Digite um e-mail válido.</span>
                 </div>
                 <div class="cpf">
@@ -123,5 +120,9 @@ require_once "../php/conexao.php";
         </form>
         <footer><div class="footer"><p>.</p></div></footer>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6-beta.24/jquery.inputmask.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

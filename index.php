@@ -81,7 +81,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
             <h2>Como utilizar a calculadora de combustível</h2>
                 <h4>Para saber como que se faz o cálculo é bem simples, veja o passo a passo a seguir:</h4>
             <ul>
-                <li>Informe a motorização do veículo (caso não tenha veículo salvo),</li>
+                <li>Informe a motorização do veículo,</li>
                 <li>Informe o tipo de combustível que será utilizado,</li>
                 <li>Digite o endereço de partida e o de chegada e clique em "Traçar Rota",</li>
                 <li>Digite o valor atual do combustível selecionado,</li>
@@ -149,6 +149,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                 </div>
                         <div>
                             <?php if ($loggedInClass === 'logged-in'): ?>
+                                <input hidden type="text" name="login" id="login" value="<?php echo isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : '' ;?>"/>
                                 <input hidden type="text" name="cpf" id="cpf" value="<?php echo isset($_SESSION['cpf']) ? htmlspecialchars($_SESSION['cpf']) : ''; ?>"/>
                                 <input hidden type="text" name="consumo" id="consumo">
                                 <input hidden type="text" name="custo" id="gasto">
