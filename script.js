@@ -53,6 +53,9 @@ document.getElementById("form-carro").addEventListener("submit", function (event
             if (data === "sucesso") {
                 document.getElementById("mensagem").textContent = "Rota salva com sucesso!";
                 document.getElementById("mensagem").style.display = "block";
+                setTimeout(function() {
+                    mensagem.style.display = 'none';
+                }, 2000);
                 form.reset();
             } else {
                 document.getElementById("mensagem").textContent = "Ocorreu um erro. Tente novamente.";
