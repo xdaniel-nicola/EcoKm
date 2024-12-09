@@ -516,6 +516,9 @@ footer{
     width: 30px;
 }
 
+#messageContainer {
+    text-align: center;
+}
 /* Tema escuro */
 body.dark-mode {
     background-color: #202020;
