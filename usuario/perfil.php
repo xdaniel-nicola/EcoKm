@@ -58,7 +58,6 @@ if (!isset($_SESSION['username'])) {
             echo '<a href="pesquisa.php" class="userList">Lista de usuários</a>';
             echo '<a href="logs.php" class="userList">Log de Usuários</a>';
     }
-    echo '<a href="logs.php" class="userList">Log de Usuários</a>';
     ?>
 
 </div>
