@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="telaLogin">
-        <form class="card" method="post" action="loginHandler.php">
+        <form class="card" method="post" action="loginHandlerNP.php">
             <div class="homePage">
                 <a href="..\index.php" class="voltarHome">Início</a>
             </div>
@@ -18,7 +18,7 @@
                 </label>
             </div>
             <div class="card-header">
-                <h2 name="titulo" id="titulo">Vamos começar</h2>
+                <h2 name="titulo" id="titulo">Recuperar senha</h2>
             </div>
             
             <div class="conteudo">
@@ -26,13 +26,12 @@
                     <label for="usuario">Login</label>
                     <input class="inputs" type="text" name="login" id="login" autocomplete="off" placeholder="Digite seu login">
                 </div>
-                <div class="senha">
-                    <label for="senha">Senha</label>
-                    <input class="inputs" type="password" name="senha" id="senha" autocomplete="off" placeholder="Digite sua senha">
+                <div class="email">
+                    <label for="email">Email</label>
+                    <input class="inputs" type="text" name="email" id="email" autocomplete="off" placeholder="Digite seu email">
                 </div>
                 <div class="rodape">
                     <input type="submit" name="enviar" id="enviar" value="Entrar">
-                    <a href="loginFormNP.php" class="recuperarSenha">Esqueceu a sua senha?</a>
                     <h5>Não tem conta? <a href="../cadastro/cadastro.php" class="loginEmpresa">Cadastre-se gratuitamente.</a></h5>
                 </div>
             </div>
