@@ -70,7 +70,7 @@ if ($usuario) {
             <div class="conteudo">
                 <div class="nome">
                     <label for="nome">Nome:</label>
-                    <input disabled class="inputs" type="text" name="nome" id="nome" placeholder="Digite seu nome" oninput="nameValidate()" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
+                    <input class="inputs" type="text" name="nome" id="nome" placeholder="Digite seu nome" oninput="nameValidate()" value="<?php echo isset($usuario['nome']) ? htmlspecialchars($usuario['nome']) : ''; ?>">
                     <span class="span-required">Nome deve ter no mínimo 15 caracteres.</span>
                 </div>
                 <div class="email">
