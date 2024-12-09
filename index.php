@@ -92,6 +92,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
         </section>
         <div class="container" id="calculadora">
             <h1>Calculadora de Gasto de Combustível</h1>
+            <div id="messageContainer" style="display: none; color: red; font-weight: bold;"></div>
             <?php if($loggedInClass === 'logged-in'): ?>
                 <p id="avisoMapa">Caso o mapa não esteja aparecendo basta recarregar a página.</p>
             <?php else: ?>
