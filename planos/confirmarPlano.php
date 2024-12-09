@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../php/conexao.php";
+require_once "../usuario/utils.php";
 
 if (!isset($_SESSION['username'])) {
     header("Location: ../login/loginForm.php"); 
@@ -31,6 +32,7 @@ if ($planoExistente) {
     $stmtUpdate->bindValue(':preco', $precoPlano, PDO::PARAM_STR);
     $stmtUpdate->bindValue(':cpf', $cpf, PDO::PARAM_STR);
     $stmtUpdate->execute();
+    registraLog($pdo, $_SESSION['login'], "Atualizou o plano para: " .$planoEscolhido . "");
     // echo "<p>Plano $planoEscolhido atualizado com sucesso!</p>";
     header ("Location: planos.php");
 } else {
@@ -40,7 +42,8 @@ if ($planoExistente) {
     $stmtInsert->bindValue(':preco', $precoPlano, PDO::PARAM_STR);
     $stmtInsert->bindValue(':cpf', $cpf, PDO::PARAM_STR);
     $stmtInsert->execute();
-    header ("Location: ../planos.php");
+    registraLog($pdo, $_SESSION['login'], "Assinou o plano: ". $planoEscolhido . "");
+    header ("Location: planos.php");
     // echo "<p>Plano $planoEscolhido assinado com sucesso!</p>";
 }
 

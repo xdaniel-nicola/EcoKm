@@ -1,13 +1,19 @@
 <?php
 require "../php/conexao.php";
 $pdo = conectaPDO();
-
-// Buscar dados da tabela de log
 try {
+
+    $busca = isset($_POST['busca']) ? trim($_POST['busca']) : '';
+// Buscar dados da tabela de log
+if ($busca !== '') {
+    $sql ="SELECT * FROM logUsers WHERE usuario LIKE :busca ORDER BY idLog DESC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':busca', '%' . $busca . '%');
+} else {
     $sql = "SELECT * FROM logUsers ORDER BY idLog DESC";
     $stmt = $pdo->prepare($sql);
+}
     $stmt->execute();
-
     $logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Retornar os dados em JSON
@@ -17,15 +23,4 @@ try {
     echo json_encode(['error' => $e->getMessage()]);
 }
 
-// function registraLog($pdo, $usuario, $acao) {
-//    try {
-//     $sql = "INSERT INTO logUsers (usuario, acao) VALUES (:usuario, :acao)";
-//     $stmt = $pdo->prepare($sql);
-//     $stmt->bindParam(':usuario', $usuario);
-//     $stmt->bindParam(':acao', $acao);
-//     $stmt->execute();
-//    } catch (PDOException $e) {
-//     error_log("Erro ao registrar log: " . $e->getMessage());
-//    }
-// }
 ?>

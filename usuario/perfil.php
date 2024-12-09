@@ -58,6 +58,7 @@ if (!isset($_SESSION['username'])) {
             echo '<a href="pesquisa.php" class="userList">Lista de usuários</a>';
             echo '<a href="logs.php" class="userList">Log de Usuários</a>';
     }
+    echo '<a href="logs.php" class="userList">Log de Usuários</a>';
     ?>
 
 </div>
@@ -89,6 +90,9 @@ if (!isset($_SESSION['username'])) {
                         echo '<h2>Dados do Usuário</h2>';
                         echo '<table class="table table-striped ">';
                         foreach ($usuario as $key => $value) {
+                            if ($key === 'senha') {
+                                continue;
+                            }
                             $nomeExibicao = isset($camposPersonalizados[$key]) ? $camposPersonalizados[$key] : ucfirst(str_replace("_", " ", $key));
                             echo '<tr>';
                             echo '<th>' . $nomeExibicao . '</th>';
@@ -157,7 +161,7 @@ if (!isset($_SESSION['username'])) {
                             $stmtCancel = $pdo->prepare($sqlCancel);
                             $stmtCancel->bindValue(':id_plano', $idPlano, PDO::PARAM_INT);
                             $stmtCancel->execute();
-                    
+                            registraLog($pdo, $_SESSION['username'], "Cancelou o plano assinado");
                             header("Location: perfil.php?msg=Plano cancelado com sucesso");
                             exit();
                         }

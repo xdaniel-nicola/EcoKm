@@ -27,22 +27,46 @@
         </div>
     </header>
     <div class="container">
-        <h1>Activity Log</h1>
-        <!-- <div class="table-responsive"> -->
-        <table class="table table-striped" id="logTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Usuario</th>
-                    <th>Ação</th>
-                    <th>Data</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dados serão inseridos aqui via JavaScript -->
-            </tbody>
-        </table>
-    </div>
+        <h1>Pesquisar atividade</h1>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <form class="d-flex" role="search" action="logs.php" method="POST">
+                    <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="pesquisar" name="busca">
+                    <button class="alterBtn" type="submit">Pesquisar</button>
+                </form>
+        </div>
+        <?php
+        $pesquisa = $_POST['busca'] ?? '';
+        include "../php/conexao.php";
+        $pdo = conectaPDO();
+
+        if ($pdo) {
+            $sql = "SELECT * FROM logUsers WHERE usuario LIKE :pesquisa";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':pesquisa', '%' . $pesquisa . '%');
+            $stmt->execute();
+            $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            if ($dados) {
+    echo    '<table class="table table-striped" id="logTable">';
+    echo        '<thead>';
+    echo            '<tr>';
+    echo                '<th>ID</th>';
+    echo                '<th>Usuario</th>';
+    echo                '<th>Ação</th>';
+    echo                '<th>Data</th>';
+    echo            '</tr>';
+    echo       '</thead>';
+    echo        '<tbody>';
+           
+    echo        '</tbody>';
+    echo    '</table>';
+    echo'</div>';
+            } else {
+                echo '<p>Nenhum resultado encontrado';
+            }
+        }
+        ?>
     <script src="js/log.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
