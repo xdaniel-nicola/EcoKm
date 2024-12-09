@@ -5,6 +5,19 @@ let autocompleteStart;
 let autocompleteEnd;
 let placesService;
 
+function showMessage(message, color) {
+  const messageContainer = document.getElementById("messageContainer");
+  messageContainer.style.display = "block";
+  messageContainer.style.align = "center";
+  messageContainer.style.color = color;
+  messageContainer.innerHTML = message;
+}
+
+function hideMessage() {
+  const errorElement = document.getElementById('messageContainer');
+  errorElement.style.display = 'none';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 });
 
@@ -36,7 +49,10 @@ function calculateRoute() {
   const end = document.getElementById("end").value;
 
   if (!start || !end) {
-    alert("Por favor, preencha os campos de partida e destino.");
+    showMessage("Por favor, preencha os campos de partida e destino.", "red");
+    setTimeout(function() {
+      hideMessage();
+    }, 2000);
     return;
   }
 
@@ -72,7 +88,10 @@ function calculateRoute() {
 
       searchNearbyPlaces(route);
     } else {
-      alert("Erro ao calcular a rota. Tente novamente.");
+      showMessage("Erro ao calcular a rota. Tente novamente.", "red");
+    setTimeout(function() {
+      hideMessage();
+    }, 2000);
     }
   });
 }
@@ -81,7 +100,10 @@ function searchNearbyPlaces(route) {
   const placeType = document.getElementById("placeType").value;
   
   if (!route || !route.steps || route.steps.length === 0) {
-    alert("Rota não encontrada ou sem etapas válidas.");
+    showMessage("Rota não encontrada ou sem etapas válidas.", "red");
+    setTimeout(function() {
+      hideMessage();
+    }, 2000);
     return;
   }
 
@@ -155,10 +177,16 @@ function getUserLocation() {
 
       },
       function () {
-        alert("Erro ao obter a localização. Permita o acesso à sua localização.");
+      showMessage("Erro ao obter a localização. Permita o acesso à sua localização.", "red");
+    setTimeout(function() {
+      hideMessage();
+    }, 2000);
       }
     );
   } else {
-    alert("Geolocalização não é suportada neste navegador.");
+    showMessage("Geolocalização não é suportada neste navegador.", "red");
+    setTimeout(function() {
+      hideMessage();
+    }, 2000);
   }
 }
