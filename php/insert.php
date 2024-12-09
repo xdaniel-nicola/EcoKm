@@ -61,10 +61,14 @@
         $erro_login = $query_login->rowCount() > 0;
     
         if ($erro_email || $erro_cpf || $erro_login) {
-            echo "Dados inválidos, tente novamente. ";
-            if ($erro_email) echo "Email já cadastrado. <a href='../cadastro/cadastro.php'>Clique aqui para voltar ao cadastro.</a>";
-            if ($erro_cpf) echo "CPF já cadastrado. <a href='../cadastro/cadastro.php'>Clique aqui para voltar ao cadastro.</a>";
-            if ($erro_login) echo "Login já cadastrado. <a href='../cadastro/cadastro.php'>Clique aqui para voltar ao cadastro.</a>";
+            echo "<div style='border: 1px solid #000000; margin: 15vw 0 0 37vw; width: 400px; border-radius:10px;'>";
+            echo "<h1 style='text-align:center; font-size:32px;'>Dados inválidos, tente novamente.</h1>";
+            if ($erro_email) echo "<p style='text-align:center; font-size:16px; '>Email já cadastrado. <a style='text-decoration:none; color:#b30000' href='../cadastro/cadastro.php'>Clique aqui para voltar ao cadastro.</a></p>";
+            if ($erro_cpf) echo "<p style='text-align:center; font-size:16px; '>CPF já cadastrado. <a style='text-decoration:none; color:#b30000' href='../cadastro/cadastro.php'>Clique aqui para voltar ao cadastro.</a></p>";
+            if ($erro_login) echo "<p style='text-align:center; font-size:16px; '>Login já cadastrado. <a style='text-decoration:none; color:#b30000' href='../cadastro/cadastro.php'>Clique aqui para voltar ao cadastro.</a></p>";
+            echo "<h1 style='text-align:center; font-size:24px;'>Redirecionamento automático em 2 segundos...</h1>";
+            header("Refresh: 2, url=../cadastro/cadastro.php");
+            echo '</div>';
         } else {
 
             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
@@ -90,11 +94,22 @@
             $query_insert->bindParam(':sexo', $sexo);
     
             if ($query_insert->execute()) {
-                echo "<h1>Conta criada com sucesso! <a href='../login/loginForm.php'>Clique aqui para fazer login.</a></h1>";
                 registraLog($pdo, $login, "Cadastrado no sistema com sucesso");
-                header("Location: ../login/loginForm.php");
+                echo "<div style='border: 1px solid #000000; margin: 15vw 0 0 37vw; width: 400px; border-radius:10px;'>";
+                    echo "<p style='text-align:center; font-size:20px; font-weight:bold; color: #b30000;';>Conta Cadastrada com sucesso! <a href='../login/loginForm.php> Clique aqui para fazer login.'.</p>";
+                    echo "<p style='text-align:center; font-size:20px; font-weight:bold; margin-top:10px;';>Redirecionamento automático em 2 segundos..</p>";
+                header("Refresh: 2, url=../login/loginForm.php");
+                echo "</div>";
+                // echo "<h1>Conta criada com sucesso! <a href='../login/loginForm.php'>Clique aqui para fazer login.</a></h1>";
+                
+                // header("Location: ../login/loginForm.php");
             } else {
                 echo "Erro ao inserir dados.";
+                echo "<div style='border: 1px solid #000000; margin: 15vw 0 0 37vw; width: 400px; border-radius:10px;'>";
+                    echo "<p style='text-align:center; font-size:20px; font-weight:bold; color: #b30000;';>Erro ao inserir dados. <a href='../cadastro/cadastro.php> Clique aqui para tentar novamente.'.</p>";
+                    echo "<p style='text-align:center; font-size:20px; font-weight:bold; margin-top:10px;';>Redirecionamento automático em 2 segundos..</p>";
+                header("Refresh: 2, url=../login/loginForm.php");
+                echo "</div>";
             }
         }
     } else {

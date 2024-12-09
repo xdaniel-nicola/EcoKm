@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->rowCount() > 0) {
         $user = $stmt->fetch();
-        if ($login === 'admin') {
+        if ($login === 'admin' and $senha === $user['senha']) {
             $_SESSION['username'] = $user['nome'];
             registraLog($pdo, $user['nome'], "Logou no sistema");
             header("Location: ../index.php"); 
@@ -44,10 +44,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: verificar_2fa.php");
             exit();
         } else {
-            echo "Usuário ou senha inválidos.";
+            echo "<div style='border: 1px solid #000000; margin: 15vw 0 0 37vw; width: 400px; border-radius:10px;'>";
+                echo "<p style='text-align:center; font-size:20px; font-weight:bold; color: #b30000;';>Usuário ou senha inválidos. Tente novamente.</p>";
+                echo "<p style='text-align:center; font-size:20px; font-weight:bold; margin-top:10px;';>Redirecionamento automático em 2 segundos..</p>";
+                header("Refresh: 2, url=loginForm.php");
+            echo "</div>";
         }
     } else {
-        echo "Usuário ou senha inválidos.";
+        echo "<div style='border: 1px solid #000000; margin: 15vw 0 0 37vw; width: 400px; border-radius:10px;'>";
+            echo "<p style='text-align:center; font-size:20px; font-weight:bold; color: #b30000;';>Usuário ou senha inválidos. Tente novamente.</p>";
+            echo "<p style='text-align:center; font-size:20px; font-weight:bold; margin-top:10px;';>Redirecionamento automático em 2 segundos..</p>";
+            header("Refresh: 2, url=loginForm.php");
+        echo "</div>";
     }
 }
 ?>
