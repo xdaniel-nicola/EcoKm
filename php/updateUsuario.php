@@ -5,9 +5,11 @@ require_once "../usuario/utils.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf = $_POST['cpf'];
+    $nome = $_POST['nome'];
     $email = $_POST['email'];
     $celular1 = $_POST['celular1'];
     $celular2 = $_POST['celular2'];
+    $nomeMae = $_POST['nomeMae'];
     $cep = $_POST['cep'];
     $endereco = $_POST['endereco'];
     $cidade = $_POST['cidade'];
@@ -17,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sexo = $_POST['sexo'];
 
     // Verifica se os campos obrigatórios estão preenchidos
-    if (empty($cpf) || empty($email) || empty($celular1) || empty($cep) || empty($endereco) || empty($cidade) || empty($bairro) || empty($login) || empty($senha) || empty($sexo)) {
+    if (empty($cpf) || empty($nome) || empty($email) || empty($celular1) || empty($celular2) || empty($nomeMae) || empty($cep) || empty($endereco) || empty($cidade) || empty($bairro) || empty($login) || empty($senha) || empty($sexo)) {
         echo "Todos os campos obrigatórios devem ser preenchidos.";
         exit();
     }
@@ -39,9 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Atualiza os dados
             $sql = "UPDATE usuario SET 
+                    nome = :nome,
                     email = :email, 
                     celular1 = :celular1, 
                     celular2 = :celular2,
+                    nomeMae = :nomeMae,
                     cep = :cep, 
                     endereco = :endereco, 
                     cidade = :cidade, 
@@ -60,12 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 return strtoupper(trim($valor));
             }
 
+            $nome = trim($_POST['nome']);
             $email = trim($_POST['email']);
             $cpf = trim($_POST['cpf']);
             $celular1 = trim($_POST['celular1']);
             $celular2 = trim($_POST['celular2']);
-            $cep = trim($_POST['cep']);
             $nomeMae = trim($_POST['nomeMae']);
+            $cep = trim($_POST['cep']);
             $endereco = trim($_POST['endereco']);
             $login = trim($_POST['login']);
             $cidade = trim($_POST['cidade']);
@@ -73,10 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $bairro = trim($_POST['bairro']);
             $sexo = trim($_POST['sexo']);
 
+            $stmt->bindvalue(':nome', $nome, PDO::PARAM_STR);
             $stmt->bindValue(':cpf', $cpf, PDO::PARAM_STR);
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
             $stmt->bindValue(':celular1', $celular1, PDO::PARAM_STR);
             $stmt->bindValue(':celular2', $celular2, PDO::PARAM_STR);
+            $stmt->bindValue(':nomeMae', $nomeMae, PDO::PARAM_STR);
             $stmt->bindValue(':cep', $cep, PDO::PARAM_STR);
             $stmt->bindValue(':endereco', $endereco, PDO::PARAM_STR);
             $stmt->bindValue(':cidade', $cidade, PDO::PARAM_STR);
