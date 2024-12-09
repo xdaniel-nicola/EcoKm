@@ -41,7 +41,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
             <div class="logo"><img src="../img/ecokmlogo3.png" width="135"></div>
             <ul class="links">
                 <li><a href="../index.php">Home</a></li>
-                <li><a href="/planos/planos.php">Planos</a></li>
+                <li><a href="planos.php">Planos</a></li>
             </ul>
             <!-- Botão de alternância de tema -->
             <div class="theme-toggle">
@@ -54,7 +54,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : '';
                 <div class="username-container">
                 <ul class="links">
                     <li><a class="usuario" href="../usuario/perfil.php">Bem vindo, <?php echo htmlspecialchars($_SESSION['username']);?></a></li>
-                    <li><a href="login/logout.php" class="action-btn">Logout</a></li>
+                    <li><a href="../login/logout.php" class="action-btn">Logout</a></li>
                 </ul>
                 </div>
             <?php else: ?>
