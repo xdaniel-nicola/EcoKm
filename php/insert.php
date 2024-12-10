@@ -96,7 +96,7 @@
             if ($query_insert->execute()) {
                 registraLog($pdo, $login, "Cadastrado no sistema com sucesso");
                 echo "<div style='border: 1px solid #000000; margin: 15vw 0 0 37vw; width: 400px; border-radius:10px;'>";
-                    echo "<p style='text-align:center; font-size:20px; font-weight:bold; color: #b30000;';>Conta Cadastrada com sucesso! <a href='../login/loginForm.php> Clique aqui para fazer login.'.</p>";
+                    echo "<p style='text-align:center; font-size:20px; font-weight:bold; color: #b30000;';>Conta Cadastrada com sucesso! <a style='text-decoration:none;'href='../login/loginForm.php'> Clique aqui para fazer login.</a></p>";
                     echo "<p style='text-align:center; font-size:20px; font-weight:bold; margin-top:10px;';>Redirecionamento automático em 2 segundos..</p>";
                 header("Refresh: 2, url=../login/loginForm.php");
                 echo "</div>";

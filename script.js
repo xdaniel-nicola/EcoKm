@@ -30,11 +30,17 @@ function calcularCombustivel() {
         const custo = (consumo * precoCombustivel).toFixed(2);
         
         document.getElementById('resultado').innerText = `O consumo aproximado será de: ${consumo} litros e o custo será em torno de: R$${custo}.`;
+        
         document.getElementById('consumo').value = consumo;
         document.getElementById('gasto').value = custo;
-
+        setTimeout(function() {
+            resultado.style.display = 'none';
+        }, 10000);
     } else {
         document.getElementById('resultado').innerText = "Por favor, preencha todos os campos.";
+        setTimeout(function() {
+            resultado.style.display = 'none';
+        }, 2000);
     }
 }
 
