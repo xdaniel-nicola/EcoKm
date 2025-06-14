@@ -18,7 +18,7 @@ if ($busca !== '') {
     $logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Retornar os dados em JSON
-    header('Content-Type: application/json');
+    // header('Content-Type: application/json');
     echo json_encode($logs);
 } catch (PDOException $e) {
     echo json_encode(['error' => $e->getMessage()]);
