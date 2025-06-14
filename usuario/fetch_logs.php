@@ -1,5 +1,6 @@
 <?php
 require "../php/conexao.php";
+header('Content-Type: application/json');
 $pdo = conectaPDO();
 try {
 
