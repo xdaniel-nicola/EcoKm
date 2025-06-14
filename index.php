@@ -65,7 +65,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
         <section class="containerTexto1" id="containerTexto">
             <h2>Como se faz o cálculo de consumo de combustível por km?</h2>
             <p>Para fazer o cálculo do consumo de combustível por km é simples, você vai dividir o valor do litro da gasolina pelo consumo médio do veículo.</p>
-            <h4>Um exemplo:</h4>
+            <h4>Um exemplo maneiro:</h4>
             <ul>
                 <li>Digamos que a gasolina custa R$ 5,20 na sua cidade;</li>
                 <li>Seu carro roda 13 km com um litro;</li>
