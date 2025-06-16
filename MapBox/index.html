@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de Rotas - Mapbox</title>
+    
+    <!-- Mapbox GL JS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="mapa.css">
+    <script defer src="mapa.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ Traçador de Rotas</h1>
+            <p>Encontre a melhor rota e postos de gasolina no caminho</p>
+        </div>
+
+        <div class="controls">
+            <div class="form-group">
+                <label for="origin">📍 Endereço de Origem</label>
+                <div class="input-container">
+                    <input type="text" id="origin" placeholder="Digite o endereço de origem...">
+                    <div class="suggestions" id="originSuggestions"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="destination">🎯 Endereço de Destino</label>
+                <div class="input-container">
+                    <input type="text" id="destination" placeholder="Digite o endereço de destino...">
+                    <div class="suggestions" id="destinationSuggestions"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="searchType">🔍 Tipo de Busca</label>
+                <select id="searchType" disabled>
+                    <option value="gas_station">Postos de Gasolina</option>
+                </select>
+            </div>
+
+            <button class="btn-route" id="routeBtn" onclick="calculateRoute()">
+                Traçar Rota e Encontrar Postos
+            </button>
+
+            <div class="loading" id="loading">Calculando rota e buscando postos...</div>
+            <div class="error" id="error"></div>
+        </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

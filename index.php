@@ -3,8 +3,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-echo $variavel_inexistente;
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -16,9 +14,10 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Calculadora de Gasto de Combustível</title>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3NZISEAjOEfUocgQXVpigSVriLgwKpCI&libraries=places&callback=initMap" async defer></script> -->
-    <link rel="stylesheet" href="mapagoogle/mapa.css">
-    <script src="mapagoogle/mapa.js" defer></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="MapBox/mapa.css">
+    <script src="MapBox/mapa.js" defer></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -130,15 +129,15 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                         </div>
                         <div>
                             <label for="start">Partida:</label>
-                            <input type="text" name="partida" id="start" placeholder=""/>
+                            <input type="text" name="partida" id="origin" placeholder=""/>
                         </div>
                         <div> 
                             <label for="end">Chegada:</label>
-                            <input type="text" name="chegada" id="end" placeholder=""/>
+                            <input type="text" name="chegada" id="destination" placeholder=""/>
                         </div>
                         <div class="places-container">
-                            <label for="pontos">Pontos de Interesse:</label>
-                            <select disabled name="pontos" id="placeType">
+                            <label for="searchType">Pontos de Interesse:</label>
+                            <select disabled name="pontos" id="searchType">
                                 <option value="gas_station">Postos de Gasolina</option>
                             </select>
                         </div>
@@ -160,7 +159,7 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
                                 <input hidden type="text" name="cpf" id="cpf" value="<?php echo isset($_SESSION['cpf']) ? htmlspecialchars($_SESSION['cpf']) : ''; ?>"/>
                                 <input hidden type="text" name="consumo" id="consumo">
                                 <input hidden type="text" name="custo" id="gasto">
-                                <input hidden type="text" name="tempoEstimado" id="tempo">
+                                <input hidden type="text" name="tempoEstimado" id="duration">
                             <?php else: ?>
                                 <input hidden type="text" name="cpf" value="Sem CPF logado.">
                             <?php endif; ?>
@@ -218,6 +217,5 @@ $loggedInClass = isset($_SESSION['username']) ? 'logged-in' : 'blur';
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3NZISEAjOEfUocgQXVpigSVriLgwKpCI&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
