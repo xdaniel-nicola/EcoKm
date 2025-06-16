@@ -1,0 +1,41 @@
+chmod 400 "start2025.pem"
+##Comando para deixar senha privada
+
+ssh -i "start2025.pem" ec2-user@ec2-13-220-211-205.compute-1.amazonaws.com
+##Comando para iniciar com SSH
+
+sudo yum update -y
+##Atualizar o linux
+
+sudo yum install git -y
+##Instalar o git
+
+git clone https://github.com/xdaniel-nicola/EcoKm.git
+#Clonar repositório
+
+ls
+#Verificar arquivos existentes
+
+sudo yum install -y httpd
+##Instalar servidor
+
+sudo systemctl start httpd
+##Iniciar servidor
+
+sudo systemctl enable httpd
+##Habilitar servidor
+
+sudo dnf update -y
+##Atualizar
+
+sudo dnf install -y php php-mysqli php-cli
+##Instalar PHP e dependencias
+
+php -v
+##Verificar versão do PHP
+
+cd /var/www/html
+##Criar pasta
+
+sudo git clone https://github.com/xdaniel-nicola/EcoKm.git
+##Clonar github para a pasta
