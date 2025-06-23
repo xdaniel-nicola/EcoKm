@@ -1,422 +1,245 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('JavaScript carregado');
+
+    // Elementos principais
     const form = document.getElementById("form");
-    const campos = document.querySelectorAll('.conteudo input, .conteudo select');
-    const spans = document.querySelectorAll('.span-required');
-    const selectElement = document.getElementById('sexo');
-    const toggleThemeButton = document.getElementById('toggleTheme');
-    const themeIcon = document.getElementById('themeIcon');
-
-    const senhaRegex = /^[a-zA-Z0-9]{8,}$/;
-    const loginRegex = /^[a-zA-Z]{6}$/;
-    const nomeRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{15,}$/;
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const cpfRegex = /^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/;
-    const celular1Regex = /^\+55 \(\d{2}\)\d{5}-\d{4}$/;
-    const celular2Regex = /^\+55 \(\d{2}\)\d{5}-\d{4}$/;
-    const dataRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
-    const nomeMaeRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{15,}$/;
-    const cepRegex = /^[0-9]{5}-[0-9]{3}/;
-
-    
     const toggleSwitch = document.getElementById('toggle-switch');
     const body = document.body;
 
+    // Regex
+    const nomeRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{15,}$/;
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const cpfRegex = /^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/;
+    const celularRegex = /^\+55 \(\d{2}\)\d{5}-\d{4}$/;
+    const dataRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
+    const nomeMaeRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{15,}$/;
+    const cepRegex = /^[0-9]{5}-[0-9]{3}/;
+    const loginRegex = /^[a-zA-Z]{6}$/;
+
+    // Tema
     toggleSwitch.addEventListener('change', () => {
-        if (toggleSwitch.checked) {
-            body.classList.add('light-mode');
-            body.classList.remove('dark-mode');
-        } else {
-            body.classList.add('dark-mode');
-            body.classList.remove('light-mode');
-        }
+        body.classList.toggle('light-mode', toggleSwitch.checked);
+        body.classList.toggle('dark-mode', !toggleSwitch.checked);
+        localStorage.setItem('theme', toggleSwitch.checked ? 'light' : 'dark');
     });
 
     window.addEventListener('load', () => {
         const isLightMode = localStorage.getItem('theme') === 'light';
-        if (isLightMode) {
-            toggleSwitch.checked = true;
-            body.classList.add('light-mode');
-        } else {
-            body.classList.add('dark-mode');
-        }
+        toggleSwitch.checked = isLightMode;
+        body.classList.add(isLightMode ? 'light-mode' : 'dark-mode');
     });
 
-    toggleSwitch.addEventListener('change', () => {
-        const theme = toggleSwitch.checked ? 'light' : 'dark';
-        localStorage.setItem('theme', theme);
-    });
-    
-
+    // Formulário
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita o envio padrão do formulário
-        validador(); // Função para validar os campos antes de enviar
+        event.preventDefault();
+        if (validador()) form.submit();
     });
 
-    function validador() {
-        const isNameValid = nameValidate();
-        const isEmailValid = emailValidate();
-        const isCpfValid = cpfValidate();
-        const isCelular1Valid = celular1Validate();
-        const isCelular2Valid = celular2Validate();
-        const isDateValid = dateValidate();
-        const isNomeMaeValid = nomeMaeValidate();
-        const isCepValid = cepValidate();
-        const isEnderecoValid = enderecoValidate();
-        const isBairroValid = bairroValidate();
-        const isCidadeValid = cidadeValidate();
-        const isLoginValid = loginValidate();
-        const isMainPasswordValid = mainPasswordValidate();
-        const isComparePasswordValid = comparePassword();
-        const isSexoValid = sexoValidate();
-
-        console.log("Nome válido: ", isNameValid)
-        console.log("Email válido: ", isEmailValid);
-        console.log("CPF válido: ", isCpfValid);
-        console.log("Celular1 válido: ", isCelular1Valid);
-        console.log("Celular2 válido: ", isCelular2Valid);
-        console.log("Data válida: ", isDateValid);
-        console.log("NomeMae válido: ", isNomeMaeValid);
-        console.log("CEP válido: ", isCepValid);
-        console.log("Endereço válido: ", isEnderecoValid);
-        console.log("Bairro válido: ", isBairroValid);
-        console.log("Cidade válida: ", isCidadeValid);
-        console.log("Login válido: ", isLoginValid);
-        console.log("MainPass válida: ", isMainPasswordValid);
-        console.log("CompPass válida: ", isComparePasswordValid);
-        console.log("Sexo válido: ", isSexoValid);
-
-        if (isNameValid && isEmailValid && isCpfValid && isCelular1Valid && isCelular2Valid && isDateValid && isNomeMaeValid
-            && isCepValid && isEnderecoValid && isBairroValid && isCidadeValid && isLoginValid && isMainPasswordValid && 
-            isComparePasswordValid && isSexoValid) {
-            form.submit(); // Envio do formulário se todos os campos forem válidos
-            return true;
-        } else {
-            // alert('Por favor, preencha todos os campos corretamente.');
-            return false;
-        }
+    function setErrorById(id) {
+        const campo = document.getElementById(id);
+        const span = campo?.parentElement.querySelector('.span-required');
+        if (campo) campo.style.border = '2px solid #e63636';
+        if (span) span.style.display = 'block';
     }
 
-    function setError(index) {
-        campos[index].style.border = '2px solid #e63636';
-        spans[index].style.display = 'block';
+    function removeErrorById(id) {
+        const campo = document.getElementById(id);
+        const span = campo?.parentElement.querySelector('.span-required');
+        if (campo) campo.style.border = '';
+        if (span) span.style.display = 'none';
     }
 
-    function removeError(index) {
-        campos[index].style.border = '';
-        spans[index].style.display = 'none';
+    function toggleRequirement(id, isValid) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.toggle('valid', isValid);
+        el.classList.toggle('invalid', !isValid);
     }
 
-    // campos[0].addEventListener('input', nameValidate);
-    // campos[1].addEventListener('input', emailValidate);
-    // campos[2].addEventListener('input', cpfValidate);
-    // campos[3].addEventListener('input', () => celular1Validate(3));
-    // campos[5].addEventListener('input', () => celular2Validate(5));
-    // campos[4].addEventListener('input', dateValidate);
-    // campos[6].addEventListener('input', cepValidate);
-    // campos[7].addEventListener('input', nomeMaeValidate);
-    // campos[8].addEventListener('input', enderecoValidate);
-    // campos[9].addEventListener('input', loginValidate);
-    // campos[10].addEventListener('input', cidadeValidate);
-    // campos[11].addEventListener('input', mainPasswordValidate);
-    // campos[12].addEventListener('input', bairroValidate);
-    // campos[13].addEventListener('input', comparePassword);
-    // campos[14].addEventListener('input', sexoValidate);
-    
+    // Validações individuais
     function nameValidate() {
-        if (!nomeRegex.test(campos[0].value.trim())) {
-            setError(0);
-            return false;
-        } else {
-            removeError(0);
-            return true;
-        }
+        const campo = document.getElementById('nome');
+        return validateWithRegex(campo, nomeRegex, 'nome');
     }
 
     function emailValidate() {
-        if (!emailRegex.test(campos[1].value.trim())) {
-            setError(1);
-            return false;
-        } else {
-            removeError(1);
-            return true;
-        }
+        const campo = document.getElementById('email');
+        return validateWithRegex(campo, emailRegex, 'email');
     }
 
     function cpfValidate() {
-        const cpf = campos[2].value.trim();
-        
-        if (!cpfRegex.test(cpf)) {
-            setError(2);
+        const campo = document.getElementById('cpf');
+        const cpf = campo.value.trim();
+        if (!cpfRegex.test(cpf) || !validateCpfDigits(cpf.replace(/\D/g, ''))) {
+            setErrorById('cpf');
             return false;
-        } else {
-            const cpfNumbers = cpf.replace(/[^\d]+/g, '');
-            
-            if (!validateCpfDigits(cpfNumbers)) {
-                setError(2);
-                return false;
-            }
-    
-            removeError(2);
-            return true;
         }
-    }
-    
-    function validateCpfDigits(cpf) {
-        let sum = 0;
-        for (let i = 0; i < 9; i++) {
-            sum += parseInt(cpf.charAt(i)) * (10 - i);
-        }
-    
-        let firstDigit = 11 - (sum % 11);
-        if (firstDigit >= 10) firstDigit = 0;
-    
-        sum = 0;
-        for (let i = 0; i < 10; i++) {
-            sum += parseInt(cpf.charAt(i)) * (11 - i);
-        }
-    
-        let secondDigit = 11 - (sum % 11);
-        if (secondDigit >= 10) secondDigit = 0;
-    
-        return cpf.charAt(9) == firstDigit && cpf.charAt(10) == secondDigit;
-    }
-
-    function celular1Validate() {
-        if (!celular1Regex.test(campos[3].value.trim())) {
-            setError(3);
-            return false;
-        } else {
-            removeError(3);
-            return true;
-        }
-    }
-    
-    function dateValidate() {
-        if (!dataRegex.test(campos[4].value.trim())) {
-            setError(4);
-            return false;
-        } else {
-            removeError(4);
-            return true;
-        }
-    }
-
-    function celular2Validate() {
-        if (!celular2Regex.test(campos[5].value.trim())) {
-            setError(5);
-            return false;
-        } else {
-            removeError(5);
-            return true;
-        }
-    }
-
-    function cepValidate() {
-
-        // const onlyNumbers = /^[0-9]+$/;
-    if (!cepRegex.test(campos[6].value.trim())) {
-        setError(6);
-        return false;
-    } else {
-        removeError(6);
+        removeErrorById('cpf');
         return true;
     }
+
+    function validateCpfDigits(cpfNum) {
+        let sum = 0;
+        for (let i = 0; i < 9; i++) sum += parseInt(cpfNum[i]) * (10 - i);
+        let firstDigit = 11 - (sum % 11);
+        if (firstDigit >= 10) firstDigit = 0;
+
+        sum = 0;
+        for (let i = 0; i < 10; i++) sum += parseInt(cpfNum[i]) * (11 - i);
+        let secondDigit = 11 - (sum % 11);
+        if (secondDigit >= 10) secondDigit = 0;
+
+        return cpfNum[9] == firstDigit && cpfNum[10] == secondDigit;
     }
 
-    function nomeMaeValidate(){
-        if (!nomeMaeRegex.test(campos[7].value.trim())){
-            setError(7);
-            return false;
-        } else {
-            removeError(7);
-            return true;
-        }
+    function celular1Validate() { return validateWithRegex(document.getElementById('celular1'), celularRegex, 'celular1'); }
+    function celular2Validate() { return validateWithRegex(document.getElementById('celular2'), celularRegex, 'celular2'); }
+    function dateValidate() { return validateWithRegex(document.getElementById('dt_nasc'), dataRegex, 'dt_nasc'); }
+    function nomeMaeValidate() { return validateWithRegex(document.getElementById('nomeMae'), nomeMaeRegex, 'nomeMae'); }
+    function cepValidate() { return validateWithRegex(document.getElementById('cep'), cepRegex, 'cep'); }
+
+    function enderecoValidate() {
+        return minLengthValidate('endereco', 3);
     }
-    
-    function enderecoValidate(){
-        if (campos[8].value.trim().length < 3) {
-            setError(8);
-            return false;
-        } else {
-            removeError(8);
-            return true;
-        }
+
+    function bairroValidate() {
+        return minLengthValidate('bairro', 3);
+    }
+
+    function cidadeValidate() {
+        return minLengthValidate('cidade', 2);
     }
 
     function loginValidate() {
-        if (loginRegex.test(campos[9].value.trim())) {
-            removeError(9);
+        const campo = document.getElementById('login');
+        if (loginRegex.test(campo.value.trim())) {
+            removeErrorById('login');
             return true;
         } else {
-            setError(9);
+            setErrorById('login');
             return false;
-        }
-    }
-
-    function cidadeValidate(){
-        if (campos[10].value.trim().length < 2) {
-            setError(10);
-            return false;
-        } else {
-            removeError(10);
-            return true;
         }
     }
 
     function mainPasswordValidate() {
-        if (!senhaRegex.test(campos[11].value.trim())) {
-            setError(11);
-            return false;
-        } else {
-            removeError(11);
+        const campo = document.getElementById('senha');
+        const senha = campo.value.trim();
+        const checks = [
+            { id: 'length', valid: senha.length >= 8 },
+            { id: 'uppercase', valid: /[A-Z]/.test(senha) },
+            { id: 'lowercase', valid: /[a-z]/.test(senha) },
+            { id: 'number', valid: /\d/.test(senha) },
+            { id: 'special', valid: /[\W_]/.test(senha) }
+        ];
+        checks.forEach(({ id, valid }) => toggleRequirement(id, valid));
+
+        if (checks.every(c => c.valid)) {
+            removeErrorById('senha');
             return true;
+        } else {
+            setErrorById('senha');
+            return false;
         }
     }
 
-    function bairroValidate(){
-        if (campos[12].value.trim().length < 3) {
-            setError(12);
-            return false;
-        } else {
-            removeError(12);
-            return true;
-        }
-    }
-   
     function comparePassword() {
-        const firstPassword = campos[11].value
-        const secondPassword = campos[13].value
-        console.log({
-            firstPassword,
-            secondPassword,
-            equal: firstPassword === secondPassword
-        })
-        if (firstPassword == secondPassword && campos[13].value.length >= 8) {
-            removeError(13);
+        const senha = document.getElementById('senha').value.trim();
+        const confirma = document.getElementById('confirmaSenha').value.trim();
+        if (senha === confirma && confirma.length >= 8) {
+            removeErrorById('confirmaSenha');
             return true;
-        }
-        else {
-            setError(13);
+        } else {
+            setErrorById('confirmaSenha');
             return false;
         }
     }
-    
+
     function sexoValidate() {
-        const selectElement = document.getElementById('sexo');
-        if (!selectElement) {
-            console.error("Elemento 'sexo' não encontrado");
-            return false;
-        }
-        if (selectElement.value === "0") {
-            setError(14);
+        const campo = document.getElementById('sexo');
+        if (!campo || campo.value === "0") {
+            setErrorById('sexo');
             return false;
         } else {
-            removeError(14);
+            removeErrorById('sexo');
             return true;
         }
     }
-})
-cep.addEventListener('focusout', async () => {
-    try {
-        
-    const response = await fetch (`https://viacep.com.br/ws/${cep.value}/json/`);
-        
-        if(!response.ok) {
-            throw new Error ("Erro ao buscar o CEP");
+
+    function validateWithRegex(campo, regex, id) {
+        if (!regex.test(campo.value.trim())) {
+            setErrorById(id);
+            return false;
+        } else {
+            removeErrorById(id);
+            return true;
         }
-     const responseCep = await response.json();
-    if(endereco.value.trim() === ""){ // funções que só preenchem o campo caso ele esteja vazio
-        endereco.value = responseCep.logradouro || "";
     }
-    if(bairro.value.trim() === ""){
-        bairro.value = responseCep.bairro || "";
+
+    function minLengthValidate(id, minLength) {
+        const campo = document.getElementById(id);
+        if (campo.value.trim().length < minLength) {
+            setErrorById(id);
+            return false;
+        } else {
+            removeErrorById(id);
+            return true;
+        }
     }
-    if(cidade.value.trim() === ""){
-        cidade.value = responseCep.localidade || "";
+
+    function validador() {
+        const validations = [
+            nameValidate(),
+            emailValidate(),
+            cpfValidate(),
+            celular1Validate(),
+            celular2Validate(),
+            dateValidate(),
+            nomeMaeValidate(),
+            cepValidate(),
+            enderecoValidate(),
+            bairroValidate(),
+            cidadeValidate(),
+            loginValidate(),
+            mainPasswordValidate(),
+            comparePassword(),
+            sexoValidate()
+        ];
+        return validations.every(Boolean);
     }
-    addCommaToEndereco(endereco); 
-    }    catch (error) {
-        console.error("Erro ao buscar o CEP:", error)
-    }})
 
-// VALIDAÇÃO /\ //
-// MASCARAS \/ //
-$(document).ready(function() {
-    console.log('Document ready e máscaras aplicadas'); // Verifique se esta mensagem aparece no console
+    // Busca automática de endereço pelo CEP
+    document.getElementById('cep').addEventListener('focusout', async () => {
+        const cepField = document.getElementById('cep');
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${cepField.value}/json/`);
+            if (!response.ok) throw new Error("Erro ao buscar o CEP");
+            const data = await response.json();
+            if (document.getElementById('endereco').value.trim() === "") document.getElementById('endereco').value = data.logradouro || "";
+            if (document.getElementById('bairro').value.trim() === "") document.getElementById('bairro').value = data.bairro || "";
+            if (document.getElementById('cidade').value.trim() === "") document.getElementById('cidade').value = data.localidade || "";
+            addCommaToEndereco();
+        } catch (error) {
+            console.error("Erro ao buscar o CEP:", error);
+        }
+    });
 
-    $("#cpf").inputmask("999.999.999-99");
-    $("#celular1").inputmask("+55 (99)99999-9999");
-    $("#celular2").inputmask("+55 (99)99999-9999");
-    $("#dt_nasc").inputmask("99/99/9999");
-    $("#cep").inputmask("99999-999");
-    console.log('Máscaras aplicadas');
+    // Vírgula automática no campo endereço
+    document.getElementById('endereco').addEventListener('focusout', addCommaToEndereco);
 
-});
-// cpf.addEventListener('keypress', () => {
-//     let cpflength = cpf.value.length
-
-//     if (cpflength === 3 || cpflength === 7) {
-//         cpf.value += '.'
-//     }else if (cpflength === 11) {
-//         cpf.value += '-'
-//     }
-// })
-
-// celular1.addEventListener('keypress', () => {
-//     let celular1length = celular1.value.length
-//     if (celular1length === 0){
-//         celular1.value += '+'
-//     }
-//     else if (celular1length === 3){
-//         celular1.value += ' ('
-//     }
-//     else if (celular1length === 7) {
-//         celular1.value += ')'
-//     }
-//     else if (celular1length === 13) {
-//         celular1.value += '-'
-//     }
-// })
-
-// celular2.addEventListener('keypress', () => {
-//     let celular2length = celular2.value.length
-//     if (celular2length === 0){
-//         celular2.value += '+'
-//     }
-//     else if (celular2length === 3){
-//         celular2.value += ' ('
-//     }
-//     else if (celular2length === 7) {
-//         celular2.value += ')'
-//     }
-//     else if (celular2length === 13) {
-//         celular2.value += '-'
-//     }
-// })
-
-
-// dt_nasc.addEventListener('keypress', () => {
-//     let dt_nasclength = dt_nasc.value.length
-
-//     if (dt_nasclength === 2 || dt_nasclength === 5)
-//         dt_nasc.value += '/'
-// })
-
-// cep.addEventListener('keypress', () => {
-//     let ceplength = cep.value.length
-
-//     if (ceplength === 5)
-//         cep.value += '-'
-// })
-
-function addCommaToEndereco() {
-    let inputValue = endereco.value.trim(); 
-    if (inputValue && !inputValue.includes(',')) {
-        endereco.value = inputValue + ',';  
+    function addCommaToEndereco() {
+        const campo = document.getElementById('endereco');
+        if (campo.value.trim() && !campo.value.includes(',')) {
+            campo.value += ',';
+        }
     }
-}
 
-endereco.addEventListener('focusout', function() {
-    addCommaToEndereco();
+    // Máscaras jQuery
+    $(document).ready(function() {
+        $("#cpf").inputmask("999.999.999-99");
+        $("#celular1").inputmask("+55 (99)99999-9999");
+        $("#celular2").inputmask("+55 (99)99999-9999");
+        $("#dt_nasc").inputmask("99/99/9999");
+        $("#cep").inputmask("99999-999");
+        console.log('Máscaras aplicadas');
+    });
 });

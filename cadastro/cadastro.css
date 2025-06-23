@@ -74,14 +74,34 @@ body.dark-mode .voltarLogin {
 }
 
 .card {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #333;
     padding: 20px;
     border-radius: 50px;
     width: 650px;
-    height: 870px;
+    height: 970px;
     position: relative; /* Permite posicionar o botão dentro da card */
 }
 
+.form-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.column {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .card-header {
     padding-bottom: 0px;
     opacity: 0.8;
@@ -104,22 +124,7 @@ body.dark-mode #titulo {
     opacity: 0.8;
 }
 
-.conteudo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-        "nome endereco"
-        "cpf bairro"
-        "email cidade"
-        "celular1 login"
-        "celular2 senha"
-        "dt_nasc confirmaSenha"
-        "nomeMae sexo"
-        "cep .";
-    margin-left: 60px;
-    padding: 20px 0;
-    margin-top: 0px;
-}
+
 
 .inputs {
     width: 200px;
@@ -147,14 +152,12 @@ button {
 
 .rodape {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
 }
 
 #enviar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 170px;
     width: 300px;
     height: 40px;
     background-color: #b30000;
@@ -171,9 +174,8 @@ button {
 }
 
 .limpar {
-    margin-top: 30px;
-    width: 210px;
-    height: 35px;
+    width: 150px;
+    height: 40px;
     background-color: #b30000;
     color: #e1e1e1;
     text-align: center;
@@ -250,6 +252,29 @@ form {
     position: absolute;
 }
 
+#password-requirements li.invalid {
+    list-style: none;
+    color: #b30000;
+    font-size: 12px;
+    margin-left: -26px;
+    width: 200px;
+}
+body.dark-mode #password-requirements li.invalid {
+    color: #f80000;
+}
+
+#password-requirements li.valid {
+    color: green !important; 
+    list-style: none;   
+    text-decoration: line-through;
+    font-size: 12px;
+    margin-left: -26px;
+    width: 200px;
+}
+
+body.dark-mode .span-required {
+    color: #f80000;
+}
 .theme-toggle {
     display: flex;
     width: 60px;
@@ -293,6 +318,7 @@ form {
 }
 .footer{
     color: #0e0d0d;
+    height: 1000px;
 }
 body.light-mode .footer{
     color: white;
@@ -302,8 +328,11 @@ body.light-mode .footer{
     body{
         display: block;
     }
+    .form-grid {
+        flex-direction: column;
+    }
     .footer{
-        margin-top: 1550px;
+        margin-top: 1750px;
         display: block;
     }
     .conteudo {
@@ -313,19 +342,21 @@ body.light-mode .footer{
     .card {
         display: block;
         width: 300px;
-        height: 1500px;
+        height: 1700px;
     }
     .rodape {
-        display: block;
-        align-items: center;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
     }
-    #enviar {
+    /* #enviar {
         display: flex;   
         align-items: flex-start;
         margin: 0 0 0 0;
         padding: 0; 
         margin-right: 13vw;
-    }
+    } */
     .theme-toggle {
         display: flex;
         width: 60px;
