@@ -84,7 +84,7 @@ function setupMapboxAutocomplete(inputId) {
         timeout = setTimeout(async () => {
             try {
                 const response = await fetch(
-                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${MAPBOX_TOKEN}&country=BR&limit=5`
+                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${MAPBOX_TOKEN}&country=US&limit=5`
                 );
                 const data = await response.json();
                 
@@ -208,7 +208,7 @@ async function calculateRoute() {
 // Função para geocodificar endereço (NOME SIMPLIFICADO)
 async function geocodeAddress(address) {
     const response = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${MAPBOX_TOKEN}&country=BR&limit=1`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${MAPBOX_TOKEN}&country=US&limit=1`
     );
     const data = await response.json();
     
@@ -335,52 +335,59 @@ function displayRoute(route) {
 }
 
 // Função para encontrar postos de gasolina (NOME SIMPLIFICADO)
-async function findGasStations() {
-    if (!routeData || !map) return;
+    async function findGasStations() {
+        if (!routeData || !map) return;
 
-    const coordinates = routeData.geometry.coordinates;
-    const samplePoints = [];
-    
-    // Pegar alguns pontos ao longo da rota
-    for (let i = 0; i < coordinates.length; i += Math.floor(coordinates.length / 5)) {
-        samplePoints.push(coordinates[i]);
-    }
+        const coordinates = routeData.geometry.coordinates;
+        const samplePoints = [];
 
-    const gasStations = [];
-    
-    for (const point of samplePoints) {
-        try {
-            const response = await fetch(
-                `https://api.mapbox.com/geocoding/v5/mapbox.places/gas%20station.json?proximity=${point[0]},${point[1]}&access_token=${MAPBOX_TOKEN}&country=BR&limit=3`
-            );
-            const data = await response.json();
-            
-            if (data.features) {
-                gasStations.push(...data.features);
+        // Amostrar mais pontos ao longo da rota
+        const step = Math.max(1, Math.floor(coordinates.length / 50));
+        for (let i = 0; i < coordinates.length; i += step) {
+            samplePoints.push(coordinates[i]);
+        }
+
+        // Incluindo a origem e o destino como pontos de busca
+        const originPoint = coordinates[0];
+        const destinationPoint = coordinates[coordinates.length - 1];
+        samplePoints.push(originPoint);
+        samplePoints.push(destinationPoint);
+
+        const gasStations = [];
+
+        for (const point of samplePoints) {
+            try {
+                const response = await fetch(
+                    `https://api.mapbox.com/geocoding/v5/mapbox.places/gas%20station.json?proximity=${point[0]},${point[1]}&access_token=${MAPBOX_TOKEN}&country=US&limit=10`
+                );
+                const data = await response.json();
+
+                if (data.features) {
+                    gasStations.push(...data.features);
+                }
+            } catch (error) {
+                console.error('Erro ao buscar postos:', error);
             }
-        } catch (error) {
-            console.error('Erro ao buscar postos:', error);
         }
-    }
 
-    // Remover duplicatas
-    const uniqueStations = [];
-    gasStations.forEach(station => {
-        const isDuplicate = uniqueStations.some(existing => {
-            const distance = calculateDistance(
-                station.center[0], station.center[1],
-                existing.center[0], existing.center[1]
-            );
-            return distance < 0.5;
+        // Remover duplicatas por distância
+        const uniqueStations = [];
+        gasStations.forEach(station => {
+            const isDuplicate = uniqueStations.some(existing => {
+                const distance = calculateDistance(
+                    station.center[0], station.center[1],
+                    existing.center[0], existing.center[1]
+                );
+                return distance < 0.5;
+            });
+
+            if (!isDuplicate) {
+                uniqueStations.push(station);
+            }
         });
-        
-        if (!isDuplicate) {
-            uniqueStations.push(station);
-        }
-    });
 
-    displayGasStations(uniqueStations.slice(0, 10));
-}
+        displayGasStations(gasStations.slice(0, 20));  // Mostra até 20 diferentes
+    }
 
 // Função para exibir postos de gasolina (NOME SIMPLIFICADO)
 function displayGasStations(stations) {

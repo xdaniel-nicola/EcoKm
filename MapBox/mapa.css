@@ -147,6 +147,10 @@
             overflow: hidden;
         }
 
+        body.dark-mode .mapbox-suggestions-dropdown {
+            color: black;
+        }
+
         /* .result {
             margin-top: 20px;
             padding: 20px;
