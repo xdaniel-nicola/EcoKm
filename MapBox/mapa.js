@@ -84,7 +84,7 @@ function setupMapboxAutocomplete(inputId) {
         timeout = setTimeout(async () => {
             try {
                 const response = await fetch(
-                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${MAPBOX_TOKEN}&country=US&limit=5`
+                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${MAPBOX_TOKEN}&country=BR&limit=5`
                 );
                 const data = await response.json();
                 
@@ -208,7 +208,7 @@ async function calculateRoute() {
 // Função para geocodificar endereço (NOME SIMPLIFICADO)
 async function geocodeAddress(address) {
     const response = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${MAPBOX_TOKEN}&country=US&limit=1`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${MAPBOX_TOKEN}&country=BR&limit=1`
     );
     const data = await response.json();
     
@@ -358,7 +358,7 @@ function displayRoute(route) {
         for (const point of samplePoints) {
             try {
                 const response = await fetch(
-                    `https://api.mapbox.com/geocoding/v5/mapbox.places/gas%20station.json?proximity=${point[0]},${point[1]}&access_token=${MAPBOX_TOKEN}&country=US&limit=10`
+                    `https://api.mapbox.com/geocoding/v5/mapbox.places/gas%20station.json?proximity=${point[0]},${point[1]}&access_token=${MAPBOX_TOKEN}&country=BR&limit=10`
                 );
                 const data = await response.json();
 
